@@ -1,0 +1,35 @@
+/* Fonte principal do projeto — Oxanium (design/tokens.md) */
+@import url("https://fonts.googleapis.com/css2?family=Oxanium:wght@400;500;600;700;800&display=swap");
+@import "tailwindcss";
+
+/*
+  Design tokens do projeto.
+  Fonte da verdade: design/tokens.md — não alterar valores aqui
+  sem atualizar o arquivo de referência.
+*/
+@theme {
+  --color-background: #f5faff;
+  --color-primary: #1c2a3b;
+  --color-surface: #354353;
+  --color-text: #e5f1ff;
+  --color-text-muted: #6b7094;
+  --color-accent: #2563eb;
+  --color-accent-light: #60a5fa;
+
+  --font-sans: "Oxanium", sans-serif;
+
+  --spacing-section: 120px;
+  --spacing-mobile: 24px;
+  --spacing-desktop: 48px;
+
+  --container-max: 1280px;
+
+  --radius-card: 20px;
+  --radius-button: 10px;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-primary font-sans antialiased;
+  }
+}
