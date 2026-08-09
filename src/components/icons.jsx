@@ -122,3 +122,80 @@ export function BookIcon({ className = 'h-5 w-5' }) {
     </svg>
   )
 }
+
+export function ServerIcon({ className = 'h-5 w-5' }) {
+  return (
+    <svg className={className} {...defaultProps}>
+      <rect x="2" y="3" width="20" height="7" rx="1.5" />
+      <rect x="2" y="14" width="20" height="7" rx="1.5" />
+      <line x1="6" y1="6.5" x2="6.01" y2="6.5" />
+      <line x1="6" y1="17.5" x2="6.01" y2="17.5" />
+    </svg>
+  )
+}
+
+export function DatabaseIcon({ className = 'h-5 w-5' }) {
+  return (
+    <svg className={className} {...defaultProps}>
+      <ellipse cx="12" cy="5" rx="8" ry="3" />
+      <path d="M4 5v14c0 1.66 3.58 3 8 3s8-1.34 8-3V5" />
+      <path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3" />
+    </svg>
+  )
+}
+
+export function WrenchIcon({ className = 'h-5 w-5' }) {
+  return (
+    <svg className={className} {...defaultProps}>
+      <path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L2 19l3 3 7.3-7.3a4 4 0 0 0 5.4-5.4l-2.8 2.8-2-2Z" />
+    </svg>
+  )
+}
+
+export function CloudIcon({ className = 'h-5 w-5' }) {
+  return (
+    <svg className={className} {...defaultProps}>
+      <path d="M17.5 19a4.5 4.5 0 0 0 0-9 6 6 0 0 0-11.4-1.5A5 5 0 0 0 6.5 19h11Z" />
+    </svg>
+  )
+}
+
+export function LightbulbIcon({ className = 'h-5 w-5' }) {
+  return (
+    <svg className={className} {...defaultProps}>
+      <path d="M9 18h6" />
+      <path d="M10 22h4" />
+      <path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.2 1 2.3h6c0-1.1.4-1.8 1-2.3A7 7 0 0 0 12 2Z" />
+    </svg>
+  )
+}
+
+export function LockIcon({ className = 'h-5 w-5' }) {
+  return (
+    <svg className={className} {...defaultProps}>
+      <rect x="4" y="11" width="16" height="9" rx="2" />
+      <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+    </svg>
+  )
+}
+
+export function DeviceIcon({ className = 'h-5 w-5' }) {
+  return (
+    <svg className={className} {...defaultProps}>
+      <rect x="2" y="4" width="14" height="10" rx="1.5" />
+      <line x1="6" y1="18" x2="12" y2="18" />
+      <rect x="17" y="8" width="5" height="9" rx="1" />
+    </svg>
+  )
+}
+
+export function GitBranchIcon({ className = 'h-5 w-5' }) {
+  return (
+    <svg className={className} {...defaultProps}>
+      <line x1="6" y1="3" x2="6" y2="15" />
+      <circle cx="6" cy="18" r="3" />
+      <circle cx="18" cy="6" r="3" />
+      <path d="M18 9a9 9 0 0 1-9 9" />
+    </svg>
+  )
+}

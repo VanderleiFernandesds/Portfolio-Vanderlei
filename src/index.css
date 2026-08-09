@@ -16,6 +16,15 @@
   --color-accent: #2563eb;
   --color-accent-light: #60a5fa;
 
+  /* Uso exclusivo: badges de categoria da seção Skills (ver design/tokens.md) */
+  --color-category-frontend: #213757;
+  --color-category-backend: #1e6247;
+  --color-category-database: #8a4bcf;
+  --color-category-tools: #765a27;
+  --color-category-cloud: #184967;
+  --color-category-concepts: #98364f;
+  --color-category-soft-skills: #313057;
+
   --font-sans: "Oxanium", sans-serif;
 
   --spacing-section: 120px;
