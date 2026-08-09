@@ -1,6 +1,7 @@
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Hero from './sections/Hero'
+import About from './sections/About'
 
 function App() {
   return (
@@ -9,7 +10,8 @@ function App() {
 
       <main className="flex-1">
         <Hero />
-        {/* Sobre, Habilidades, Projetos e Contato serão implementados
+        <About />
+        {/* Habilidades, Projetos e Contato serão implementados
             nas próximas etapas, uma a uma. */}
       </main>
 

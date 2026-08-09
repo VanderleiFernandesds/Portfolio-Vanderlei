@@ -16,7 +16,7 @@ function SectionTitle({
   return (
     <div className={`flex flex-col gap-3 ${alignment} ${className}`.trim()}>
       {eyebrow && (
-        <span className="text-sm font-semibold tracking-widest text-text-muted uppercase">
+        <span className="text-sm font-semibold tracking-widest text-accent-light uppercase">
           {eyebrow}
         </span>
       )}
