@@ -5,6 +5,7 @@
  * - "secondary": contornado, para uso sobre fundo claro (border-primary).
  * - "light": sólido claro, para uso sobre fundo escuro (ex.: Hero).
  * - "outline-light": contornado claro, para uso sobre fundo escuro (ex.: Hero).
+ * - "accent": sólido em accent, para CTAs de destaque (ex.: Contact).
  * Renderiza como <button> por padrão; passe `as="a"` + `href` para links.
  */
 const VARIANTS = {
@@ -12,6 +13,7 @@ const VARIANTS = {
   secondary: 'border border-primary/20 text-primary hover:bg-primary/5',
   light: 'bg-text text-primary hover:bg-text/90',
   'outline-light': 'border border-text/30 text-text hover:bg-text/10',
+  accent: 'bg-accent text-text hover:bg-accent/90',
 }
 
 function Button({

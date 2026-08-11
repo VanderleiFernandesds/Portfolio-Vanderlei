@@ -3,6 +3,7 @@ import Footer from './components/Footer'
 import Hero from './sections/Hero'
 import About from './sections/About'
 import Skills from './sections/Skills'
+import Contact from './sections/Contact'
 
 function App() {
   return (
@@ -13,7 +14,8 @@ function App() {
         <Hero />
         <About />
         <Skills />
-        {/* Projetos e Contato serão implementados nas próximas etapas. */}
+        <Contact />
+        {/* Projetos continua pausado. */}
       </main>
 
       <Footer />

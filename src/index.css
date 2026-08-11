@@ -25,6 +25,13 @@
   --color-category-concepts: #98364f;
   --color-category-soft-skills: #313057;
 
+  /* Uso exclusivo: badges dos canais de contato da seção Contact (ver design/tokens.md) */
+  --color-channel-email: #e44f1a;
+  --color-channel-whatsapp: #1bc45a;
+  --color-channel-linkedin: #0e76d8;
+  --color-channel-github: #191918;
+  --color-channel-location: #98adca;
+
   --font-sans: "Oxanium", sans-serif;
 
   --spacing-section: 120px;
