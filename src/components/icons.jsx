@@ -235,3 +235,11 @@ export function PinIcon({ className = 'h-5 w-5' }) {
     </svg>
   )
 }
+
+export function HeartIcon({ className = 'h-5 w-5' }) {
+  return (
+    <svg className={className} {...defaultProps}>
+      <path d="M20.8 8.6c0 4.5-8.8 10.4-8.8 10.4S3.2 13.1 3.2 8.6a4.6 4.6 0 0 1 8.8-1.9 4.6 4.6 0 0 1 8.8 1.9Z" />
+    </svg>
+  )
+}
