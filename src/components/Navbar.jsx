@@ -12,7 +12,7 @@ import {
 } from './icons'
 
 // Links de navegação (ver design/references/hero.png). Apontam para os ids
-// das seções — Sobre/Habilidades/Projetos/Contato ainda serão implementadas.
+// das seções.
 const NAV_LINKS = [
   { label: 'Sobre', href: '#sobre', icon: UserIcon },
   { label: 'Habilidades', href: '#habilidades', icon: ZapIcon },

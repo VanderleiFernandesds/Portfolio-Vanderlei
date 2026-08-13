@@ -1,10 +1,11 @@
 // Faixa de tecnologias exibida na Hero (design/references/hero.png).
-// Ainda não há um pacote de ícones de marca instalado no projeto — cada item
-// usa uma abreviação como placeholder visual até que ícones reais sejam
-// definidos (ex.: um SVG por tecnologia em src/assets/).
+// `Icon` referencia o componente de marca real do pacote `react-icons`,
+// mesmo padrão utilizado em `src/data/skills.js`.
+import { SiReact, SiTypescript, SiTailwindcss, SiJavascript } from 'react-icons/si'
+
 export const technologies = [
-  { name: 'react', label: 'React', abbr: 'Re' },
-  { name: 'typescript', label: 'TypeScript', abbr: 'TS' },
-  { name: 'tailwind', label: 'Tailwind CSS', abbr: 'TW' },
-  { name: 'javascript', label: 'JavaScript', abbr: 'JS' },
+  { name: 'react', label: 'React', Icon: SiReact },
+  { name: 'typescript', label: 'TypeScript', Icon: SiTypescript },
+  { name: 'tailwind', label: 'Tailwind CSS', Icon: SiTailwindcss },
+  { name: 'javascript', label: 'JavaScript', Icon: SiJavascript },
 ]

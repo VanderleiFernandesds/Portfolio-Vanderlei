@@ -6,6 +6,7 @@
  * - "light": sólido claro, para uso sobre fundo escuro (ex.: Hero).
  * - "outline-light": contornado claro, para uso sobre fundo escuro (ex.: Hero).
  * - "accent": sólido em accent, para CTAs de destaque (ex.: Contact).
+ * - "projects": sólido no token `Projects`, exclusivo da seção Projects.
  * Renderiza como <button> por padrão; passe `as="a"` + `href` para links.
  */
 const VARIANTS = {
@@ -14,6 +15,7 @@ const VARIANTS = {
   light: 'bg-text text-primary hover:bg-text/90',
   'outline-light': 'border border-text/30 text-text hover:bg-text/10',
   accent: 'bg-accent text-text hover:bg-accent/90',
+  projects: 'bg-projects text-primary hover:bg-projects/90',
 }
 
 function Button({

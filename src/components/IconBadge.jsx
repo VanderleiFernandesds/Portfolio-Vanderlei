@@ -9,10 +9,11 @@ const SIZES = {
   lg: 'h-14 w-14',
 }
 
-function IconBadge({ icon, size = 'md', className = '' }) {
+function IconBadge({ icon, size = 'md', className = '', ...props }) {
   return (
     <span
       className={`inline-flex shrink-0 items-center justify-center rounded-button bg-surface text-text ${SIZES[size]} ${className}`.trim()}
+      {...props}
     >
       {icon}
     </span>

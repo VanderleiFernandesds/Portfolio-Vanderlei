@@ -243,3 +243,12 @@ export function HeartIcon({ className = 'h-5 w-5' }) {
     </svg>
   )
 }
+
+export function ArrowRightIcon({ className = 'h-5 w-5' }) {
+  return (
+    <svg className={className} {...defaultProps}>
+      <line x1="4" y1="12" x2="20" y2="12" />
+      <polyline points="14 6 20 12 14 18" />
+    </svg>
+  )
+}

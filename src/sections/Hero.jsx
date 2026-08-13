@@ -8,15 +8,19 @@ import {
   LayersIcon,
   TargetIcon,
   RefreshIcon,
+  ArrowRightIcon,
 } from '../components/icons'
+import { SiGithub } from 'react-icons/si'
+import { FaLinkedin } from 'react-icons/fa'
 import { socials } from '../data/socials'
 import { technologies } from '../data/technologies'
 import { stats } from '../data/stats'
 import profilePhoto from '../assets/profile.png'
 
+// Mesmos ícones de marca utilizados em Contact (design/tokens.md — consistência visual).
 const SOCIAL_ICONS = {
-  github: <CodeIcon className="h-4 w-4" />,
-  linkedin: <span className="text-sm font-bold">in</span>,
+  github: <SiGithub className="h-4 w-4" />,
+  linkedin: <FaLinkedin className="h-4 w-4" />,
   email: <MailIcon className="h-4 w-4" />,
 }
 
@@ -53,10 +57,12 @@ function Hero() {
 
             <div className="flex flex-wrap gap-4">
               <Button as="a" href="#projetos" variant="light">
-                Ver projetos →
+                Ver projetos
+                <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
               </Button>
               <Button as="a" href="#contato" variant="outline-light">
-                Entrar em contato ✉
+                Entrar em contato
+                <MailIcon className="h-4 w-4" aria-hidden="true" />
               </Button>
             </div>
 
@@ -76,11 +82,9 @@ function Hero() {
                 <IconBadge
                   key={tech.name}
                   size="sm"
-                  icon={
-                    <span className="text-xs font-semibold" title={tech.label}>
-                      {tech.abbr}
-                    </span>
-                  }
+                  aria-label={tech.label}
+                  title={tech.label}
+                  icon={<tech.Icon className="h-4 w-4" aria-hidden="true" />}
                 />
               ))}
             </div>

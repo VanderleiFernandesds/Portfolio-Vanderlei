@@ -32,6 +32,10 @@
   --color-channel-github: #191918;
   --color-channel-location: #98adca;
 
+  /* Uso exclusivo: seção Projects (ver design/tokens.md) */
+  --color-projects: #f5a623;
+  --color-projects-light: #fde9b8;
+
   --font-sans: "Oxanium", sans-serif;
 
   --spacing-section: 120px;
