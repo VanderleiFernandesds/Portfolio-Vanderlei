@@ -53,3 +53,124 @@
     @apply bg-background text-primary font-sans antialiased;
   }
 }
+
+/*
+  Pilha/carrossel da seção Projects — porta a geometria e a animação de
+  design/Carrossel de Pastas/ (style.css + script.js): mesmo recorte de
+  pasta (clip-path), mesma "folha" central que desliza ao virar o projeto
+  ativo, mesma física de profundidade (--stack-offset). A única mudança é
+  a cor: em vez das 4 cores fixas do protótipo (amarelo/azul/roxo/rosa),
+  usa só os tokens já existentes (Projects/Projects Light/Accent/Accent
+  Light) — nenhum hex novo em lugar nenhum.
+*/
+@layer utilities {
+  /*
+    O tamanho aqui precisa casar com o sistema de coordenadas do
+    clip-path de .project-folder-back (path desenhado para uma caixa de
+    520x360 — coordenadas absolutas, não percentuais). Mudar este
+    tamanho sem escalar o path junto distorce/corta o recorte da pasta.
+  */
+  .project-stack {
+    width: min(520px, 82vw);
+    height: min(360px, 58vw);
+  }
+
+  .project-stack-layer {
+    transform: translateY(calc(var(--stack-offset, 0) * -10%))
+      scale(calc(1 - var(--stack-offset, 0) * 0.08));
+    z-index: calc(10 - var(--stack-offset, 0));
+    /*
+      Easing mais equilibrado (padrão "standard" de movimento) — a curva
+      anterior (cubic-bezier(0.16,1,0.3,1)) concentrava quase todo o
+      deslocamento nos primeiros ~30% da duração; com o salto de posição
+      maior (frente -> fundo da pilha), isso fazia o card parecer "pular"
+      direto para o lugar em vez de deslizar visivelmente.
+    */
+    transition:
+      transform 550ms cubic-bezier(0.4, 0, 0.2, 1),
+      opacity 550ms cubic-bezier(0.4, 0, 0.2, 1);
+    filter: drop-shadow(0 18px 26px rgb(28 42 59 / 0.18));
+  }
+
+  .project-folder {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .project-folder-back {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: 30px 18px 26px 26px;
+    clip-path: path(
+      "M 30 0 H 210 Q 222 0 230 10 L 252 40 Q 260 50 274 50 H 502 Q 520 50 520 68 V 334 Q 520 360 494 360 H 26 Q 0 360 0 334 V 30 Q 0 0 30 0 Z"
+    );
+  }
+
+  /*
+    Altura calibrada para a caixa de 360px de .project-folder-back: o lado
+    direito do recorte da pasta só chega na largura total a partir de
+    y=68px (curva do canto junto à aba). Começando em 84% (y≈57,6px) o
+    canto superior direito deste retângulo ficava além do recorte,
+    "vazando" para fora da pasta — 80% (y=72px) fica dentro da área cheia.
+  */
+  .project-folder-front {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 3;
+    height: 80%;
+    border-radius: 10px 10px 26px 26px;
+  }
+
+  /*
+    Altura calibrada para não passar de y=334px (caixa de 360px): é onde
+    .project-folder-back/.project-folder-front começam a arredondar o
+    canto inferior (raio 26px). O front só pinta o retângulo reto — na
+    região do arco ele fica transparente nas quinas — então, se o sheet
+    descer até essa faixa, a quina quadrada dele aparece "vazando" para
+    fora do contorno da pasta. 70% (bottom ≈ 317px) fica com folga.
+  */
+  .project-sheet {
+    position: absolute;
+    left: 3%;
+    right: 3%;
+    top: 18%;
+    z-index: 2;
+    height: 70%;
+    animation: project-sheet-out 0.5s ease-in-out forwards;
+  }
+
+  @keyframes project-sheet-out {
+    0% {
+      z-index: 2;
+      transform: translateY(22%) scale(0.98);
+    }
+    45% {
+      z-index: 2;
+      transform: translateY(-16%) scale(0.98);
+    }
+    55% {
+      z-index: 4;
+      transform: translateY(-20%) scale(1);
+    }
+    78% {
+      z-index: 4;
+      transform: translateY(4%) scale(1);
+    }
+    100% {
+      z-index: 4;
+      transform: translateY(0%) scale(1);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .project-stack-layer,
+    .project-sheet {
+      animation: none;
+      transition: none;
+    }
+  }
+}
