@@ -36,9 +36,23 @@
   --color-projects: #f5a623;
   --color-projects-light: #fde9b8;
 
+  /*
+    Uso exclusivo: FolderCarousel (src/components/FolderCarousel.jsx).
+    Cores fixas do protótipo design/Carrossel de Pastas/ — carrossel
+    genérico, não vinculado aos dados/tokens de projetos reais.
+  */
+  --color-folder-yellow-back: #ffb53f;
+  --color-folder-yellow-front: #ffd34f;
+  --color-folder-blue-back: #49b4ff;
+  --color-folder-blue-front: #63c7ff;
+  --color-folder-purple-back: #8c56f0;
+  --color-folder-purple-front: #a071ff;
+  --color-folder-pink-back: #f23f8b;
+  --color-folder-pink-front: #ff69a6;
+
   --font-sans: "Oxanium", sans-serif;
 
-  --spacing-section: 120px;
+  --spacing-section: 50px;
   --spacing-mobile: 24px;
   --spacing-desktop: 48px;
 
@@ -46,6 +60,31 @@
 
   --radius-card: 20px;
   --radius-button: 10px;
+
+  --animate-sheet-out: sheet-out 0.5s ease-in-out forwards;
+
+  @keyframes sheet-out {
+    0% {
+      z-index: 2;
+      transform: translateY(22%) scale(0.98);
+    }
+    45% {
+      z-index: 2;
+      transform: translateY(-42%) scale(0.98);
+    }
+    55% {
+      z-index: 4;
+      transform: translateY(-48%) scale(1);
+    }
+    78% {
+      z-index: 4;
+      transform: translateY(8%) scale(1);
+    }
+    100% {
+      z-index: 4;
+      transform: translateY(2%) scale(1);
+    }
+  }
 }
 
 @layer base {
@@ -172,5 +211,18 @@
       animation: none;
       transition: none;
     }
+  }
+
+  /*
+    Recorte real da pasta (aba no canto superior), igual ao protótipo
+    design/Carrossel de Pastas/style.css (.folder-back). Path desenhado
+    para uma caixa de 520x360 — mesma proporção usada em
+    src/components/FolderCarousel.jsx (w-[min(520px,82vw)] x
+    h-[min(360px,58vw)]), então escala corretamente em telas menores.
+  */
+  .folder-back-shape {
+    clip-path: path(
+      "M 30 0 H 210 Q 222 0 230 10 L 252 40 Q 260 50 274 50 H 502 Q 520 50 520 68 V 334 Q 520 360 494 360 H 26 Q 0 360 0 334 V 30 Q 0 0 30 0 Z"
+    );
   }
 }
