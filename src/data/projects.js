@@ -1,14 +1,11 @@
 // Projetos em destaque da seção Projects (design/references/projetos.png).
-// Estrutura preparada para 4 projetos (navegação "01 / 04" + 4 dots).
-// Apenas o primeiro projeto tem conteúdo real definido pelo mockup — os
-// demais são placeholders controlados só para a navegação funcionar
-// visualmente, sem inventar conteúdo/URLs reais.
+// 4 projetos fictícios — apenas para demonstrar a seção com o carrossel em
+// pilha completo (nenhum deles existe de verdade).
 //
-// `logo`: ainda não há assets de logo — usa o mesmo placeholder textual
-// "Logo" do mockup até que um asset real exista.
-// `image`: ainda não há screenshots reais — `null` faz a seção renderizar
-// o estado de placeholder ("foto do projeto"); quando o asset existir em
-// src/assets/, basta importar e preencher este campo.
+// `logo`: iniciais usadas no selo da coluna esquerda (não há asset de logo).
+// `preview`: identifica o mockup ilustrado renderizado em <ProjectMockup>
+// (src/components/ProjectMockup.jsx) — construído só com elementos/tokens
+// do projeto, sem imagens ou capturas de tela reais.
 // `githubHref` / `demoHref`: `null` enquanto os links reais não forem
 // definidos — a seção trata esse estado como "link ainda não disponível",
 // sem apontar para URLs falsas.
@@ -16,41 +13,44 @@ export const projects = [
   {
     id: 1,
     title: 'EnvelopPack',
-    logo: 'Logo',
+    logo: 'EP',
     description:
-      'E-commerce completo para soluções de embalagem, projetado para otimizar conversões com um funil de checkout simplificado em um único arquivo HTML.',
-    technologies: ['HTML5', 'CSS3', 'JavaScript (ES6+)'],
-    image: null,
+      'E-commerce completo para soluções de embalagem, com catálogo por categoria e um funil de checkout simplificado.',
+    technologies: ['HTML5', 'CSS3', 'JavaScript'],
+    preview: 'ecommerce',
     githubHref: null,
     demoHref: null,
   },
   {
     id: 2,
-    title: 'Em breve',
-    logo: 'Logo',
-    description: 'Novo projeto em desenvolvimento — detalhes em breve.',
-    technologies: [],
-    image: null,
+    title: 'TaskFlow',
+    logo: 'TF',
+    description:
+      'Aplicação de gerenciamento de tarefas e produtividade, com quadros arrastáveis e acompanhamento de progresso em tempo real.',
+    technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Node.js'],
+    preview: 'tasks',
     githubHref: null,
     demoHref: null,
   },
   {
     id: 3,
-    title: 'Em breve',
-    logo: 'Logo',
-    description: 'Novo projeto em desenvolvimento — detalhes em breve.',
-    technologies: [],
-    image: null,
+    title: 'FinanceX',
+    logo: 'FX',
+    description:
+      'Dashboard financeiro para acompanhar receitas, despesas e indicadores de performance com gráficos interativos.',
+    technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Chart.js'],
+    preview: 'finance',
     githubHref: null,
     demoHref: null,
   },
   {
     id: 4,
-    title: 'Em breve',
-    logo: 'Logo',
-    description: 'Novo projeto em desenvolvimento — detalhes em breve.',
-    technologies: [],
-    image: null,
+    title: 'DevHub',
+    logo: 'DH',
+    description:
+      'Plataforma para organização de projetos, equipes e atividades de desenvolvimento em um só lugar.',
+    technologies: ['React', 'Node.js', 'PostgreSQL', 'TypeScript'],
+    preview: 'devhub',
     githubHref: null,
     demoHref: null,
   },
