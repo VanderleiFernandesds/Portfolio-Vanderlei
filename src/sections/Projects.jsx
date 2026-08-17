@@ -3,6 +3,7 @@ import Section from '../components/Section'
 import SectionTitle from '../components/SectionTitle'
 import Button from '../components/Button'
 import FolderCarousel from '../components/FolderCarousel'
+import ProjectModal from '../components/ProjectModal'
 import { ArrowRightIcon, ExternalLinkIcon } from '../components/icons'
 import { projects } from '../data/projects'
 
@@ -21,8 +22,12 @@ import { projects } from '../data/projects'
 function Projects() {
   const total = projects.length
   const [order, setOrder] = useState(() => projects.map((_, index) => index))
+  const [isModalOpen, setIsModalOpen] = useState(false)
   const frontIndex = order[0]
   const project = projects[frontIndex]
+
+  const openModal = () => setIsModalOpen(true)
+  const closeModal = () => setIsModalOpen(false)
 
   const goTo = (index) => {
     if (index === order[0]) return
@@ -78,16 +83,7 @@ function Projects() {
           )}
 
           <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
-            {/* Modal/página de detalhes ainda não definidos — botão fica
-                visível porém não interativo, sem alterar a aparência. */}
-            <Button
-              type="button"
-              variant="projects"
-              disabled
-              aria-disabled="true"
-              title="Em breve"
-              className="disabled:cursor-not-allowed disabled:opacity-60"
-            >
+            <Button type="button" variant="projects" onClick={openModal}>
               Ver detalhes
               <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
             </Button>
@@ -178,6 +174,8 @@ function Projects() {
           </div>
         </div>
       </div>
+
+      <ProjectModal project={project} isOpen={isModalOpen} onClose={closeModal} />
     </Section>
   )
 }
