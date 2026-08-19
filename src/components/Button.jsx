@@ -27,7 +27,7 @@ function Button({
 }) {
   return (
     <Tag
-      className={`inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3 text-sm font-semibold transition-colors ${VARIANTS[variant]} ${className}`.trim()}
+      className={`inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3 text-sm font-semibold  transition-colors ${VARIANTS[variant]} ${className}`.trim()}
       {...props}
     >
       {children}

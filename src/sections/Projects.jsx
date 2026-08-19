@@ -132,7 +132,7 @@ function Projects() {
           </div>
 
           {/* Navegação — reutiliza a mesma order/goTo/goNext/goPrev do carrossel */}
-          <div className="mt-2 flex flex-col gap-3 border-t border-text/10 pt-6">
+          <div className="mt-2 flex w-full flex-col items-center gap-3 border-t border-text/10 pt-6">
             <div className="flex items-center gap-4">
               <button
                 type="button"
