@@ -57,7 +57,7 @@ function Projects() {
         {/* Coluna esquerda (lg:order-1): informações do projeto em destaque
             + navegação. Altura mínima fixa evita que o painel "pule" de
             tamanho ao trocar de projeto (descrições/badges variam). */}
-        <div className="flex flex-col items-start gap-6 lg:order-1 lg:min-h-105 lg:justify-center">
+        <div className="flex min-h-105 flex-col items-start gap-6 lg:order-1 lg:justify-center">
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-3">
               <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-projects-light/30 bg-projects-light/10 text-sm font-bold text-projects-light">
@@ -66,11 +66,11 @@ function Projects() {
               <h3 className="text-2xl font-extrabold text-text sm:text-3xl">{project.title}</h3>
             </div>
 
-            <p className="max-w-sm text-text-muted lg:min-h-18">{project.description}</p>
+            <p className="max-w-sm text-text-muted min-h-18">{project.description}</p>
           </div>
 
           {project.technologies.length > 0 && (
-            <div className="flex min-h-7.5 flex-wrap gap-2">
+            <div className="flex min-h-16 flex-wrap content-center gap-2">
               {project.technologies.map((tech) => (
                 <span
                   key={tech}

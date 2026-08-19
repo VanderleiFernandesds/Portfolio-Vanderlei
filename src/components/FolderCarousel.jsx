@@ -65,12 +65,12 @@ function FolderCard({ folder, offset, onSelect }) {
         zIndex: 10 - offset,
       }}
     >
-      <div className="relative h-[58vw] w-[82vw] sm:h-[min(360px,58vw)] sm:w-[min(520px,82vw)]">
+      <div className="relative aspect-82/58 w-[93%] sm:aspect-auto sm:h-[min(360px,58vw)] sm:w-[min(520px,82vw)]">
         {/* Clips the sheet's sides/bottom to the folder's silhouette while
             leaving the top open, so the sheet can still peek out above the
             folder like it slides out from inside it. */}
         <div className="absolute inset-x-0 bottom-0 -top-[35%] overflow-hidden rounded-b-[26px]">
-          <div className="absolute inset-x-0 bottom-0 h-[58vw] sm:h-[min(360px,58vw)]">
+          <div className="absolute inset-x-0 bottom-0 h-[74%] sm:h-[min(360px,58vw)]">
             <div
               className={`folder-back-shape absolute inset-0 z-[1] rounded-[30px_18px_26px_26px] ${folder.back}`}
             />
@@ -170,7 +170,7 @@ export default function FolderCarousel({ order, onGoTo, onNext, onPrev }) {
     >
       {/* Área do carrossel - renderiza as pastas com transformações 3D */}
       <div
-        className="relative h-[62vw] w-[88vw] flex-none sm:h-[min(440px,64vw)] sm:w-[min(560px,82vw)]"
+        className="relative aspect-88/62 w-[min(88vw,calc(100vw-96px))] flex-none sm:aspect-auto sm:h-[min(440px,64vw)] sm:w-[min(560px,82vw)]"
         style={{ perspective: '1600px' }}
         onPointerDown={handlePointerDown}
         onPointerUp={handlePointerUp}
