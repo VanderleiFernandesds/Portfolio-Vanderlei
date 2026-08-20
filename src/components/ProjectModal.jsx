@@ -96,10 +96,26 @@ function ProjectModal({ project, isOpen, onClose }) {
               no mobile empilhado, à direita quando lado a lado no
               desktop). */}
           <div className="flex flex-col gap-6 border-b border-primary/10 p-6 pt-6 lg:flex-1 lg:border-r lg:border-b-0 lg:pt-20">
-            <div className="flex flex-1 flex-col justify-center gap-4 rounded-card border border-primary/10 bg-background p-4">
-              <div className="h-32 w-full rounded-card border border-primary/10 bg-primary/5" />
-              <div className="h-32 w-full rounded-card border border-primary/10 bg-primary/5" />
-              <div className="h-32 w-full rounded-card border border-primary/10 bg-primary/5" />
+            {/* Pilha de "fotos" estilo polaroid — moldura branca grossa
+                em volta de cada recorte da screenshot, levemente
+                rotacionadas/empilhadas com sombra, como fotos impressas
+                jogadas uma sobre a outra. */}
+            <div className="flex flex-1 flex-col items-center justify-center gap-3 rounded-card border border-primary/10 bg-primary/5 px-4 py-8">
+              <img
+                src={project.image}
+                alt={`Captura de tela do projeto ${project.title}`}
+                className="aspect-video w-1/2 -rotate-3 rounded-xs border-4 border-white bg-white object-cover shadow-lg"
+              />
+              <img
+                src={project.image}
+                alt={`Captura de tela do projeto ${project.title}`}
+                className="aspect-video -mt-4 w-1/2 rotate-2 rounded-xs border-4 border-white bg-white object-cover object-center shadow-lg"
+              />
+              <img
+                src={project.image}
+                alt={`Captura de tela do projeto ${project.title}`}
+                className="aspect-video -mt-4 w-1/2 rotate-[-1.5deg] rounded-xs border-4 border-white bg-white object-cover object-bottom shadow-lg"
+              />
             </div>
           </div>
 

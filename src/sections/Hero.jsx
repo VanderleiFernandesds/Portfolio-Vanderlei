@@ -36,7 +36,7 @@ function Hero() {
     <section id="hero" className="bg-background pt-6">
       <Container className="flex flex-col gap-4">
         {/* Painel principal: saudação + descrição + ações | foto */}
-        <div className="grid gap-8 rounded-card bg-primary px-6 sm:p-8 lg:grid-cols-[1.1fr_1fr] lg:gap-8 lg:p-12">
+        <div className="grid gap-8 rounded-card border border-text/10 bg-primary px-6 sm:p-8 lg:grid-cols-[1.1fr_1fr] lg:gap-8 lg:p-12">
           <div className="flex flex-col items-start justify-center gap-6 text-text">
             <div>
               <p className="text-lg">Olá, eu sou</p>
@@ -101,7 +101,7 @@ function Hero() {
         </div>
 
         {/* Barra de estatísticas */}
-        <div className="grid grid-cols-1 gap-6 rounded-card bg-primary p-6 sm:grid-cols-2 sm:divide-y-0 lg:grid-cols-4 lg:divide-x lg:divide-text/10">
+        <div className="grid grid-cols-1 gap-6 rounded-card  bg-primary p-6 sm:grid-cols-2 sm:divide-y-0 lg:grid-cols-4 lg:divide-x lg:divide-text/10">
           {stats.map((stat) => (
             <div
               key={stat.secondary}

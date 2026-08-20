@@ -29,16 +29,39 @@ function Projects() {
   const openModal = () => setIsModalOpen(true)
   const closeModal = () => setIsModalOpen(false)
 
+  // Todas usam a forma funcional do setOrder e calculam o alvo a partir
+  // de `current` (o estado mais recente), nunca do `order` capturado no
+  // fechamento do render — senão cliques rápidos (antes do React
+  // re-renderizar) recalculam o alvo com um `order` desatualizado e o
+  // carrossel "pula" para o projeto errado.
   const goTo = (index) => {
-    if (index === order[0]) return
     setOrder((current) => {
+      if (index === current[0]) return current
       const oldFront = current[0]
       return [index, ...current.filter((i) => i !== index && i !== oldFront), oldFront]
     })
   }
 
-  const goNext = () => goTo(order[1])
-  const goPrev = () => goTo(order[order.length - 1])
+  const goNext = () => {
+    setOrder((current) => {
+      const target = current[1]
+      const oldFront = current[0]
+      return [target, ...current.filter((i) => i !== target && i !== oldFront), oldFront]
+    })
+  }
+
+  // Não reaproveita goTo aqui: goTo sempre joga o front antigo para o
+  // final da pilha, o que é o comportamento certo para "próximo"/clique
+  // direto, mas quebra o "voltar" (rotação precisa ser o inverso exato
+  // de goNext, com o front antigo voltando para a 2ª posição, não pro
+  // final — senão "voltar" duas vezes pula projetos em vez de andar um
+  // por um).
+  const goPrev = () => {
+    setOrder((current) => {
+      const last = current[current.length - 1]
+      return [last, ...current.slice(0, -1)]
+    })
+  }
 
   return (
     <Section id="projetos">
@@ -51,7 +74,7 @@ function Projects() {
       <div className="mt-12 grid gap-12 rounded-card bg-primary p-6 sm:p-8 lg:grid-cols-[1.05fr_1fr] lg:items-center lg:gap-10 lg:p-14">
         {/* Coluna direita (lg:order-2): carrossel de pastas */}
         <div className="flex justify-center lg:order-2">
-          <FolderCarousel order={order} onGoTo={goTo} onNext={goNext} onPrev={goPrev} />
+          <FolderCarousel order={order} projects={projects} onGoTo={goTo} onNext={goNext} onPrev={goPrev} />
         </div>
 
         {/* Coluna esquerda (lg:order-1): informações do projeto em destaque
