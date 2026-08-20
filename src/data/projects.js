@@ -17,6 +17,9 @@ import odontoBramImg from '../assets/projects/odonto-bram.webp'
 // `githubHref` / `demoHref`: `null` enquanto os links reais não forem
 // definidos — a seção trata esse estado como "link ainda não disponível",
 // sem apontar para URLs falsas.
+// `challenges` / `learnings`: textos fictícios (mesmo caráter ilustrativo
+// dos projetos) exibidos nas seções "Desafios" e "Aprendizado" do
+// ProjectModal (src/components/ProjectModal.jsx).
 export const projects = [
   {
     id: 1,
@@ -27,6 +30,10 @@ export const projects = [
     technologies: ['HTML5', 'CSS3', 'JavaScript'],
     preview: 'ecommerce',
     image: envelopPackImg,
+    challenges:
+      'Modelar um catálogo com categorias e variações de produto sem deixar o checkout lento, mantendo o funil simples mesmo com regras de frete diferentes por região.',
+    learnings:
+      'Aprofundei a organização de estado no carrinho de compras e a importância de validar cada etapa do checkout isoladamente para reduzir abandono.',
     githubHref: null,
     demoHref: null,
   },
@@ -39,6 +46,10 @@ export const projects = [
     technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Node.js'],
     preview: 'tasks',
     image: taskFlowImg,
+    challenges:
+      'Implementar drag and drop entre quadros com atualização em tempo real sem gerar conflitos de estado quando vários usuários movem tarefas ao mesmo tempo.',
+    learnings:
+      'Ganhei experiência prática com sincronização otimista de UI e reconciliação de estado local com o servidor via WebSockets.',
     githubHref: null,
     demoHref: null,
   },
@@ -51,6 +62,10 @@ export const projects = [
     technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Chart.js'],
     preview: 'finance',
     image: financeXImg,
+    challenges:
+      'Exibir grandes volumes de dados financeiros em gráficos interativos sem comprometer a performance, mantendo os indicadores atualizados em tempo real.',
+    learnings:
+      'Aprendi a otimizar renderização de gráficos com memoização e a estruturar agregações de dados no backend em vez de processar tudo no cliente.',
     githubHref: null,
     demoHref: null,
   },
@@ -63,6 +78,10 @@ export const projects = [
     technologies: ['React', 'Node.js', 'PostgreSQL', 'TypeScript'],
     preview: 'devhub',
     image: devHubImg,
+    challenges:
+      'Unificar projetos, equipes e atividades em uma única plataforma sem sobrecarregar a interface, mantendo permissões de acesso consistentes entre times.',
+    learnings:
+      'Evoluí meu entendimento sobre modelagem de permissões (RBAC) e sobre como estruturar uma API REST que escale para múltiplos módulos.',
     githubHref: null,
     demoHref: null,
   },
@@ -75,6 +94,10 @@ export const projects = [
     technologies: ['React', 'Tailwind CSS'],
     preview: 'dental',
     image: odontoBramImg,
+    challenges:
+      'Apresentar várias especialidades odontológicas em uma única landing page sem poluir a navegação, guiando o visitante até o agendamento de forma clara.',
+    learnings:
+      'Reforcei técnicas de hierarquia visual e copywriting para conversão, além de práticas de acessibilidade em formulários de contato.',
     githubHref: null,
     demoHref: null,
   },

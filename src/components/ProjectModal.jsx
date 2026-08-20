@@ -145,14 +145,18 @@ function ProjectModal({ project, isOpen, onClose }) {
                 <h3 className="text-xs font-bold tracking-wide text-primary uppercase">
                   Desafios
                 </h3>
-                <div className="mt-2 text-sm text-text-muted">—</div>
+                <p className="mt-2 text-sm text-text-muted">
+                  {project.challenges ?? '—'}
+                </p>
               </div>
 
               <div>
                 <h3 className="text-xs font-bold tracking-wide text-primary uppercase">
                   Aprendizado
                 </h3>
-                <div className="mt-2 text-sm text-text-muted">—</div>
+                <p className="mt-2 text-sm text-text-muted">
+                  {project.learnings ?? '—'}
+                </p>
               </div>
 
               <div>
