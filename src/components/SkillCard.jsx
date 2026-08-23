@@ -30,7 +30,7 @@ function SkillCard({
 }) {
   return (
     <div
-      className={`flex flex-col gap-4 rounded-card bg-primary p-6 ${className}`.trim()}
+      className={`flex flex-col gap-4 rounded-card bg-primary p-6 lg:px-desktop  ${className}`.trim()}
     >
       <div className="flex flex-col gap-3">
         <IconBadge icon={icon} className={CATEGORY_BG[category]} />
@@ -84,7 +84,7 @@ function SkillCard({
         </>
       )}
     </div>
-  )
+  );
 }
 
 export default SkillCard
