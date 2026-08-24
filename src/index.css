@@ -8,10 +8,10 @@
   sem atualizar o arquivo de referência.
 */
 @theme {
-  --color-background: #e5f1ff;
-  --color-primary: #1c2a3b;
+  --color-background: #262626;
+  --color-primary: #FFF4E3;
   --color-surface: #354353;
-  --color-text: #e5f1ff;
+  --color-text: #262626;
   --color-text-muted: #6b7094;
   --color-accent: #2563eb;
   --color-accent-light: #60a5fa;
