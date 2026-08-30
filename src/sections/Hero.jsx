@@ -17,6 +17,8 @@ import { technologies } from '../data/technologies'
 import { stats } from '../data/stats'
 import profilePhoto from '../assets/foto-moldura.png'
 import profileBackdrop from '../assets/foto-portfolio.webp'
+import tornPaperTop from '../assets/papel-rasgado-cima.svg'
+import tornPaperBottom from '../assets/folha-rasgada-debaixo.svg'
 
 // Mesmos ícones de marca utilizados em Contact (design/tokens.md — consistência visual).
 const SOCIAL_ICONS = {
@@ -37,9 +39,16 @@ function Hero() {
     <section id="hero" className="bg-background pt-6">
       <Container className="flex flex-col gap-4">
         {/* Container principal: engloba faixa superior, conteúdo, respiro e faixa inferior */}
-        <div className="flex flex-col rounded-card bg-primary">
-          {/* Faixa superior — elemento estrutural */}
-          <div className="h-12 shrink-0  bg-background sm:h-16 lg:h-20" />
+        <div className="flex flex-col  bg-primary">
+          {/* Faixa superior — elemento estrutural (papel rasgado) */}
+          <div className="shrink-0 overflow-hidden">
+            <img
+              src={tornPaperTop}
+              alt=""
+              aria-hidden="true"
+              className="block h-auto w-[calc(100%+5px)] max-w-none -translate-x-0.5 -translate-y-0.5"
+            />
+          </div>
 
           {/* Conteúdo: saudação + descrição + ações | foto — sem card próprio */}
           <div className="grid gap-8 px-6 py-8 sm:p-8 lg:grid-cols-[1.1fr_1fr] lg:gap-8 lg:p-12">
@@ -115,8 +124,15 @@ function Hero() {
           {/* Respiro — apenas espaço restante dentro do container, sem conteúdo */}
           <div className="grow" />
 
-          {/* Faixa inferior — elemento estrutural */}
-          <div className="h-12 shrink-0  bg-background sm:h-16 lg:h-20" />
+          {/* Faixa inferior — elemento estrutural (papel rasgado) */}
+          <div className="shrink-0 overflow-hidden">
+            <img
+              src={tornPaperBottom}
+              alt=""
+              aria-hidden="true"
+              className="block h-auto w-[calc(100%+5px)] max-w-none  scale-105"
+            />
+          </div>
         </div>
 
         {/* Estatísticas — fora do container principal */}
