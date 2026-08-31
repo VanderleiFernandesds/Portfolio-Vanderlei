@@ -50,6 +50,13 @@
   --color-folder-pink-back: #f23f8b;
   --color-folder-pink-front: #ff69a6;
 
+  /*
+    Uso exclusivo: efeito de hover do Navbar (rabisco de marca-texto sob o
+    link — ver design/references/hover-navbar.png).
+  */
+  --color-nav-highlight: #d4c000;
+  --color-nav-highlight-light: #e8d84f;
+
   --font-sans: "Oxanium", sans-serif;
 
   --spacing-section: 100px;
@@ -103,6 +110,24 @@
   Light) — nenhum hex novo em lugar nenhum.
 */
 @layer utilities {
+  /*
+    Traço de hover do Navbar (ver src/components/Navbar.jsx e
+    design/references/hover-navbar.png). Cada trecho parte "não desenhado"
+    (dashoffset = comprimento total, calculado via JS em --len) e é
+    revelado da esquerda para a direita quando o link (.group) recebe
+    hover/foco.
+  */
+  .nav-hover-stroke path {
+    stroke-dasharray: var(--len);
+    stroke-dashoffset: var(--len);
+    transition-property: stroke-dashoffset;
+    transition-timing-function: ease-out;
+  }
+  .group:hover .nav-hover-stroke path,
+  .group:focus-visible .nav-hover-stroke path {
+    stroke-dashoffset: 0;
+  }
+
   /*
     Recorte real da pasta (aba no canto superior), igual ao protótipo
     design/Carrossel de Pastas/style.css (.folder-back). Path desenhado
