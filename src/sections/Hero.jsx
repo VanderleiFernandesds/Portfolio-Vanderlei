@@ -15,9 +15,7 @@ import { FaLinkedin } from 'react-icons/fa'
 import { socials } from '../data/socials'
 import { technologies } from '../data/technologies'
 import { stats } from '../data/stats'
-import profilePhoto from '../assets/foto-moldura.png'
-import profileBackdrop from '../assets/foto-portfolio.webp'
-import tornPaperTop from '../assets/papel-rasgado-cima.svg'
+import profilePhoto from '../assets/img-portfolio-vanderlei.webp'
 import tornPaperBottom from '../assets/folha-rasgada-debaixo.svg'
 
 // Mesmos ícones de marca utilizados em Contact (design/tokens.md — consistência visual).
@@ -40,13 +38,13 @@ function Hero() {
       <Container className="flex flex-col gap-4">
         {/* Container principal: engloba faixa superior, conteúdo, respiro e faixa inferior */}
         <div className="flex flex-col  bg-primary">
-          {/* Faixa superior — elemento estrutural (papel rasgado) */}
+          {/* Faixa superior — mesma textura da faixa inferior, invertida (de cabeça para baixo) */}
           <div className="shrink-0 overflow-hidden">
             <img
-              src={tornPaperTop}
+              src={tornPaperBottom}
               alt=""
               aria-hidden="true"
-              className="block h-auto w-[calc(100%+5px)] max-w-none -translate-x-0.5 -translate-y-0.5"
+              className="block h-auto w-[calc(100%+5px)] max-w-none scale-105 rotate-180"
             />
           </div>
 
@@ -105,18 +103,12 @@ function Hero() {
               </div>
             </div>
 
-            {/* Foto de perfil — moldura com imagem de fundo atrás */}
-            <div className="relative mx-auto flex w-full max-w-sm items-center justify-center lg:mx-0 lg:h-full lg:max-w-none">
-              <img
-                src={profileBackdrop}
-                alt=""
-                aria-hidden="true"
-                className="absolute inset-0 h-1 z-0 h-full w-full scale-75 object-cover"
-              />
+            {/* Foto de perfil — moldura com a foto real */}
+            <div className="mx-auto flex w-full max-w-sm items-center rotate-12 justify-center lg:mx-0 lg:h-full lg:max-w-none">
               <img
                 src={profilePhoto}
                 alt="Vanderlei Fernandes"
-                className="relative z-10 max-h-96 w-auto object-contain lg:h-full lg:max-h-full"
+                className="max-h-96 w-auto object-contain lg:h-full lg:max-h-full"
               />
             </div>
           </div>
