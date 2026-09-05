@@ -1,5 +1,7 @@
 /* Fonte principal do projeto — Oxanium (design/tokens.md) */
 @import url("https://fonts.googleapis.com/css2?family=Oxanium:wght@400;500;600;700;800&display=swap");
+/* Fonte exclusiva do texto escrito sobre a folha pautada (About/Paper) */
+@import url("https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap");
 @import "tailwindcss";
 
 /*
@@ -58,6 +60,8 @@
   --color-nav-highlight-light: #e8d84f;
 
   --font-sans: "Oxanium", sans-serif;
+  /* Uso exclusivo: texto sobre a folha pautada (About/Paper) */
+  --font-handwriting: "Patrick Hand", cursive;
 
   --spacing-section: 100px;
   --spacing-mobile: 24px;
@@ -110,6 +114,21 @@
   Light) — nenhum hex novo em lugar nenhum.
 */
 @layer utilities {
+  /*
+    Rotação da Polaroid (ver src/components/Polaroid.jsx e
+    src/components/AboutItem.jsx). No mobile a foto fica reta (empilhada
+    sob a folha); a partir do breakpoint lg ela assume a rotação recebida
+    via prop, quando a composição vira a sobreposição foto+folha.
+  */
+  .polaroid-photo {
+    transform: rotate(var(--polaroid-rotation-mobile, 0deg));
+  }
+  @media (min-width: 1024px) {
+    .polaroid-photo {
+      transform: rotate(var(--polaroid-rotation, 0deg));
+    }
+  }
+
   /*
     Traço de hover do Navbar (ver src/components/Navbar.jsx e
     design/references/hover-navbar.png). Cada trecho parte "não desenhado"

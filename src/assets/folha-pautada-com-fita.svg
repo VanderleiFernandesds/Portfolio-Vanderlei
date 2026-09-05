@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="769" height="492" viewBox="0 0 769 492" fill="none">
+  <title>Folha pautada rasgada com fita</title>
+  <desc>Folha de caderno vetorial com linhas, furos, bordas rasgadas, fita adesiva e fundo transparente.</desc>
+  <defs>
+    <linearGradient id="papel" x1="384" y1="45" x2="384" y2="460" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FAF8F0"/>
+      <stop offset="0.55" stop-color="#F6F2E9"/>
+      <stop offset="1" stop-color="#EFEADF"/>
+    </linearGradient>
+    <linearGradient id="fita" x1="384" y1="18" x2="384" y2="91" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E6D09C"/>
+      <stop offset="0.5" stop-color="#D8BC79"/>
+      <stop offset="1" stop-color="#E4CD94"/>
+    </linearGradient>
+    <path id="forma-folha" d="M5 60 C8 51 16 48 29 48 L105 47 L174 46 L246 47 L315 46 L382 47 L452 46 L523 47 L595 46 L666 47 L754 46 C762 47 765 51 764 61 L765 105 L764 151 L767 196 L765 242 L767 287 L765 333 L767 378 L765 424 C766 443 762 452 753 456 L706 456 L690 458 L674 456 L656 458 L639 456 L621 458 L604 456 L586 458 L568 456 L549 458 L530 456 L512 458 L493 456 L474 458 L455 456 L437 458 L418 456 L399 458 L380 456 L362 458 L343 456 L325 458 L306 456 L287 458 L269 456 L250 458 L231 456 L213 458 L194 456 L176 458 L157 456 L139 458 L121 456 L103 458 L85 456 L67 458 L49 456 L32 458 L20 454 L9 455 L5 449 L6 407 L4 364 L6 321 L4 278 L6 235 L4 192 L6 149 L4 106 Z"/>
+    <path id="folha-recortada" fill-rule="evenodd" clip-rule="evenodd" d="M5 60 C8 51 16 48 29 48 L105 47 L174 46 L246 47 L315 46 L382 47 L452 46 L523 47 L595 46 L666 47 L754 46 C762 47 765 51 764 61 L765 105 L764 151 L767 196 L765 242 L767 287 L765 333 L767 378 L765 424 C766 443 762 452 753 456 L706 456 L690 458 L674 456 L656 458 L639 456 L621 458 L604 456 L586 458 L568 456 L549 458 L530 456 L512 458 L493 456 L474 458 L455 456 L437 458 L418 456 L399 458 L380 456 L362 458 L343 456 L325 458 L306 456 L287 458 L269 456 L250 458 L231 456 L213 458 L194 456 L176 458 L157 456 L139 458 L121 456 L103 458 L85 456 L67 458 L49 456 L32 458 L20 454 L9 455 L5 449 L6 407 L4 364 L6 321 L4 278 L6 235 L4 192 L6 149 L4 106 Z
+      M14 73 H23 Q25 73 25 75 V85 Q25 87 23 87 H14 Q12 87 12 85 V75 Q12 73 14 73 Z
+      M14 105 H23 Q25 105 25 107 V117 Q25 119 23 119 H14 Q12 119 12 117 V107 Q12 105 14 105 Z
+      M14 137 H23 Q25 137 25 139 V149 Q25 151 23 151 H14 Q12 151 12 149 V139 Q12 137 14 137 Z
+      M14 169 H23 Q25 169 25 171 V181 Q25 183 23 183 H14 Q12 183 12 181 V171 Q12 169 14 169 Z
+      M14 201 H23 Q25 201 25 203 V213 Q25 215 23 215 H14 Q12 215 12 213 V203 Q12 201 14 201 Z
+      M14 233 H23 Q25 233 25 235 V245 Q25 247 23 247 H14 Q12 247 12 245 V235 Q12 233 14 233 Z
+      M14 265 H23 Q25 265 25 267 V277 Q25 279 23 279 H14 Q12 279 12 277 V267 Q12 265 14 265 Z
+      M14 297 H23 Q25 297 25 299 V309 Q25 311 23 311 H14 Q12 311 12 309 V299 Q12 297 14 297 Z
+      M14 329 H23 Q25 329 25 331 V341 Q25 343 23 343 H14 Q12 343 12 341 V331 Q12 329 14 329 Z
+      M14 361 H23 Q25 361 25 363 V373 Q25 375 23 375 H14 Q12 375 12 373 V363 Q12 361 14 361 Z
+      M14 393 H23 Q25 393 25 395 V405 Q25 407 23 407 H14 Q12 407 12 405 V395 Q12 393 14 393 Z
+      M14 425 H23 Q25 425 25 427 V437 Q25 439 23 439 H14 Q12 439 12 437 V427 Q12 425 14 425 Z"/>
+    <clipPath id="recorte-folha"><use xlink:href="#folha-recortada"/></clipPath>
+  </defs>
+
+  <g id="folha" aria-label="Folha pautada">
+    <use xlink:href="#folha-recortada" fill="url(#papel)" stroke="#D9D2C5" stroke-width="1.3"/>
+    <use xlink:href="#folha-recortada" fill="#FAF7EF" opacity="0.1"/>
+    <g id="linhas" clip-path="url(#recorte-folha)" stroke="#A9C9D7" stroke-width="0.8" opacity="0.7">
+      <path d="M28 88H769"/><path d="M28 114H769"/><path d="M28 140H769"/><path d="M28 166H769"/>
+      <path d="M28 192H769"/><path d="M28 218H769"/><path d="M28 244H769"/><path d="M28 270H769"/>
+      <path d="M28 296H769"/><path d="M28 322H769"/><path d="M28 348H769"/><path d="M28 374H769"/>
+      <path d="M28 400H769"/><path d="M28 426H769"/><path d="M28 452H769"/>
+    </g>
+    <path id="margem-vermelha" d="M49 47V456" stroke="#E3A4A2" stroke-width="1" opacity="0.8" clip-path="url(#recorte-folha)"/>
+  </g>
+
+  <g id="fita-adesiva" aria-label="Fita adesiva">
+    <path d="M320 18 L451 17 L449 53 L453 57 L449 60 L451 90 L317 89 L320 61 L316 57 L319 52 Z" fill="url(#fita)" opacity="0.94"/>
+    <path d="M319 52 C347 50 379 52 408 51 C425 51 439 52 451 53 L453 89 C411 87 362 88 317 88 Z" fill="#DFC58A" opacity="0.7"/>
+    <path d="M320 48 C355 50 413 48 450 51" stroke="#BDA164" stroke-width="1" opacity="0.55"/>
+    <path d="M322 23 C356 20 409 21 447 22 M321 31 C359 29 412 30 449 31 M319 65 C356 63 410 65 450 64 M319 78 C360 76 413 78 450 77" stroke="#F1DFB4" stroke-width="0.8" opacity="0.45"/>
+  </g>
+</svg>

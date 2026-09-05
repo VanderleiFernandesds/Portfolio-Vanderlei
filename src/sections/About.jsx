@@ -1,102 +1,44 @@
 import Section from '../components/Section'
 import SectionTitle from '../components/SectionTitle'
-import FeatureItem from '../components/FeatureItem'
-import { CodeIcon, LayersIcon, ZapIcon, BookIcon } from '../components/icons'
-import { aboutFeatures } from '../data/aboutFeatures'
+import AboutItem from '../components/AboutItem'
+import { aboutItems } from '../data/aboutItems'
 
-// Foto ainda não fornecida para esta seção (é diferente da foto da Hero).
-// Quando o asset existir em src/assets/, importe e substitua o placeholder
-// abaixo, por exemplo:
-// import aboutPhoto from '../assets/about.jpg'
-
-const FEATURE_ICONS = {
-  code: <CodeIcon />,
-  layers: <LayersIcon />,
-  zap: <ZapIcon />,
-  book: <BookIcon />,
-}
-
+/**
+ * About
+ *
+ * 3 blocos alternados (folha + foto Polaroid), montados com <AboutItem />
+ * a partir de src/data/aboutItems.js — mesmo componente para os 3, o que
+ * muda é só a prop `photoPosition` (e a foto).
+ *
+ * Medidas de referência (desktop 1440px, aplicadas a partir do lg — ver
+ * AboutItem): folha 950x611.7px, foto 400.87x449.78px, overlap de 140px.
+ * Abaixo do lg a composição empilha (folha em cima, foto embaixo, sem
+ * sobreposição) — ver comentário em AboutItem.jsx.
+ *
+ * As medidas de desktop escalam proporcionalmente com a largura do
+ * container pai (via container queries, unidade cqw) através de
+ * clamp(0px, Ncqw, valor-em-1440px), atingindo os valores exatos acima
+ * somente quando o container pai tem 1440px (ou mais, onde ficam travadas
+ * no máximo) — 0 overflow horizontal em qualquer largura.
+ *
+ * O container pai (div.flex.flex-col logo abaixo) precisa declarar
+ * [container-type:inline-size] (@container) para que as unidades cqw
+ * funcionem.
+ */
 function About() {
   return (
-    <Section id="sobre">
+    <Section id="sobre" className="overflow-hidden">
       <SectionTitle
         eyebrow="Sobre mim"
         title="Quem está por trás do código"
         description="Construindo aplicações com propósito e qualidade."
       />
 
-      <div className="mt-12 grid gap-10 rounded-card bg-primary p-6 sm:p-8 lg:grid-cols-2 lg:gap-12 lg:p-12">
-        {/* Coluna esquerda: foto + "Sempre aprendendo" */}
-        <div className="flex flex-col gap-6">
-          <div className="flex aspect-4/3 w-full items-center justify-center rounded-button bg-surface/60">
-            <p className="px-4 text-center text-sm text-text-muted">
-              Foto (Sobre)
-              <br />
-              (adicionar asset em src/assets/)
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-xl font-bold text-text sm:text-2xl">
-              Sempre aprendendo
-            </h3>
-            <p className="mt-3 text-text-muted">
-              A tecnologia evolui constantemente, e isso é uma das partes que
-              mais gosto na programação. Estou sempre buscando aprender novas
-              ferramentas, aprofundar meus conhecimentos e colocar esse
-              aprendizado em prática por meio de projetos.
-            </p>
-            <p className="mt-3 text-text-muted">
-              Acredito que cada desafio é uma oportunidade para evoluir, tanto
-              tecnicamente quanto na forma de pensar e desenvolver soluções.
-              Meu objetivo é continuar crescendo como desenvolvedor e criar
-              aplicações cada vez mais completas, eficientes e bem
-              construídas.
-            </p>
-          </div>
-        </div>
-
-        {/* Coluna direita: "Um pouco sobre mim" + grid 2x2 de diferenciais */}
-        <div className="flex flex-col gap-8">
-          <div>
-            <h3 className="text-xl font-bold text-text sm:text-2xl">
-              Um pouco sobre mim
-            </h3>
-            <p className="mt-3 text-text-muted">
-              Olá! Sou Vanderlei, desenvolvedor Full-Stack formado em Análise
-              e Desenvolvimento de Sistemas.
-            </p>
-            <p className="mt-3 text-text-muted">
-              Minha curiosidade em entender como a tecnologia funciona foi o
-              que despertou meu interesse pela programação. Com o tempo, essa
-              curiosidade se transformou na vontade de criar soluções,
-              resolver problemas e desenvolver aplicações que realmente façam
-              diferença na vida das pessoas.
-            </p>
-            <p className="mt-3 text-text-muted">
-              Hoje, meu foco está no desenvolvimento web. Gosto de criar
-              aplicações modernas, intuitivas e bem estruturadas, sempre
-              buscando unir desempenho, organização e uma experiência
-              agradável para o usuário.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
-            {aboutFeatures.map((feature, index) => (
-              <div
-                key={feature.label}
-                className={
-                  index % 2 === 1 ? 'sm:border-l sm:border-surface sm:pl-8' : ''
-                }
-              >
-                <FeatureItem
-                  icon={FEATURE_ICONS[feature.icon]}
-                  label={feature.label}
-                  description={feature.description}
-                />
-              </div>
-            ))}
-          </div>
+      <div className="mt-12 flex w-full flex-col @container lg:h-[clamp(0px,120.4167vw,1734px)]">
+        <div className="flex flex-col gap-3 lg:gap-[clamp(12px,5.5556cqw,80px)]">
+          {aboutItems.map((item) => (
+            <AboutItem key={item.id} {...item} />
+          ))}
         </div>
       </div>
     </Section>

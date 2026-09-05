@@ -2,8 +2,9 @@ import Container from './Container'
 
 /**
  * Section
- * Padroniza o espaçamento vertical entre seções (120px, ver design/tokens.md)
- * e envolve o conteúdo em um Container, salvo quando `container={false}`.
+ * Padroniza o espaçamento vertical entre seções: 50px no mobile, 100px
+ * (--spacing-section) a partir do lg — ver design/tokens.md. Envolve o
+ * conteúdo em um Container, salvo quando `container={false}`.
  */
 function Section({
   id,
@@ -15,7 +16,7 @@ function Section({
   ...props
 }) {
   return (
-    <Tag id={id} className={`py-section ${className}`.trim()} {...props}>
+    <Tag id={id} className={`py-12.5 lg:py-section ${className}`.trim()} {...props}>
       {container ? (
         <Container className={containerClassName}>{children}</Container>
       ) : (
