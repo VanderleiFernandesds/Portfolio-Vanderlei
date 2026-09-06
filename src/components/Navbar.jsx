@@ -50,6 +50,16 @@ const NAV_HOVER_SEGMENTS = [
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [activeHref, setActiveHref] = useState(null)
+  const [isScrolled, setIsScrolled] = useState(false)
+
+  // Borda embaixo da navbar: só aparece depois que a página rola — no topo
+  // (scrollY 0) fica desativada.
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 0)
+    handleScroll()
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   // Scroll spy: observa as seções e marca como ativo o link cuja seção está
   // cruzando a faixa central da viewport.
@@ -76,7 +86,14 @@ function Navbar() {
   }, [])
 
   return (
-    <header className="sticky top-3 z-50 w-full px-4 ">
+    // -mb-*: puxa o conteúdo seguinte (Hero) pra cima, fazendo a navbar
+    // sobrepor por completo a faixa superior de papel rasgado do Hero (ver
+    // Hero.jsx) — ela fica escondida atrás da navbar, que passa a parecer
+    // parte do próprio card do Hero, sem vão nem tira de papel visível
+    // acima dela. z-50 garante que a navbar continue totalmente visível.
+    // Valores menores no mobile porque a faixa ali é proporcionalmente mais
+    // fina (mesma arte, container mais estreito).
+    <header className="sticky top-5 z-50  w-full px-6 -mb-10 sm:-mb-16 lg:-mb-20">
       {/* Gradiente compartilhado do traço de hover do Navbar — variação
           sutil sobre o token --color-nav-highlight (ver NAV_HOVER_SEGMENTS
           acima e design/references/hover-navbar.png) */}
@@ -90,7 +107,11 @@ function Navbar() {
       </svg>
 
       <Container className="px-0! flex justify-center">
-        <div className="flex mx-mobile lg:mx-desktop w-full items-center justify-between gap-4 rounded-card border border-text/10 bg-primary py-2 pr-2 pl-5 text-text shadow-lg shadow-primary/20 ">
+        <div
+          className={`flex lg:mx-desktop w-full items-center justify-between gap-4 rounded-card border bg-primary py-2 pr-2 pl-5 text-text shadow-lg shadow-primary/20 transition-colors ${
+            isScrolled ? 'border-text/10' : 'border-transparent'
+          }`}
+        >
           {/* Logo */}
           <a href="#hero" className="shrink-0 transition-opacity hover:opacity-80">
             <img src={logo} alt="Vanderlei Fernandes" className="h-8 w-auto md:h-[38px]" />

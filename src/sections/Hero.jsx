@@ -34,17 +34,18 @@ const STAT_ICONS = {
 
 function Hero() {
   return (
-    <section id="hero" className="bg-background pt-6">
+    <section id="hero" className="bg-background pt-6 mt-0 sm:mt-5">
       <Container className="flex flex-col gap-4">
         {/* Container principal: engloba faixa superior, conteúdo, respiro e faixa inferior */}
-        <div className="flex flex-col  bg-primary">
+        <div className="rounded-card flex flex-col  bg-primary">
           {/* Faixa superior — mesma textura da faixa inferior, invertida (de cabeça para baixo) */}
-          <div className="shrink-0 overflow-hidden">
+          <div className=" h-5 sm:h-17.5 shrink-0 overflow-hidden">
             <img
               src={tornPaperBottom}
               alt=""
               aria-hidden="true"
-              className="block h-auto w-[calc(100%+5px)] max-w-none scale-105 rotate-180"
+              hidden
+              className="block h-full w-full scale-105 rotate-180 object-cover"
             />
           </div>
 
