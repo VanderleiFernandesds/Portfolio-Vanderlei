@@ -3,26 +3,77 @@ import { useRef } from 'react'
 // Paleta de cores fixas do protótipo design/Carrossel de Pastas/ — o
 // carrossel cicla por essas 4 cores conforme a quantidade de projetos
 // (src/data/projects.js), então funciona com qualquer número de cards
-// sem precisar adicionar cor nova a cada projeto novo.
+// sem precisar adicionar cor nova a cada projeto novo. Usa os tokens já
+// existentes em src/index.css (--color-folder-*).
 const COLORS = [
-  { color: 'yellow', label: 'amarela', back: 'bg-folder-yellow-back', front: 'bg-folder-yellow-front' },
-  { color: 'blue', label: 'azul', back: 'bg-folder-blue-back', front: 'bg-folder-blue-front' },
-  { color: 'purple', label: 'roxa', back: 'bg-folder-purple-back', front: 'bg-folder-purple-front' },
-  { color: 'pink', label: 'rosa', back: 'bg-folder-pink-back', front: 'bg-folder-pink-front' },
+  { back: 'var(--color-folder-yellow-back)', front: 'var(--color-folder-yellow-front)' },
+  { back: 'var(--color-folder-blue-back)', front: 'var(--color-folder-blue-front)' },
+  { back: 'var(--color-folder-purple-back)', front: 'var(--color-folder-purple-front)' },
+  { back: 'var(--color-folder-pink-back)', front: 'var(--color-folder-pink-front)' },
 ]
 
 // Limite de pixels de arrasto para navegar (50px ou mais para mudar pasta)
 const DRAG_THRESHOLD = 50
 
+// Camada de trás da pasta (fica atrás da screenshot). Path vetorizado a
+// partir de src/assets/folder-back.svg, com a cor original trocada por
+// `fill` para poder variar por projeto. `w-full h-auto` preserva a
+// proporção nativa do desenho (533x424) — sem esticar/distorcer o
+// recorte da pasta ao encaixar no card. Ancorada pelo `bottom-0`, mesma
+// base da FolderFrontShape (402 de altura): como o desenho de trás é
+// ~22px mais alto (a aba), essa diferença sobra naturalmente por cima
+// da frente, formando a aba que aparece acima da screenshot.
+function FolderBackShape({ fill }) {
+  return (
+    <svg
+      viewBox="0 0 533 424"
+      fill="none"
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-auto w-full select-none"
+    >
+      <path
+        d="M0 423.7V27.2C0 22.8 3.1 19 7.4 18.1L8 11.2C8.6 4.9 13.9 0 20.2 0H171.8C178.1 0 183.5 4.5 184.6 10.7L185.1 13.5C186 18.7 190.5 22.5 195.8 22.5H511.9C518.7 22.5 524.2 27.8 524.5 34.6V35.9C524.7 41.3 528.1 46 533 47.8V423.7H0Z"
+        fill={fill}
+      />
+    </svg>
+  )
+}
+
+// Camada da frente da pasta (fica sobre a screenshot). Path vetorizado a
+// partir de src/assets/folder-front.svg — mantém o traço claro de brilho
+// no topo (aba) e troca só o preenchimento pela cor do projeto.
+function FolderFrontShape({ fill }) {
+  return (
+    <svg
+      viewBox="0 0 534 402"
+      fill="none"
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-x-0 bottom-0 z-[3] h-auto w-full select-none"
+    >
+      <path
+        opacity="0.35"
+        d="M0.599609 49.5C6.39961 45.1 9.09961 39.3 9.09961 32V27.7C9.09961 24.9 11.3996 22.6 14.1996 22.6H171.7C178.4 22.6 184.3 18 185.9 11.5L186.9 7.59998C187.9 3.49998 191.6 0.599976 195.8 0.599976"
+        stroke="#FFFFFF"
+        strokeWidth="1.2"
+        strokeLinecap="round"
+      />
+      <path
+        d="M0.599609 49.5C6.39961 45.1 9.09961 39.3 9.09961 32V27.7C9.09961 24.9 11.3996 22.6 14.1996 22.6H171.7C178.4 22.6 184.3 18 185.9 11.5L186.9 7.59998C187.9 3.49998 191.6 0.599976 195.8 0.599976H512.5C519.3 0.599976 524.8 5.89998 525.1 12.7V14C525.3 19.4 528.7 24.1 533.6 25.9V401.8H0.599609V49.5Z"
+        fill={fill}
+      />
+    </svg>
+  )
+}
+
 // Componente que representa um cartão de pasta individual
 // Props:
-//   - folder: objeto com dados da pasta (index, color, label, classes CSS)
+//   - colors: { back, front } — cores desta pasta (ver COLORS)
 //   - project: projeto correspondente (src/data/projects.js) — usado para
 //     mostrar a screenshot real na "folha" que desliza para fora da pasta
 //   - offset: posição relativa da pasta no carrossel (0 = primeiro plano/ativo)
 //   - total: quantidade total de pastas no carrossel
 //   - onSelect: função chamada quando a pasta é clicada
-function FolderCard({ folder, project, offset, total, onSelect }) {
+function FolderCard({ colors, project, offset, total, onSelect }) {
   // Verifica se esta é a pasta ativa (em primeiro plano)
   const isActive = offset === 0
   // Verifica se a pasta está tão afastada que não deve ser renderizada
@@ -51,9 +102,7 @@ function FolderCard({ folder, project, offset, total, onSelect }) {
             folder like it slides out from inside it. */}
         <div className="absolute inset-x-0 bottom-0 -top-[35%] overflow-hidden rounded-b-[26px]">
           <div className="absolute inset-x-0 bottom-0 h-[74%] sm:h-[min(360px,58vw)]">
-            <div
-              className={`folder-back-shape absolute inset-0 z-[1] rounded-[30px_18px_26px_26px] ${folder.back}`}
-            />
+            <FolderBackShape fill={colors.back} />
 
             <div
               className={`absolute left-[3%] right-[3%] top-[18%] h-[75%] overflow-hidden rounded-md bg-white shadow-[inset_0_0_0_4px_rgba(230,230,230,0.7)] transition-[opacity,transform] duration-[180ms] ease ${
@@ -70,9 +119,7 @@ function FolderCard({ folder, project, offset, total, onSelect }) {
               />
             </div>
 
-            <div
-              className={`absolute inset-x-0 bottom-0 z-[3] h-[84%] rounded-[10px_10px_26px_26px] ${folder.front}`}
-            />
+            <FolderFrontShape fill={colors.front} />
           </div>
         </div>
       </div>
@@ -176,16 +223,15 @@ export default function FolderCarousel({ order, projects, onGoTo, onNext, onPrev
         {/* Renderiza cada pasta como cartão no carrossel — uma por
             projeto (order.length), ciclando pelas cores da paleta */}
         {order.map((_, index) => {
-          const folder = { index, ...COLORS[index % COLORS.length] }
-          const offset = order.indexOf(folder.index)
+          const offset = order.indexOf(index)
           return (
             <FolderCard
-              key={folder.index}
-              folder={folder}
-              project={projects[folder.index]}
+              key={index}
+              colors={COLORS[index % COLORS.length]}
+              project={projects[index]}
               offset={offset}
               total={order.length}
-              onSelect={() => onGoTo(folder.index)}
+              onSelect={() => onGoTo(index)}
             />
           )
         })}

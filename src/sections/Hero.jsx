@@ -1,5 +1,5 @@
 import Container from '../components/Container'
-import Button from '../components/Button'
+import PaperButton from '../components/PaperButton'
 import IconBadge from '../components/IconBadge'
 import SocialLink from '../components/SocialLink'
 import {
@@ -69,14 +69,14 @@ function Hero() {
               </p>
 
               <div className="flex flex-wrap gap-4">
-                <Button as="a" href="#projetos" variant="light">
+                <PaperButton as="a" href="#projetos">
                   Ver projetos
                   <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
-                </Button>
-                <Button as="a" href="#contato" variant="outline-light">
+                </PaperButton>
+                <PaperButton as="a" href="#contato">
                   Entrar em contato
                   <MailIcon className="h-4 w-4" aria-hidden="true" />
-                </Button>
+                </PaperButton>
               </div>
 
               <div className="flex items-center gap-3">

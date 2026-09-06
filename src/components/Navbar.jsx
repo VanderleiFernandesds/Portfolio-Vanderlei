@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import Container from './Container'
-import Button from './Button'
+import CurriculoButton from './CurriculoButton'
+import logo from '../assets/logo.svg'
 import {
   UserIcon,
   ZapIcon,
@@ -91,11 +92,8 @@ function Navbar() {
       <Container className="px-0! flex justify-center">
         <div className="flex mx-mobile lg:mx-desktop w-full items-center justify-between gap-4 rounded-card border border-text/10 bg-primary py-2 pr-2 pl-5 text-text shadow-lg shadow-primary/20 ">
           {/* Logo */}
-          <a
-            href="#hero"
-            className="text-lg font-extrabold tracking-wide transition-opacity hover:opacity-80"
-          >
-            VF
+          <a href="#hero" className="shrink-0 transition-opacity hover:opacity-80">
+            <img src={logo} alt="Vanderlei Fernandes" className="h-8 w-auto md:h-[38px]" />
           </a>
 
           {/* Links de navegação (desktop) */}
@@ -155,10 +153,10 @@ function Navbar() {
           {/* Ações à direita: CTA (desktop) + botão do menu (mobile) */}
           <div className="flex items-center gap-2 ">
             <div className="hidden md:block">
-              <Button as="a" href={RESUME_HREF} variant="outline-light">
+              <CurriculoButton as="a" href={RESUME_HREF}>
                 Currículo
                 <DownloadIcon className="h-4 w-4" aria-hidden="true" />
-              </Button>
+              </CurriculoButton>
             </div>
 
             <button
@@ -205,16 +203,15 @@ function Navbar() {
               </a>
             ))}
 
-            <Button
+            <CurriculoButton
               as="a"
               href={RESUME_HREF}
-              variant="outline-light"
               className="mt-2 w-full"
               onClick={() => setIsOpen(false)}
             >
               Currículo
               <DownloadIcon className="h-4 w-4" aria-hidden="true" />
-            </Button>
+            </CurriculoButton>
           </nav>
         </div>
       </div>

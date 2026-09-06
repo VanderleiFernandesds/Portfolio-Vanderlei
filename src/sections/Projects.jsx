@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Section from '../components/Section'
 import SectionTitle from '../components/SectionTitle'
-import Button from '../components/Button'
+import PaperButton from '../components/PaperButton'
 import FolderCarousel from '../components/FolderCarousel'
 import ProjectModal from '../components/ProjectModal'
 import { ArrowRightIcon, ExternalLinkIcon } from '../components/icons'
@@ -106,10 +106,10 @@ function Projects() {
           )}
 
           <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
-            <Button type="button" variant="projects" onClick={openModal}>
+            <PaperButton type="button" onClick={openModal}>
               Ver detalhes
               <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
-            </Button>
+            </PaperButton>
 
             <div className="flex items-center gap-5 text-sm">
               {project.githubHref ? (

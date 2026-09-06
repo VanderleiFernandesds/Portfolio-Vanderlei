@@ -12,7 +12,7 @@ function Paper({ children, className = '' }) {
       // container-type:inline-size — permite que quem usa <Paper> alinhe
       // conteúdo (ex.: texto) às linhas pautadas do SVG usando unidades
       // cqw relativas à própria largura da folha (ver AboutItem).
-      className={`rounded-card bg-cover bg-center absolute [container-type:inline-size] ${className}`.trim()}
+      className={` bg-cover bg-center absolute [container-type:inline-size] ${className}`.trim()}
       style={{ backgroundImage: `url(${folhaPapel})` }}
     >
       {children}

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Section from '../components/Section'
 import SectionTitle from '../components/SectionTitle'
-import Button from '../components/Button'
+import PaperButton from '../components/PaperButton'
 import ContactChannelCard from '../components/ContactChannelCard'
 import { MailIcon, PinIcon, SendIcon, ChevronDownIcon, LockIcon } from '../components/icons'
 import { contactChannels } from '../data/contactChannels'
@@ -164,10 +164,10 @@ function Contact() {
               </span>
             </label>
 
-            <Button type="submit" variant="accent" className="w-full">
+            <PaperButton type="submit" className="w-full">
               <SendIcon className="h-4 w-4" />
               Enviar mensagem
-            </Button>
+            </PaperButton>
 
             {submitted && (
               <p className="text-center text-sm text-accent-light" role="status">
