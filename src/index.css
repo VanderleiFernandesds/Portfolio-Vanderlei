@@ -2,6 +2,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Oxanium:wght@400;500;600;700;800&display=swap");
 /* Fonte exclusiva do texto escrito sobre a folha pautada (About/Paper) */
 @import url("https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap");
+/* Fonte exclusiva do bloco de estatísticas do Hero */
+@import url("https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap");
 @import "tailwindcss";
 
 /*
@@ -62,6 +64,8 @@
   --font-sans: "Oxanium", sans-serif;
   /* Uso exclusivo: texto sobre a folha pautada (About/Paper) */
   --font-handwriting: "Patrick Hand", cursive;
+  /* Uso exclusivo: bloco de estatísticas do Hero */
+  --font-kalam: "Kalam", cursive;
 
   --spacing-section: 100px;
   --spacing-mobile: 24px;

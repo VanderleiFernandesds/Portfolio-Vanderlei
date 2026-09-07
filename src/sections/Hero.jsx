@@ -17,6 +17,10 @@ import { technologies } from '../data/technologies'
 import { stats } from '../data/stats'
 import profilePhoto from '../assets/img-portfolio-vanderlei.webp'
 import tornPaperBottom from '../assets/folha-rasgada-debaixo.svg'
+import pastaIcon from '../assets/icon/pasta(1).svg'
+import calendarioIcon from '../assets/icon/calendario(1) 1.svg'
+import alvoIcon from '../assets/icon/alvo(1) 1.svg'
+import fogueteIcon from '../assets/icon/foguete(1).svg'
 
 // Mesmos ícones de marca utilizados em Contact (design/tokens.md — consistência visual).
 const SOCIAL_ICONS = {
@@ -129,19 +133,43 @@ function Hero() {
         </div>
 
         {/* Estatísticas — fora do container principal */}
-        <div className="grid grid-cols-1 gap-6 rounded-card bg-primary p-6 sm:grid-cols-2 sm:divide-y-0 lg:grid-cols-4 lg:divide-x lg:divide-text/10">
-          {stats.map((stat) => (
-            <div
-              key={stat.secondary}
-              className="flex items-center gap-3 lg:px-6 lg:first:pl-0"
-            >
-              <IconBadge icon={STAT_ICONS[stat.icon]} />
-              <div className="text-sm">
-                <p className="font-semibold text-text">{stat.primary}</p>
-                <p className="text-text-muted">{stat.secondary}</p>
-              </div>
+        <div className="z-10 mx-auto -mt-10 grid w-[92%] max-w-312.5 grid-cols-2 gap-6 rounded-card border border-accent bg-primary p-6 sm:-mt-20 sm:divide-y-0 lg:-mt-37.5 lg:grid-cols-4 lg:divide-x lg:divide-text/10">
+          <div className="flex flex-col items-center justify-center gap-2">
+            <div className="flex items-center justify-center">
+              <img src={pastaIcon} alt="" aria-hidden="true" className="h-8 w-10 lg:h-16 lg:w-20" />
             </div>
-          ))}
+            <div className="flex flex-col items-center justify-center text-center font-kalam text-text">
+              <p className="text-lg font-bold sm:text-xl">15+</p>
+              <p className="text-xs text-text-muted sm:text-sm">Projetos Desenvolvidos</p>
+            </div>
+          </div>
+          <div className="flex flex-col items-center justify-center gap-2">
+            <div className="flex items-center justify-center">
+              <img src={calendarioIcon} alt="" aria-hidden="true" className="h-8 w-10 lg:h-16 lg:w-20" />
+            </div>
+            <div className="flex flex-col items-center justify-center text-center font-kalam text-text">
+              <p className="text-lg font-bold sm:text-xl">2+</p>
+              <p className="text-xs text-text-muted sm:text-sm">Anos de Estudos</p>
+            </div>
+          </div>
+          <div className="flex flex-col items-center justify-center gap-2">
+            <div className="flex items-center justify-center">
+              <img src={alvoIcon} alt="" aria-hidden="true" className="h-8 w-10 lg:h-16 lg:w-20" />
+            </div>
+            <div className="flex flex-col items-center justify-center text-center font-kalam text-text">
+              <p className="text-lg font-bold sm:text-xl">UI/UX</p>
+              <p className="text-xs text-text-muted sm:text-sm">Foco Atual</p>
+            </div>
+          </div>
+          <div className="flex flex-col items-center justify-center gap-2">
+            <div className="flex items-center justify-center">
+              <img src={fogueteIcon} alt="" aria-hidden="true" className="h-8 w-10 lg:h-16 lg:w-20" />
+            </div>
+            <div className="flex flex-col items-center justify-center text-center font-kalam text-text">
+              <p className="text-lg font-bold sm:text-xl">IA</p>
+              <p className="text-xs text-text-muted sm:text-sm">Em constante evolução</p>
+            </div>
+          </div>
         </div>
       </Container>
     </section>
