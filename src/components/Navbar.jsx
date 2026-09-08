@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import Container from './Container'
 import CurriculoButton from './CurriculoButton'
 import logo from '../assets/logo.svg'
+import hoverStroke from '../assets/HoverStroke.svg'
 import {
   UserIcon,
   ZapIcon,
@@ -23,21 +24,6 @@ const NAV_LINKS = [
 
 // TODO: substituir pelo link real do PDF do currículo quando existir.
 const RESUME_HREF = '#'
-
-// Traço de hover do Navbar — passada única grossa, estilo "marcador" (ver
-// design/references/hover-navbar.png). Gerado no Hover Stroke Lab (textura
-// "marcador", formato "sublinhado") e adaptado para reaproveitar o token
-// --color-nav-highlight (via gradiente) já existente no projeto, em vez do
-// gradiente vermelho sugerido pela ferramenta.
-const NAV_HOVER_SEGMENTS = [
-  {
-    d: "M27.50,17.29 C30.25,17.54 40.33,18.76 45.83,18.98 C51.33,19.20 58.67,18.78 64.17,18.76 C69.67,18.74 77.00,18.85 82.50,18.86 C88.00,18.86 95.33,18.86 100.83,18.78 C106.33,18.70 113.67,18.15 119.17,18.31 C124.67,18.47 132.00,19.69 137.50,19.84 C143.00,19.98 150.33,19.42 155.83,19.28 C161.33,19.14 168.67,19.12 174.17,18.89 C179.67,18.65 189.75,17.91 192.50,17.74",
-    width: 14.18,
-    opacity: 0.82,
-    dur: 0.294,
-    delay: 0,
-  },
-]
 
 /**
  * Navbar
@@ -94,21 +80,9 @@ function Navbar() {
     // Valores menores no mobile porque a faixa ali é proporcionalmente mais
     // fina (mesma arte, container mais estreito).
     <header className="sticky top-5 z-50  w-full px-6 -mb-10 sm:-mb-16 lg:-mb-20">
-      {/* Gradiente compartilhado do traço de hover do Navbar — variação
-          sutil sobre o token --color-nav-highlight (ver NAV_HOVER_SEGMENTS
-          acima e design/references/hover-navbar.png) */}
-      <svg width="0" height="0" className="absolute" aria-hidden="true">
-        <defs>
-          <linearGradient id="nav-highlight-gradient" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stopColor="var(--color-nav-highlight)" />
-            <stop offset="100%" stopColor="var(--color-nav-highlight-light)" />
-          </linearGradient>
-        </defs>
-      </svg>
-
       <Container className="px-0! flex justify-center">
         <div
-          className={`flex lg:mx-desktop w-full items-center justify-between gap-4 rounded-card border bg-primary py-2 pr-2 pl-5 text-text shadow-lg shadow-primary/20 transition-colors ${
+          className={`flex lg:mx-desktop w-full items-center justify-between gap-4 rounded-card border bg-primary py-2 pr-2 pl-5 font-ibm text-text shadow-lg shadow-primary/20 transition-colors ${
             isScrolled ? 'border-text/10' : 'border-transparent'
           }`}
         >
@@ -135,37 +109,20 @@ function Navbar() {
                 <Icon className="h-4 w-4" aria-hidden="true" />
                 {label}
 
-                {/* Rabisco de marca-texto — passada única grossa, estilo
-                    marcador (ver design/references/hover-navbar.png).
-                    Revelada no hover/foco via stroke-dashoffset (classe
-                    .nav-hover-stroke em src/index.css); some suavemente ao
-                    sair, sem alterar o layout. */}
+                {/* Rabisco de marca-texto (HoverStroke.svg, ver
+                    PaperButton/CurriculoButton) revelado sob o link no
+                    hover/foco via clip-path (classe .hover-stroke-wipe em
+                    src/index.css), sem alterar o layout. */}
                 <span
                   aria-hidden="true"
-                  className="pointer-events-none absolute inset-x-3 -bottom-3 h-4 overflow-visible opacity-0 transition-opacity duration-250 ease-out group-hover:opacity-100 group-focus-visible:opacity-100"
+                  className="hover-stroke-wipe pointer-events-none absolute inset-x-3 -bottom-1 h-2.5"
                 >
-                  <svg
-                    className="nav-hover-stroke h-full w-full"
-                    viewBox="0 0 220 34"
-                    preserveAspectRatio="none"
-                  >
-                    {NAV_HOVER_SEGMENTS.map((s, i) => (
-                      <path
-                        key={i}
-                        d={s.d}
-                        stroke="url(#nav-highlight-gradient)"
-                        strokeWidth={s.width}
-                        strokeLinecap="round"
-                        fill="none"
-                        opacity={s.opacity}
-                        style={{
-                          transitionDuration: `${s.dur}s`,
-                          transitionDelay: `${s.delay}s`,
-                        }}
-                        ref={(el) => el && el.style.setProperty("--len", el.getTotalLength())}
-                      />
-                    ))}
-                  </svg>
+                  <img
+                    src={hoverStroke}
+                    alt=""
+                    draggable={false}
+                    className="h-full w-full object-contain select-none"
+                  />
                 </span>
               </a>
             ))}
@@ -173,7 +130,7 @@ function Navbar() {
 
           {/* Ações à direita: CTA (desktop) + botão do menu (mobile) */}
           <div className="flex items-center gap-2 ">
-            <div className="hidden md:block">
+            <div className=" md:block">
               <CurriculoButton as="a" href={RESUME_HREF}>
                 Currículo
                 <DownloadIcon className="h-4 w-4" aria-hidden="true" />
@@ -208,7 +165,7 @@ function Navbar() {
           <nav
             id="mobile-menu"
             aria-label="Navegação mobile"
-            className="mx-auto mt-2 flex w-full flex-col gap-1 rounded-3xl border border-text/10 bg-primary/90 p-4 text-text shadow-lg shadow-primary/20 backdrop-blur-md"
+            className="mx-auto mt-2 flex w-full flex-col gap-1 rounded-3xl border border-text/10 bg-primary/90 p-4 font-ibm text-text shadow-lg shadow-primary/20 backdrop-blur-md"
           >
             {NAV_LINKS.map(({ label, href, icon: Icon }) => (
               <a

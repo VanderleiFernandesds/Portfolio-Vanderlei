@@ -20,13 +20,13 @@ import tornPaperBottom from '../assets/folha-rasgada-debaixo.svg'
 import pastaIcon from '../assets/icon/pasta(1).svg'
 import calendarioIcon from '../assets/icon/calendario(1) 1.svg'
 import alvoIcon from '../assets/icon/alvo(1) 1.svg'
-import fogueteIcon from '../assets/icon/foguete(1).svg'
+import fogueteIcon from '../assets/icon/foguete(1) 1.svg'
 
 // Mesmos ícones de marca utilizados em Contact (design/tokens.md — consistência visual).
 const SOCIAL_ICONS = {
-  github: <SiGithub className="h-4 w-4" />,
-  linkedin: <FaLinkedin className="h-4 w-4" />,
-  email: <MailIcon className="h-4 w-4" />,
+  github: <SiGithub className="h-10 w-10" />,
+  linkedin: <FaLinkedin className="h-10 w-10" />,
+  email: <MailIcon className="h-10 w-10" />,
 }
 
 const STAT_ICONS = {
@@ -55,7 +55,7 @@ function Hero() {
 
           {/* Conteúdo: saudação + descrição + ações | foto — sem card próprio */}
           <div className="grid gap-8 px-6 py-8 sm:p-8 lg:grid-cols-[1.1fr_1fr] lg:gap-8 lg:p-12">
-            <div className="flex flex-col items-start justify-center gap-6 text-text">
+            <div className="flex flex-col items-start justify-center gap-6 font-kalam text-text">
               <div>
                 <p className="text-lg">Olá, eu sou</p>
                 <h1 className="text-4xl leading-tight font-extrabold whitespace-nowrap sm:text-5xl lg:text-6xl xl:text-7xl">
@@ -73,7 +73,7 @@ function Hero() {
                 com foco em experiência do usuário e código limpo.
               </p>
 
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-nowrap gap-3 sm:gap-4">
                 <PaperButton as="a" href="#projetos">
                   Ver projetos
                   <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
@@ -113,7 +113,7 @@ function Hero() {
               <img
                 src={profilePhoto}
                 alt="Vanderlei Fernandes"
-                className="max-h-96 w-auto object-contain lg:h-full lg:max-h-full"
+                className="max-h-80 w-auto object-contain lg:h-[88%] lg:max-h-[88%]"
               />
             </div>
           </div>
@@ -133,39 +133,39 @@ function Hero() {
         </div>
 
         {/* Estatísticas — fora do container principal */}
-        <div className="z-10 mx-auto -mt-10 grid w-[92%] max-w-312.5 grid-cols-2 gap-6 rounded-card border border-accent bg-primary p-6 sm:-mt-20 sm:divide-y-0 lg:-mt-37.5 lg:grid-cols-4 lg:divide-x lg:divide-text/10">
-          <div className="flex flex-col items-center justify-center gap-2">
+        <div className="z-10 mx-auto -mt-10 grid w-[92%] max-w-312.5 grid-cols-2 gap-6 rounded-card border border-b-gray-50 bg-primary p-6 sm:-mt-20 sm:divide-y-0 lg:-mt-37.5 lg:grid-cols-4 lg:divide-x lg:divide-text/10">
+          <div className="flex items-center justify-center gap-3">
             <div className="flex items-center justify-center">
               <img src={pastaIcon} alt="" aria-hidden="true" className="h-8 w-10 lg:h-16 lg:w-20" />
             </div>
-            <div className="flex flex-col items-center justify-center text-center font-kalam text-text">
+            <div className="flex flex-col items-start justify-center text-left font-kalam text-text">
               <p className="text-lg font-bold sm:text-xl">15+</p>
               <p className="text-xs text-text-muted sm:text-sm">Projetos Desenvolvidos</p>
             </div>
           </div>
-          <div className="flex flex-col items-center justify-center gap-2">
+          <div className="flex items-center justify-center gap-3">
             <div className="flex items-center justify-center">
               <img src={calendarioIcon} alt="" aria-hidden="true" className="h-8 w-10 lg:h-16 lg:w-20" />
             </div>
-            <div className="flex flex-col items-center justify-center text-center font-kalam text-text">
+            <div className="flex flex-col items-start justify-center text-left font-kalam text-text">
               <p className="text-lg font-bold sm:text-xl">2+</p>
               <p className="text-xs text-text-muted sm:text-sm">Anos de Estudos</p>
             </div>
           </div>
-          <div className="flex flex-col items-center justify-center gap-2">
+          <div className="flex items-center justify-center gap-3">
             <div className="flex items-center justify-center">
               <img src={alvoIcon} alt="" aria-hidden="true" className="h-8 w-10 lg:h-16 lg:w-20" />
             </div>
-            <div className="flex flex-col items-center justify-center text-center font-kalam text-text">
+            <div className="flex flex-col items-start justify-center text-left font-kalam text-text">
               <p className="text-lg font-bold sm:text-xl">UI/UX</p>
               <p className="text-xs text-text-muted sm:text-sm">Foco Atual</p>
             </div>
           </div>
-          <div className="flex flex-col items-center justify-center gap-2">
+          <div className="flex items-center justify-center gap-3">
             <div className="flex items-center justify-center">
               <img src={fogueteIcon} alt="" aria-hidden="true" className="h-8 w-10 lg:h-16 lg:w-20" />
             </div>
-            <div className="flex flex-col items-center justify-center text-center font-kalam text-text">
+            <div className="flex flex-col items-start justify-center text-left font-kalam text-text">
               <p className="text-lg font-bold sm:text-xl">IA</p>
               <p className="text-xs text-text-muted sm:text-sm">Em constante evolução</p>
             </div>
