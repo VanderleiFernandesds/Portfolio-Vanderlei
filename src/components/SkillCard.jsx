@@ -33,9 +33,9 @@ function SkillCard({
       className={`flex flex-col gap-4 rounded-card bg-primary p-6 lg:px-desktop  ${className}`.trim()}
     >
       <div className="flex flex-col gap-3">
-        <IconBadge icon={icon} className={CATEGORY_BG[category]} />
+        {icon && <IconBadge icon={icon} className={CATEGORY_BG[category]} />}
         <div>
-          <h3 className="font-bold text-text">{title}</h3>
+          <h3 className="font-bold text-black">{title}</h3>
           <p className="text-sm text-text-muted">{description}</p>
         </div>
       </div>
@@ -43,13 +43,13 @@ function SkillCard({
       {technologies && (
         <>
           <hr className="border-surface" />
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-wrap gap-6">
             {technologies.map(({ name, Icon }) => (
               <span
                 key={name}
                 className="flex flex-col items-center gap-1 text-xs text-text-muted"
               >
-                <Icon className="h-5 w-5 text-text" />
+                <Icon className="h-8 w-8 text-text" />
                 {name}
               </span>
             ))}
