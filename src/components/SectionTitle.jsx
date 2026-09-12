@@ -9,6 +9,7 @@ function SectionTitle({
   description,
   align = 'center',
   className = '',
+  titleClassName = '',
 }) {
   const alignment =
     align === 'left' ? 'items-start text-left' : 'items-center text-center'
@@ -21,7 +22,9 @@ function SectionTitle({
         </span>
       )}
       {title && (
-        <h2 className="text-3xl font-bold text-primary sm:text-4xl">
+        <h2
+          className={`text-3xl font-bold sm:text-4xl ${titleClassName || 'text-primary'}`.trim()}
+        >
           {title}
         </h2>
       )}

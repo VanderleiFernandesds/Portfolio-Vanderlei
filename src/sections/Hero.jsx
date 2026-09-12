@@ -1,6 +1,5 @@
 import Container from '../components/Container'
 import PaperButton from '../components/PaperButton'
-import IconBadge from '../components/IconBadge'
 import SocialLink from '../components/SocialLink'
 import {
   MailIcon,
@@ -13,14 +12,19 @@ import {
 import { SiGithub } from 'react-icons/si'
 import { FaLinkedin } from 'react-icons/fa'
 import { socials } from '../data/socials'
-import { technologies } from '../data/technologies'
 import { stats } from '../data/stats'
 import profilePhoto from '../assets/img-portfolio-vanderlei.webp'
 import tornPaperBottom from '../assets/folha-rasgada-debaixo.svg'
+import molduraRecorteSvg from '../assets/moldura-recorte.svg'
 import pastaIcon from '../assets/icon/pasta(1).svg'
 import calendarioIcon from '../assets/icon/calendario(1) 1.svg'
 import alvoIcon from '../assets/icon/alvo(1) 1.svg'
 import fogueteIcon from '../assets/icon/foguete(1) 1.svg'
+import reactStackIcon from '../assets/icones-preto-branco-svg/react.svg'
+import typescriptStackIcon from '../assets/icones-preto-branco-svg/typescript.svg'
+import javascriptStackIcon from '../assets/icones-preto-branco-svg/javascript.svg'
+import html5StackIcon from '../assets/icones-preto-branco-svg/html5.svg'
+import css3StackIcon from '../assets/icones-preto-branco-svg/css3.svg'
 
 // Mesmos ícones de marca utilizados em Contact (design/tokens.md — consistência visual).
 const SOCIAL_ICONS = {
@@ -95,17 +99,34 @@ function Hero() {
                 ))}
               </div>
 
-              <div className="flex flex-wrap items-center gap-3">
-                {technologies.map((tech) => (
-                  <IconBadge
-                    key={tech.name}
-                    size="sm"
-                    aria-label={tech.label}
-                    title={tech.label}
-                    icon={<tech.Icon className="h-4 w-4" aria-hidden="true" />}
-                  />
-                ))}
+              {/* Fileira de ícones das stacks (379.14x69) — SVGs preto-e-branco (src/assets/icones-preto-branco-svg) */}
+              <div className="relative flex h-17.25 w-[379.14px] max-w-full items-center justify-center gap-3 overflow-hidden  px-3 sm:gap-4 sm:px-4">
+                {/* Base preta, atrás de tudo — fica visível onde os ícones estão */}
+                <div aria-hidden="true" className="absolute inset-0 z-0 bg-background" />
+
+                {/* Máscara do SVG por cima da base, em bege */}
+                <div
+                  aria-hidden="true"
+                  className="absolute inset-0 z-10 bg-primary"
+                  style={{
+                    WebkitMaskImage: `url(${molduraRecorteSvg})`,
+                    maskImage: `url(${molduraRecorteSvg})`,
+                    WebkitMaskRepeat: 'no-repeat',
+                    maskRepeat: 'no-repeat',
+                    WebkitMaskPosition: 'center',
+                    maskPosition: 'center',
+                    WebkitMaskSize: '100%  calc(100% + 6px)',
+                    maskSize: '100% calc(100% + 6px)',
+                  }}
+                />
+
+                <img src={reactStackIcon} alt="React" className="relative z-20 h-9 w-9 sm:h-11 sm:w-11 lg:h-12 lg:w-12" />
+                <img src={typescriptStackIcon} alt="TypeScript" className="relative z-20 h-9 w-9 sm:h-11 sm:w-11 lg:h-12 lg:w-12" />
+                <img src={javascriptStackIcon} alt="JavaScript" className="relative z-20 h-9 w-9 sm:h-11 sm:w-11 lg:h-12 lg:w-12" />
+                <img src={html5StackIcon} alt="HTML5" className="relative z-20 h-9 w-9 sm:h-11 sm:w-11 lg:h-12 lg:w-12" />
+                <img src={css3StackIcon} alt="CSS3" className="relative z-20 h-9 w-9 sm:h-11 sm:w-11 lg:h-12 lg:w-12" />
               </div>
+
             </div>
 
             {/* Foto de perfil — moldura com a foto real */}
