@@ -87,7 +87,7 @@ function Navbar() {
           }`}
         >
           {/* Logo */}
-          <a href="#hero" className="shrink-0 transition-opacity hover:opacity-80">
+          <a href="#hero" className="shrink-0 -rotate-2 transition-opacity hover:opacity-80">
             <img src={logo} alt="Vanderlei Fernandes" className="h-8 w-auto md:h-[38px]" />
           </a>
 

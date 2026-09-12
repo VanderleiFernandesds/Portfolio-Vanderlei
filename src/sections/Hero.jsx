@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import Container from '../components/Container'
 import PaperButton from '../components/PaperButton'
 import SocialLink from '../components/SocialLink'
@@ -13,6 +14,7 @@ import { SiGithub } from 'react-icons/si'
 import { FaLinkedin } from 'react-icons/fa'
 import { socials } from '../data/socials'
 import { stats } from '../data/stats'
+import { stackIcons } from '../data/stackIcons'
 import profilePhoto from '../assets/img-portfolio-vanderlei.webp'
 import tornPaperBottom from '../assets/folha-rasgada-debaixo.svg'
 import molduraRecorteSvg from '../assets/moldura-recorte.svg'
@@ -20,11 +22,11 @@ import pastaIcon from '../assets/icon/pasta(1).svg'
 import calendarioIcon from '../assets/icon/calendario(1) 1.svg'
 import alvoIcon from '../assets/icon/alvo(1) 1.svg'
 import fogueteIcon from '../assets/icon/foguete(1) 1.svg'
-import reactStackIcon from '../assets/icones-preto-branco-svg/react.svg'
-import typescriptStackIcon from '../assets/icones-preto-branco-svg/typescript.svg'
-import javascriptStackIcon from '../assets/icones-preto-branco-svg/javascript.svg'
-import html5StackIcon from '../assets/icones-preto-branco-svg/html5.svg'
-import css3StackIcon from '../assets/icones-preto-branco-svg/css3.svg'
+
+// Quantos ícones ficam visíveis ao mesmo tempo na fileira de stacks do Hero.
+const STACK_ICON_SLOTS = 5
+// Intervalo do rodízio automático dos ícones de stack (ver src/data/stackIcons.js).
+const STACK_ICON_INTERVAL_MS = 5000
 
 // Mesmos ícones de marca utilizados em Contact (design/tokens.md — consistência visual).
 const SOCIAL_ICONS = {
@@ -41,6 +43,18 @@ const STAT_ICONS = {
 }
 
 function Hero() {
+  // Rodízio automático dos ícones de stack: a cada intervalo, avança um índice
+  // e cada um dos slots visíveis mostra um ícone diferente da lista (com offset),
+  // repetindo em loop até passar pelos 16 ícones de src/data/stackIcons.js.
+  const [stackIconStep, setStackIconStep] = useState(0)
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setStackIconStep((step) => step + 1)
+    }, STACK_ICON_INTERVAL_MS)
+    return () => clearInterval(id)
+  }, [])
+
   return (
     <section id="hero" className="bg-background pt-6 mt-0 sm:mt-5">
       <Container className="flex flex-col gap-4">
@@ -120,11 +134,17 @@ function Hero() {
                   }}
                 />
 
-                <img src={reactStackIcon} alt="React" className="relative z-20 h-9 w-9 sm:h-11 sm:w-11 lg:h-12 lg:w-12" />
-                <img src={typescriptStackIcon} alt="TypeScript" className="relative z-20 h-9 w-9 sm:h-11 sm:w-11 lg:h-12 lg:w-12" />
-                <img src={javascriptStackIcon} alt="JavaScript" className="relative z-20 h-9 w-9 sm:h-11 sm:w-11 lg:h-12 lg:w-12" />
-                <img src={html5StackIcon} alt="HTML5" className="relative z-20 h-9 w-9 sm:h-11 sm:w-11 lg:h-12 lg:w-12" />
-                <img src={css3StackIcon} alt="CSS3" className="relative z-20 h-9 w-9 sm:h-11 sm:w-11 lg:h-12 lg:w-12" />
+                {Array.from({ length: STACK_ICON_SLOTS }, (_, slot) => {
+                  const icon = stackIcons[(stackIconStep + slot) % stackIcons.length]
+                  return (
+                    <img
+                      key={`${slot}-${icon.name}`}
+                      src={icon.src}
+                      alt={icon.label}
+                      className="animate-stack-icon relative z-20 h-9 w-9 sm:h-11 sm:w-11 lg:h-12 lg:w-12"
+                    />
+                  )
+                })}
               </div>
 
             </div>

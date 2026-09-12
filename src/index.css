@@ -97,6 +97,20 @@
       transform: translateY(2%) scale(1);
     }
   }
+
+  /* Uso exclusivo: rodízio dos ícones de stack no Hero */
+  --animate-stack-icon: stack-icon 0.6s ease;
+
+  @keyframes stack-icon {
+    0% {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
 }
 
 @layer base {
