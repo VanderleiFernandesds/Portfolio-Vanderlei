@@ -1,19 +1,16 @@
-import curriculoSvg from '../assets/curriculo-sem-fundo.svg'
+import clipSvg from '../assets/svg com clip.svg'
 import hoverStroke from '../assets/HoverStroke.svg'
 
 /**
  * CurriculoButton
- * Botão "Currículo" da Navbar com fundo em textura de papel
- * (curriculo-sem-fundo.svg) no lugar do background/borda do <Button />
- * antigo — uso EXCLUSIVO deste botão (ver PaperButton.jsx para o mesmo
- * padrão aplicado aos outros CTAs do site, com outro SVG).
+ * Botão "Currículo" da Navbar — uso EXCLUSIVO deste botão (ver
+ * PaperButton.jsx para o mesmo padrão aplicado aos outros CTAs do site,
+ * com outro SVG). Renderiza como <button> por padrão; passe `as="a"` +
+ * `href` como no <Button />.
  *
- * O SVG fica em position:absolute/z-0, atrás do conteúdo (z-10), sem
- * pointer-events (o clique é sempre no <Tag> inteiro); nunca é esticado —
- * usa object-fit:cover (preserva a proporção original do papel, só
- * recorta a sobra quando o botão não é exatamente 2162:491) em vez de
- * "fill". Renderiza como <button> por padrão; passe `as="a"` + `href`
- * como no <Button />.
+ * Fundo em "svg com clip.svg" (retângulo preto com um clipe de papel
+ * decorativo no canto superior direito) no lugar do background/borda
+ * tradicional — mesmo padrão do <PaperButton />, com outro SVG.
  *
  * Sublinhado de marca-texto (HoverStroke.svg, gerado no Hover Stroke Lab —
  * mesma origem do traço de hover do Navbar, ver Navbar.jsx) revelado sob o
@@ -22,15 +19,15 @@ import hoverStroke from '../assets/HoverStroke.svg'
 function CurriculoButton({ as: Tag = 'button', className = '', children, ...props }) {
   return (
     <Tag
-      className={`group relative inline-flex items-center justify-center gap-2 overflow-hidden bg-transparent px-6 py-3 text-sm font-semibold text-text transition-transform duration-150 hover:scale-[1.03] active:scale-[0.97] ${className}`.trim()}
+      className={`group relative inline-flex items-center justify-center gap-2 px-12 pt-4 pb-5 text-base font-semibold text-primary md:px-10 md:pt-5 md:pb-4 md:text-sm ${className}`.trim()}
       {...props}
     >
       <img
-        src={curriculoSvg}
+        src={clipSvg}
         alt=""
         aria-hidden="true"
         draggable={false}
-        className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover select-none"
+        className="pointer-events-none absolute inset-0 z-0 h-full w-full rotate-180 object-contain select-none drop-shadow-lg md:rotate-0"
       />
       <span
         aria-hidden="true"

@@ -82,7 +82,7 @@ function Navbar() {
     <header className="sticky top-5 z-50  w-full px-6 -mb-10 sm:-mb-16 lg:-mb-20">
       <Container className="px-0! flex justify-center">
         <div
-          className={`flex lg:mx-desktop w-full items-center justify-between gap-4 rounded-card border bg-primary py-2 pr-2 pl-5 font-ibm text-text shadow-lg shadow-primary/20 transition-colors ${
+          className={`flex lg:mx-desktop w-full items-center justify-between gap-4 rounded-card border bg-primary py-2 pr-2 pl-5 font-ibm text-text shadow-lg shadow-primary/20 transition-colors md:py-0 ${
             isScrolled ? 'border-text/10' : 'border-transparent'
           }`}
         >
@@ -130,8 +130,8 @@ function Navbar() {
 
           {/* Ações à direita: CTA (desktop) + botão do menu (mobile) */}
           <div className="flex items-center gap-2 ">
-            <div className=" md:block">
-              <CurriculoButton as="a" href={RESUME_HREF}>
+            <div className="hidden md:block">
+              <CurriculoButton as="a" href={RESUME_HREF} className="-translate-y-2.5">
                 Currículo
                 <DownloadIcon className="h-4 w-4" aria-hidden="true" />
               </CurriculoButton>
@@ -155,6 +155,16 @@ function Navbar() {
         </div>
       </Container>
 
+      {/* Overlay — escurece o resto da página enquanto o menu mobile está aberto;
+          clicar nele fecha o menu, igual ao clique fora. */}
+      <div
+        aria-hidden="true"
+        onClick={() => setIsOpen(false)}
+        className={`fixed inset-0 -z-10 bg-text/50 backdrop-blur-sm transition-opacity duration-300 md:hidden ${
+          isOpen ? "opacity-100" : "pointer-events-none opacity-0"
+        }`}
+      />
+
       {/* Menu mobile — expande com transição (grid-template-rows 0fr -> 1fr) */}
       <div
         className={`grid transition-[grid-template-rows] duration-300 ease-out md:hidden ${
@@ -165,31 +175,34 @@ function Navbar() {
           <nav
             id="mobile-menu"
             aria-label="Navegação mobile"
-            className="mx-auto mt-2 flex w-full flex-col gap-1 rounded-3xl border border-text/10 bg-primary/90 p-4 font-ibm text-text shadow-lg shadow-primary/20 backdrop-blur-md"
+            className="mx-auto mt-2 flex w-full flex-col gap-1 rounded-2xl border border-text/10 bg-primary/90 px-4 pt-4 font-ibm text-text shadow-lg shadow-primary/20 backdrop-blur-md"
           >
-            {NAV_LINKS.map(({ label, href, icon: Icon }) => (
-              <a
-                key={href}
-                href={href}
-                onClick={() => setIsOpen(false)}
-                className={`flex items-center gap-3 rounded-button px-3 py-2 text-sm transition-colors hover:bg-text/10 hover:text-text ${
-                  activeHref === href ? "bg-text/10 text-text" : "text-text/80"
-                }`}
-              >
-                <Icon className="h-4 w-4" aria-hidden="true" />
-                {label}
-              </a>
-            ))}
+            <div className="mx-auto flex w-fit flex-col gap-1">
+              {NAV_LINKS.map(({ label, href, icon: Icon }) => (
+                <a
+                  key={href}
+                  href={href}
+                  onClick={() => setIsOpen(false)}
+                  className={`flex items-center gap-3 rounded-button px-3 py-2 text-sm transition-colors hover:bg-text/10 hover:text-text ${
+                    activeHref === href ? "bg-text/10 text-text" : "text-text/80"
+                  }`}
+                >
+                  <Icon className="h-4 w-4" aria-hidden="true" />
+                  {label}
+                </a>
+              ))}
+            </div>
 
-            <CurriculoButton
-              as="a"
-              href={RESUME_HREF}
-              className="mt-2 w-full"
-              onClick={() => setIsOpen(false)}
-            >
-              Currículo
-              <DownloadIcon className="h-4 w-4" aria-hidden="true" />
-            </CurriculoButton>
+            <div className=" flex translate-y-2.5 justify-center">
+              <CurriculoButton
+                as="a"
+                href={RESUME_HREF}
+                onClick={() => setIsOpen(false)}
+              >
+                Currículo
+                <DownloadIcon className="h-4 w-4" aria-hidden="true" />
+              </CurriculoButton>
+            </div>
           </nav>
         </div>
       </div>

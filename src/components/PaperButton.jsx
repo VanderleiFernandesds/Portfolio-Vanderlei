@@ -20,7 +20,7 @@ import hoverStroke from '../assets/HoverStroke.svg'
 function PaperButton({ as: Tag = 'button', className = '', children, ...props }) {
   return (
     <Tag
-      className={`group relative inline-flex items-center justify-center gap-2 overflow-hidden bg-transparent px-8 py-3.5 text-sm font-semibold text-text transition-transform duration-150 hover:scale-[1.02] active:scale-[0.98] ${className}`.trim()}
+      className={`group relative inline-flex items-center justify-center gap-2 overflow-hidden bg-transparent px-8 py-3.5 text-sm font-semibold text-text ${className}`.trim()}
       {...props}
     >
       <img
