@@ -75,8 +75,10 @@ function Hero() {
           <div className="grid gap-8 px-6 py-8 sm:p-8 lg:grid-cols-[1.1fr_1fr] lg:gap-8 lg:p-12">
             <div className="flex flex-col items-start justify-center gap-6 font-kalam text-text">
               <div>
-                <p className="text-lg">Olá, eu sou</p>
-                <h1 className="text-4xl leading-tight font-extrabold whitespace-nowrap sm:text-5xl lg:text-6xl xl:text-7xl">
+                <p className="font-permanent-marker text-3xl leading-tight -mb-1 text-black [-webkit-text-stroke:2px_#fff] drop-shadow-[3px_3px_0_rgba(0,0,0,0.3)]">
+                  Olá, eu sou
+                </p>
+                <h1 className="font-permanent-marker text-8xl leading-tight whitespace-nowrap text-black [-webkit-text-stroke:2px_#fff] drop-shadow-[3px_3px_0_rgba(0,0,0,0.3)] sm:text-5xl lg:text-6xl xl:text-7xl">
                   Vanderlei Fernandes
                 </h1>
               </div>
@@ -116,7 +118,10 @@ function Hero() {
               {/* Fileira de ícones das stacks (379.14x69) — SVGs preto-e-branco (src/assets/icones-preto-branco-svg) */}
               <div className="relative flex h-17.25 w-[379.14px] max-w-full items-center justify-center gap-3 overflow-hidden  px-3 sm:gap-4 sm:px-4">
                 {/* Base preta, atrás de tudo — fica visível onde os ícones estão */}
-                <div aria-hidden="true" className="absolute inset-0 z-0 bg-background" />
+                <div
+                  aria-hidden="true"
+                  className="absolute inset-0 z-0 bg-background"
+                />
 
                 {/* Máscara do SVG por cima da base, em bege */}
                 <div
@@ -125,17 +130,18 @@ function Hero() {
                   style={{
                     WebkitMaskImage: `url(${molduraRecorteSvg})`,
                     maskImage: `url(${molduraRecorteSvg})`,
-                    WebkitMaskRepeat: 'no-repeat',
-                    maskRepeat: 'no-repeat',
-                    WebkitMaskPosition: 'center',
-                    maskPosition: 'center',
-                    WebkitMaskSize: '100%  calc(100% + 6px)',
-                    maskSize: '100% calc(100% + 6px)',
+                    WebkitMaskRepeat: "no-repeat",
+                    maskRepeat: "no-repeat",
+                    WebkitMaskPosition: "center",
+                    maskPosition: "center",
+                    WebkitMaskSize: "100%  calc(100% + 6px)",
+                    maskSize: "100% calc(100% + 6px)",
                   }}
                 />
 
                 {Array.from({ length: STACK_ICON_SLOTS }, (_, slot) => {
-                  const icon = stackIcons[(stackIconStep + slot) % stackIcons.length]
+                  const icon =
+                    stackIcons[(stackIconStep + slot) % stackIcons.length];
                   return (
                     <img
                       key={`${slot}-${icon.name}`}
@@ -143,10 +149,9 @@ function Hero() {
                       alt={icon.label}
                       className="animate-stack-icon relative z-20 h-9 w-9 sm:h-11 sm:w-11 lg:h-12 lg:w-12"
                     />
-                  )
+                  );
                 })}
               </div>
-
             </div>
 
             {/* Foto de perfil — moldura com a foto real */}
@@ -177,25 +182,44 @@ function Hero() {
         <div className="z-10 mx-auto -mt-10 grid w-[92%] max-w-312.5 grid-cols-2 gap-6 rounded-card border border-b-gray-50 bg-primary p-6 sm:-mt-20 sm:divide-y-0 lg:-mt-37.5 lg:grid-cols-4 lg:divide-x lg:divide-text/10">
           <div className="flex items-center justify-center gap-3">
             <div className="flex items-center justify-center">
-              <img src={pastaIcon} alt="" aria-hidden="true" className="h-8 w-10 lg:h-16 lg:w-20" />
+              <img
+                src={pastaIcon}
+                alt=""
+                aria-hidden="true"
+                className="h-8 w-10 lg:h-16 lg:w-20"
+              />
             </div>
             <div className="flex flex-col items-start justify-center text-left font-kalam text-text">
               <p className="text-lg font-bold sm:text-xl">15+</p>
-              <p className="text-xs text-text-muted sm:text-sm">Projetos Desenvolvidos</p>
+              <p className="text-xs text-text-muted sm:text-sm">
+                Projetos Desenvolvidos
+              </p>
             </div>
           </div>
           <div className="flex items-center justify-center gap-3">
             <div className="flex items-center justify-center">
-              <img src={calendarioIcon} alt="" aria-hidden="true" className="h-8 w-10 lg:h-16 lg:w-20" />
+              <img
+                src={calendarioIcon}
+                alt=""
+                aria-hidden="true"
+                className="h-8 w-10 lg:h-16 lg:w-20"
+              />
             </div>
             <div className="flex flex-col items-start justify-center text-left font-kalam text-text">
               <p className="text-lg font-bold sm:text-xl">2+</p>
-              <p className="text-xs text-text-muted sm:text-sm">Anos de Estudos</p>
+              <p className="text-xs text-text-muted sm:text-sm">
+                Anos de Estudos
+              </p>
             </div>
           </div>
           <div className="flex items-center justify-center gap-3">
             <div className="flex items-center justify-center">
-              <img src={alvoIcon} alt="" aria-hidden="true" className="h-8 w-10 lg:h-16 lg:w-20" />
+              <img
+                src={alvoIcon}
+                alt=""
+                aria-hidden="true"
+                className="h-8 w-10 lg:h-16 lg:w-20"
+              />
             </div>
             <div className="flex flex-col items-start justify-center text-left font-kalam text-text">
               <p className="text-lg font-bold sm:text-xl">UI/UX</p>
@@ -204,11 +228,18 @@ function Hero() {
           </div>
           <div className="flex items-center justify-center gap-3">
             <div className="flex items-center justify-center">
-              <img src={fogueteIcon} alt="" aria-hidden="true" className="h-8 w-10 lg:h-16 lg:w-20" />
+              <img
+                src={fogueteIcon}
+                alt=""
+                aria-hidden="true"
+                className="h-8 w-10 lg:h-16 lg:w-20"
+              />
             </div>
             <div className="flex flex-col items-start justify-center text-left font-kalam text-text">
               <p className="text-lg font-bold sm:text-xl">IA</p>
-              <p className="text-xs text-text-muted sm:text-sm">Em constante evolução</p>
+              <p className="text-xs text-text-muted sm:text-sm">
+                Em constante evolução
+              </p>
             </div>
           </div>
         </div>

@@ -6,6 +6,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap");
 /* Fonte exclusiva do texto da Navbar */
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap");
+/* Fontes exclusivas do bloco principal do Hero ("Olá, eu sou" + nome) */
+@import url("https://fonts.googleapis.com/css2?family=Coiny&family=Permanent+Marker&display=swap");
 @import "tailwindcss";
 
 /*
@@ -63,6 +65,10 @@
   --font-kalam: "Kalam", cursive;
   /* Uso exclusivo: texto da Navbar */
   --font-ibm: "IBM Plex Sans", sans-serif;
+  /* Uso exclusivo: "Olá, eu sou" no bloco principal do Hero */
+  --font-coiny: "Coiny", cursive;
+  /* Uso exclusivo: nome no bloco principal do Hero */
+  --font-permanent-marker: "Permanent Marker", cursive;
 
   --spacing-section: 100px;
   --spacing-mobile: 24px;

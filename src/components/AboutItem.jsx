@@ -111,7 +111,8 @@ function AboutItem({
           isLeft ? paperPaddingPhotoLeft : paperPaddingPhotoRight
         }`}
       >
-        {(title || text) && (
+        {/* Título + textos desativados temporariamente — reativar trocando `false` por `(title || text)`. */}
+        {false && (title || text) && (
           <div className={`relative z-10 font-handwriting text-left ${paperLineHeight} ${textMaxWidth}`}>
             {title && (
               <h3 className="text-[22px] font-bold text-text sm:text-[24px]" spellCheck={false}>
