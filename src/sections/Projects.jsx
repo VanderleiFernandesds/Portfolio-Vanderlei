@@ -1,11 +1,22 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Section from '../components/Section'
 import SectionTitle from '../components/SectionTitle'
-import PaperButton from '../components/PaperButton'
 import FolderCarousel from '../components/FolderCarousel'
 import ProjectModal from '../components/ProjectModal'
-import { ArrowRightIcon, ExternalLinkIcon } from '../components/icons'
+import PaperButton from '../components/PaperButton'
+import { ArrowRightIcon } from '../components/icons'
+import { SiGithub, SiChartdotjs, SiPostgresql } from 'react-icons/si'
 import { projects } from '../data/projects'
+import { stackIcons } from '../data/stackIcons'
+
+// Fallback (react-icons) pra tecnologias sem SVG em stackIcons.js
+// (src/assets/icones-preto-branco-svg), como Chart.js e PostgreSQL.
+const FALLBACK_TECH_ICONS = {
+  'chart.js': SiChartdotjs,
+  postgresql: SiPostgresql,
+}
+import pastaProjetosFundo from '../assets/pasta-projetos-fundo.svg'
+import pastaProjetosFrente from '../assets/pasta-projetos-frente.svg'
 
 /**
  * Projects
@@ -23,8 +34,22 @@ function Projects() {
   const total = projects.length
   const [order, setOrder] = useState(() => projects.map((_, index) => index))
   const [isModalOpen, setIsModalOpen] = useState(false)
+  // Distâncias do coverflow (translateX/Z, rotateY) são calculadas em px
+  // fixos — precisam encolher no mobile, senão as pastas laterais saem
+  // muito para fora do container estreito. `isCompact` acompanha o
+  // breakpoint lg (1024px) via matchMedia.
+  const [isCompact, setIsCompact] = useState(
+    () => typeof window !== 'undefined' && window.matchMedia('(max-width: 1023px)').matches,
+  )
   const frontIndex = order[0]
   const project = projects[frontIndex]
+
+  useEffect(() => {
+    const query = window.matchMedia('(max-width: 1023px)')
+    const handleChange = (event) => setIsCompact(event.matches)
+    query.addEventListener('change', handleChange)
+    return () => query.removeEventListener('change', handleChange)
+  }, [])
 
   const openModal = () => setIsModalOpen(true)
   const closeModal = () => setIsModalOpen(false)
@@ -65,135 +90,264 @@ function Projects() {
 
   return (
     <Section id="projetos">
-      <SectionTitle
-        eyebrow="Projetos"
-        title="Alguns trabalhos recentes"
-        description="Uma seleção de projetos que desenvolvi aplicando boas práticas de código, design e usabilidade."
-      />
+      {/*
+        Containers do painel (SectionTitle, carrossel de pastas, informações
+        do projeto em destaque, botões e navegação) excluídos — a seção fica
+        vazia até o novo conteúdo ser definido. Modal de detalhes mantido
+        (não some quando reativarem o botão "Ver detalhes").
+      */}
 
-      <div className="mt-12 grid gap-12 rounded-card bg-primary p-6 sm:p-8 lg:grid-cols-[1.05fr_1fr] lg:items-center lg:gap-10 lg:p-14">
-        {/* Coluna direita (lg:order-2): carrossel de pastas */}
-        <div className="flex justify-center lg:order-2">
-          <FolderCarousel order={order} projects={projects} onGoTo={goTo} onNext={goNext} onPrev={goPrev} />
-        </div>
+      {/* Placeholder — medida de referência 1440x908, responsivo (w-full, teto no valor de referência, aspect-ratio no lugar de h/w fixos em px). */}
+      <div className="relative mx-auto flex w-full max-w-[1440px] flex-col items-center justify-center gap-4 rounded-card border border-dashed border-primary/30 bg-primary text-primary/50">
+        <SectionTitle
+          eyebrow="Projetos"
+          title="O que eu já construí"
+          description="Uma seleção de projetos que mostram como eu penso e desenvolvo soluções."
+          titleClassName="text-text"
+        />
 
-        {/* Coluna esquerda (lg:order-1): informações do projeto em destaque
-            + navegação. Altura mínima fixa evita que o painel "pule" de
-            tamanho ao trocar de projeto (descrições/badges variam). */}
-        <div className="flex min-h-105 flex-col items-start gap-6 lg:order-1 lg:justify-center">
-          <div className="flex flex-col gap-4">
-            <div className="flex items-center gap-3">
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-projects-light/30 bg-projects-light/10 text-sm font-bold text-projects-light">
-                {project.logo}
-              </span>
-              <h3 className="text-2xl font-extrabold text-text sm:text-3xl">{project.title}</h3>
-            </div>
-
-            <p className="max-w-sm text-text-muted min-h-18">{project.description}</p>
-          </div>
-
-          {project.technologies.length > 0 && (
-            <div className="flex min-h-16 flex-wrap content-center gap-2">
-              {project.technologies.map((tech) => (
-                <span
-                  key={tech}
-                  className="rounded-md border border-text/10 bg-text/5 px-2.5 py-1 text-[11px] font-medium tracking-wide text-text-muted uppercase"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
+        {/*
+          Carrossel coverflow (ver https://examples.motion.dev/react/carousel-coverflow)
+          — todos os projetos ficam empilhados no mesmo eixo central, cada um
+          transformado (rotateY + translateX/Z + escala + opacidade) conforme a
+          distância `diff` até o projeto ativo (frontIndex): diff 0 fica de frente
+          e em tamanho real, |diff| 1/2 giram pra dentro (rotateY) e recuam
+          (translateZ negativo), diminuindo escala/opacidade a cada passo. Clicar
+          em qualquer card chama goTo(index) e a transição desliza suavemente
+          (CSS transition, sem lib nova) até ele virar o card central.
+        */}
+        <div className="relative flex w-[94.24%] aspect-[5/4] sm:aspect-[3/2] lg:aspect-[1357/542] max-w-[1357px] items-center justify-center overflow-hidden border border-dashed border-primary/30 text-primary/50 [perspective:1400px] transform-3d">
+          {false && (
+            <FolderCarousel order={order} projects={projects} onGoTo={goTo} onNext={goNext} onPrev={goPrev} />
           )}
 
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
-            <PaperButton type="button" onClick={openModal}>
-              Ver detalhes
-              <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
-            </PaperButton>
+          {/* Setas prev/next — cada uma num canto do carrossel. */}
+          <button
+            type="button"
+            onClick={goPrev}
+            aria-label="Projeto anterior"
+            className="absolute top-1/2 left-0 sm:left-4 z-40 inline-flex h-8 w-8 sm:h-10 sm:w-10 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-text/30 bg-text transition-colors hover:bg-surface focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-text"
+            style={{ color: 'var(--color-primary)' }}
+          >
+            <ArrowRightIcon className="h-4 w-4 rotate-180" aria-hidden="true" />
+          </button>
+          <button
+            type="button"
+            onClick={goNext}
+            aria-label="Próximo projeto"
+            className="absolute top-1/2 right-0 sm:right-4 z-40 inline-flex h-8 w-8 sm:h-10 sm:w-10 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-text/30 bg-text transition-colors hover:bg-surface focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-text"
+            style={{ color: 'var(--color-primary)' }}
+          >
+            <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
+          </button>
 
-            <div className="flex items-center gap-5 text-sm">
-              {project.githubHref ? (
-                <a
-                  href={project.githubHref}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center gap-1.5 font-medium text-text-muted transition-colors hover:text-text"
-                >
-                  <ExternalLinkIcon className="h-4 w-4" aria-hidden="true" />
-                  GitHub
-                </a>
-              ) : (
-                <span
-                  aria-disabled="true"
-                  title="Link ainda não disponível"
-                  className="flex cursor-not-allowed items-center gap-1.5 font-medium text-text-muted/50"
-                >
-                  <ExternalLinkIcon className="h-4 w-4" aria-hidden="true" />
-                  GitHub
-                </span>
-              )}
+          {/* Degradê nos cantos — dá a impressão de que os cards das laterais estão sumindo/aparecendo, fundindo com o fundo da seção. */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-y-0 left-0 z-30 w-6 sm:w-40 bg-gradient-to-r from-primary to-transparent"
+          />
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-y-0 right-0 z-30 w-6 sm:w-40 bg-gradient-to-l from-primary to-transparent"
+          />
 
-              {project.demoHref ? (
-                <a
-                  href={project.demoHref}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="font-medium text-text-muted transition-colors hover:text-text"
-                >
-                  Live Demo
-                </a>
-              ) : (
-                <span
-                  aria-disabled="true"
-                  title="Link ainda não disponível"
-                  className="cursor-not-allowed font-medium text-text-muted/50"
-                >
-                  Live Demo
+          {projects.map((item, index) => {
+            // Distância com sinal mais curta até o card ativo (circular): ex. com
+            // 5 projetos, se frontIndex=0 e index=4, diff dá -1 (1 passo pra trás)
+            // em vez de +4 — assim os cards se distribuem pros dois lados do
+            // centro, não só pra um.
+            let diff = index - frontIndex
+            if (diff > total / 2) diff -= total
+            if (diff < -total / 2) diff += total
+
+            const abs = Math.abs(diff)
+            const isCenter = diff === 0
+            const visible = true
+
+            const scale = isCenter ? 1 : abs === 1 ? 0.78 : 0.62
+            const translateX =
+              diff * (isCenter ? 0 : abs === 1 ? (isCompact ? 170 : 460) : isCompact ? 110 : 300)
+            const translateZ = isCenter ? 0 : abs === 1 ? (isCompact ? -60 : -120) : isCompact ? -140 : -260
+            const rotateY = isCenter ? 0 : Math.sign(diff) * (abs === 1 ? 42 : 54)
+            const opacity = 1
+
+            return (
+              <div
+                key={item.id}
+                aria-current={isCenter}
+                style={{
+                  transform: `translate(-50%, -50%) translateX(${translateX}px) translateZ(${translateZ}px) rotateY(${rotateY}deg) scale(${scale})`,
+                  zIndex: 20 - abs,
+                  opacity: visible ? opacity : 0,
+                  pointerEvents: visible ? 'auto' : 'none',
+                  filter: isCenter
+                    ? isCompact
+                      ? 'drop-shadow(0 6px 10px rgba(0,0,0,0.3))'
+                      : 'drop-shadow(0 10px 18px rgba(0,0,0,0.45))'
+                    : isCompact
+                      ? 'drop-shadow(0 3px 6px rgba(0,0,0,0.15))'
+                      : 'drop-shadow(0 6px 10px rgba(0,0,0,0.2))',
+                }}
+                className={`absolute top-1/2 left-1/2 flex aspect-[689/453] max-h-[390px] ${isCenter ? 'w-[95%]' : 'w-[75%]'} sm:w-[52%] lg:w-[44%] max-w-[597px] shrink items-center justify-center transition-[transform,opacity] duration-500 ease-out`}
+              >
+                {/*
+                  Mesma mecânica do FolderCarousel.jsx original (desativado):
+                  um wrapper com clip (-top-[35%], overflow-hidden, cantos
+                  arredondados só embaixo) que deixa a folha vazar/"sair" por
+                  cima da pasta enquanto os lados ficam sempre cortados no
+                  contorno dela — em vez de 1 SVG só, a pasta virou 2 camadas
+                  (pasta-projetos-fundo.svg atrás, pasta-projetos-frente.svg na
+                  frente) pra a screenshot entrar entre elas.
+                */}
+                <div className="absolute inset-x-0 top-[-1%] bottom-0 rounded-b-2xl [clip-path:inset(-999px_-999px_0_-999px_round_0_0_1rem_1rem)]">
+                  
+                    <img
+                      src={pastaProjetosFundo}
+                      alt=""
+                      aria-hidden="true"
+                      className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-auto w-full select-none"
+                    />
+
+                    {/*
+                      Screenshot do projeto — só o card central mostra (os
+                      outros ficam só com a pasta). Usa a mesma animação
+                      --animate-sheet-out do FolderCarousel (src/index.css) —
+                      a "folha" sobe saindo de dentro da pasta e se acomoda no
+                      lugar, com o clip do wrapper acima cortando os lados/base
+                      no contorno da pasta. `key={project.id}` remonta o
+                      elemento a cada troca, reiniciando a animação.
+                    */}
+                    {isCenter && (
+                      <div
+                        key={project.id}
+                        className="animate-sheet-out absolute top-[18%] right-[3%] left-[3%] z-[2] h-[75%] overflow-hidden rounded-md"
+                      >
+                        <img
+                          src={project.image}
+                          alt={project.title}
+                          className="h-full w-full object-contain object-top"
+                        />
+                      </div>
+                    )}
+
+                    <img
+                      src={pastaProjetosFrente}
+                      alt=""
+                      aria-hidden="true"
+                      className="pointer-events-none absolute inset-x-0 bottom-0 z-3 h-auto w-full select-none"
+                    />
+                  
+                </div>
+              </div>
+            )
+          })}
+
+          {/* Contador do projeto em destaque (ex.: 02 / 05), na base do container das pastas. */}
+          <p className="absolute bottom-2 left-1/2 z-40 -translate-x-1/2 font-kalam text-sm tracking-widest text-text/60">
+            {String(frontIndex + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
+          </p>
+        </div>
+
+        {/* Placeholder interno — medida de referência 691x222 (47.99% x 24.45% do pai), embaixo do anterior. No mobile empilha em coluna (largura total, altura automática) em vez de manter a proporção fixa e as 2 colunas lado a lado do desktop. */}
+        {/*
+          Container achatado (info + badges + detalhes como irmãos diretos,
+          num único flex-wrap) pra poder reordenar com `order` conforme o
+          breakpoint: no mobile o container das stacks (badges) fica entre
+          as informações e o botão "Ver detalhes" (order-2); a partir do sm
+          a largura de info+detalhes soma 100% e badges (w-full) quebra pra
+          a 2ª linha, voltando à ordem original (badges por último).
+        */}
+        <div className="-mt-6 lg:-mt-8 flex w-full flex-wrap items-center justify-center gap-4 sm:w-[80%] lg:w-[47.99%] lg:aspect-[691/222] lg:gap-0 max-w-[691px] border border-dashed border-primary/30 text-primary/50">
+            {/* Placeholder interno — medida de referência 426x159 (61.65% x 71.62% do pai). Informações do projeto em destaque (título + descrição). */}
+            <div className="order-1 flex w-full sm:w-[61.65%] lg:h-[71.62%] lg:max-w-[426px] flex-col items-start justify-center gap-2 overflow-hidden border border-dashed border-primary/30 p-3 text-primary/50">
+              <div className="flex items-center gap-2">
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-text/30 bg-projects-light/10 text-xs font-bold text-text">
+                  {project.logo}
                 </span>
-              )}
+                <h3 className="text-lg font-extrabold text-text">{project.title}</h3>
+              </div>
+              <p className="line-clamp-2 text-sm text-text-muted">{project.description}</p>
             </div>
-          </div>
 
-          {/* Navegação — reutiliza a mesma order/goTo/goNext/goPrev do carrossel */}
-          <div className="mt-2 flex w-full flex-col items-center gap-3 border-t border-text/10 pt-6">
-            <div className="flex items-center gap-4">
-              <button
+            {/* Placeholder interno — medida de referência 265x159 (38.35% x 71.62% do pai), do lado direito do anterior. Botão "Ver detalhes" em cima, links GitHub/Live Demo embaixo. No mobile fica depois do container das stacks (order-3); a partir do sm volta pra ordem natural (order-2), lado a lado com as informações. */}
+            <div className="order-3 sm:order-2 flex w-full sm:w-[38.35%] lg:h-[71.62%] lg:max-w-[265px] flex-row sm:flex-col items-center justify-start sm:justify-center gap-6 sm:gap-2 overflow-hidden border border-dashed border-primary/30 p-3 sm:p-2 text-primary/50">
+              <PaperButton
                 type="button"
-                onClick={goPrev}
-                aria-label="Projeto anterior"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-text text-primary transition-colors hover:bg-projects-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-text"
+                onClick={openModal}
+                showBackground={false}
+                className="rounded-button bg-text"
+                style={{ color: 'var(--color-primary)' }}
               >
-                <ArrowRightIcon className="h-4 w-4 rotate-180" aria-hidden="true" />
-              </button>
-
-              <p className="text-sm font-semibold text-text-muted" aria-live="polite">
-                {String(project.id).padStart(2, '0')} / {String(total).padStart(2, '0')}
-              </p>
-
-              <button
-                type="button"
-                onClick={goNext}
-                aria-label="Próximo projeto"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-text text-primary transition-colors hover:bg-projects-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-text"
-              >
+                Ver detalhes
                 <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
-              </button>
+              </PaperButton>
+
+              <div className="flex items-center gap-4 sm:pt-4 text-sm">
+                {project.githubHref ? (
+                  <a
+                    href={project.githubHref}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-center gap-1.5 font-medium text-text-muted transition-colors hover:text-text"
+                  >
+                    <SiGithub className="h-4 w-4" aria-hidden="true" />
+                    GitHub
+                  </a>
+                ) : (
+                  <span
+                    aria-disabled="true"
+                    title="Link ainda não disponível"
+                    className="flex cursor-not-allowed items-center gap-1.5 font-medium text-text-muted/50"
+                  >
+                    <SiGithub className="h-4 w-4" aria-hidden="true" />
+                    GitHub
+                  </span>
+                )}
+
+                {project.demoHref ? (
+                  <a
+                    href={project.demoHref}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-medium text-text-muted transition-colors hover:text-text"
+                  >
+                    Live Demo
+                  </a>
+                ) : (
+                  <span
+                    aria-disabled="true"
+                    title="Link ainda não disponível"
+                    className="cursor-not-allowed font-medium text-text-muted/50"
+                  >
+                    Live Demo
+                  </span>
+                )}
+              </div>
             </div>
 
-            <div aria-label="Selecionar projeto" className="flex items-center gap-2">
-              {projects.map((item, index) => (
-                <button
-                  key={item.id}
-                  type="button"
-                  onClick={() => goTo(index)}
-                  aria-label={`Ver projeto ${index + 1}`}
-                  aria-current={index === frontIndex}
-                  className={`h-2 rounded-full transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-text ${
-                    index === frontIndex ? 'w-7 bg-projects' : 'w-2 bg-text/25'
-                  }`}
-                />
-              ))}
-            </div>
+          {/* Placeholder interno — medida de referência 691x63 (100% x 28.38% do pai). Badges das tecnologias do projeto em destaque — order-2 no mobile (entre info e detalhes), order-3 a partir do sm (quebra pra 2ª linha, largura total). */}
+          <div className="order-2 sm:order-3 flex h-auto lg:h-[28.38%] w-full lg:max-h-[63px] flex-wrap content-center items-center justify-start gap-2 overflow-hidden border border-dashed border-primary/30 p-3 text-primary/50">
+            {project.technologies.map((tech) => {
+              const icon = stackIcons.find(
+                (item) => item.label.toLowerCase() === tech.toLowerCase(),
+              )
+              const FallbackIcon = FALLBACK_TECH_ICONS[tech.toLowerCase()]
+              return (
+                <span
+                  key={tech}
+                  className="flex flex-col items-center gap-1 rounded-md px-2.5 py-1.5"
+                >
+                  {icon ? (
+                    <img src={icon.src} alt="" aria-hidden="true" className="h-6 w-6" />
+                  ) : FallbackIcon ? (
+                    <FallbackIcon className="h-6 w-6 text-text-muted" aria-hidden="true" />
+                  ) : null}
+                  <span className="text-[11px] font-medium tracking-wide text-text-muted uppercase">
+                    {tech}
+                  </span>
+                </span>
+              )
+            })}
           </div>
         </div>
       </div>

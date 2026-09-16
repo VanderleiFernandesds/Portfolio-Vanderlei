@@ -16,20 +16,32 @@ import hoverStroke from '../assets/HoverStroke.svg'
  * Sublinhado de marca-texto (HoverStroke.svg, gerado no Hover Stroke Lab —
  * mesma origem do traço de hover do Navbar, ver Navbar.jsx) revelado sob o
  * texto no hover/foco, sem alterar o layout.
+ *
+ * `showBackground={false}` remove o SVG de papel (botao.svg) — usado quando
+ * o botão fica sobre um fundo que já tem textura/cor própria (ex.: "Ver
+ * detalhes" em Projects.jsx).
  */
-function PaperButton({ as: Tag = 'button', className = '', children, ...props }) {
+function PaperButton({
+  as: Tag = 'button',
+  className = '',
+  showBackground = true,
+  children,
+  ...props
+}) {
   return (
     <Tag
-      className={`group relative inline-flex items-center justify-center gap-2 overflow-hidden bg-transparent px-8 py-3.5 text-sm font-semibold text-text ${className}`.trim()}
+      className={`group relative inline-flex cursor-pointer items-center justify-center gap-2 overflow-hidden px-8 py-3.5 text-sm font-semibold text-text ${className}`.trim()}
       {...props}
     >
-      <img
-        src={botaoSvg}
-        alt=""
-        aria-hidden="true"
-        draggable={false}
-        className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover select-none"
-      />
+      {showBackground && (
+        <img
+          src={botaoSvg}
+          alt=""
+          aria-hidden="true"
+          draggable={false}
+          className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover select-none"
+        />
+      )}
       <span
         aria-hidden="true"
         className="hover-stroke-wipe pointer-events-none absolute inset-x-4 bottom-1 z-5 h-3"
