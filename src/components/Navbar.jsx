@@ -79,7 +79,7 @@ function Navbar() {
     // acima dela. z-50 garante que a navbar continue totalmente visível.
     // Valores menores no mobile porque a faixa ali é proporcionalmente mais
     // fina (mesma arte, container mais estreito).
-    <header className="sticky top-5 z-50  w-full px-6 -mb-10 sm:-mb-16 lg:-mb-20">
+    <header className="sticky top-5 z-50  w-full px-3 sm:px-6 -mb-10 sm:-mb-16 lg:-mb-20">
       <Container className="px-0! flex justify-center">
         <div
           className={`flex lg:mx-desktop w-full items-center justify-between gap-4 rounded-card border bg-primary py-2 pr-2 pl-5 font-ibm text-text shadow-lg shadow-primary/20 transition-colors md:py-0 ${

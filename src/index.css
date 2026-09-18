@@ -6,6 +6,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap");
 /* Fonte exclusiva do texto da Navbar */
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap");
+/* Fonte exclusiva do modal de detalhes de projeto (ProjectModal) */
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap");
 /* Fontes exclusivas do bloco principal do Hero ("Olá, eu sou" + nome) */
 @import url("https://fonts.googleapis.com/css2?family=Coiny&family=Permanent+Marker&display=swap");
 @import "tailwindcss";
@@ -23,6 +25,16 @@
   --color-text-muted: #6b7094;
   --color-accent: #2563eb;
   --color-accent-light: #60a5fa;
+
+  /* Uso exclusivo: ProjectModal — paleta papel/pasta e hierarquia de texto */
+  --color-modal-heading: #222220;
+  --color-modal-body: #575149;
+  --color-modal-text-secondary: #6b645b;
+  --color-modal-number: #a99b86;
+  --color-modal-paper: #f5ebd8;
+  --color-modal-folder: #ba8c53;
+  --color-modal-github-text: #3f3d39;
+  --color-modal-github-border: #c9b99f;
 
   /* Uso exclusivo: badges de categoria da seção Skills (ver design/tokens.md) */
   --color-category-frontend: #213757;
@@ -65,6 +77,8 @@
   --font-kalam: "Kalam", cursive;
   /* Uso exclusivo: texto da Navbar */
   --font-ibm: "IBM Plex Sans", sans-serif;
+  /* Uso exclusivo: modal de detalhes de projeto (ProjectModal) */
+  --font-ibm-mono: "IBM Plex Mono", monospace;
   /* Uso exclusivo: "Olá, eu sou" no bloco principal do Hero */
   --font-coiny: "Coiny", cursive;
   /* Uso exclusivo: nome no bloco principal do Hero */
@@ -117,12 +131,208 @@
       transform: scale(1);
     }
   }
+
+  /*
+    Uso exclusivo: abertura/fechamento do ProjectModal
+    (src/components/ProjectModal.jsx) — dá a sensação de uma pasta de
+    projeto sendo aberta: o backdrop esmaece, o painel "assenta" na tela
+    (scale + translateY), a screenshot entra como uma foto sendo colocada
+    dentro da pasta (leve rotação), e o conteúdo da direita é revelado em
+    sequência (--animate-fade-up-in, com animation-delay crescente aplicado
+    inline por bloco). Fechar é o inverso, um pouco mais rápido — o
+    componente só desmonta depois que --animate-modal-close termina (ver
+    CLOSE_ANIMATION_MS em ProjectModal.jsx).
+  */
+  --animate-modal-backdrop-in: modal-backdrop-in 0.25s ease-out forwards;
+  --animate-modal-backdrop-out: modal-backdrop-out 0.3s ease-in forwards;
+
+  @keyframes modal-backdrop-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes modal-backdrop-out {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  --animate-modal-open: modal-open 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  --animate-modal-close: modal-close 0.24s cubic-bezier(0.22, 1, 0.36, 1) 0.06s forwards;
+
+  @keyframes modal-open {
+    0% {
+      transform: scale(0.92) translateY(30px);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1) translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes modal-close {
+    0% {
+      transform: scale(1) translateY(0);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(0.96) translateY(15px);
+      opacity: 0;
+    }
+  }
+
+  /* Conteúdo interno (as 2 colunas) some rápido, antes do painel encolher. */
+  --animate-modal-content-out: modal-content-out 0.12s ease-in forwards;
+
+  @keyframes modal-content-out {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  /* Screenshot principal — entra como uma foto sendo colocada na pasta
+     (leve rotação + escala), sai recuando na direção oposta ao fechar. */
+  --animate-modal-photo-in: modal-photo-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-modal-photo-out: modal-photo-out 0.15s ease-in forwards;
+
+  @keyframes modal-photo-in {
+    0% {
+      opacity: 0;
+      transform: translateY(15px) rotate(-1.5deg) scale(0.97);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) rotate(0deg) scale(1);
+    }
+  }
+
+  @keyframes modal-photo-out {
+    0% {
+      opacity: 1;
+      transform: translateY(0) rotate(0deg) scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-10px) rotate(-1deg) scale(0.97);
+    }
+  }
+
+  /*
+    Revelação genérica em sequência (título, "Sobre o projeto", "Desafios",
+    "Aprendizado", "Stack", botões finais, aba "Detalhes do Projeto" e
+    miniaturas) — cada bloco usa a mesma keyframe com um animation-delay
+    diferente (inline, calculado em ProjectModal.jsx) pra criar o stagger.
+  */
+  --animate-fade-up-in: fade-up-in 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+
+  @keyframes fade-up-in {
+    0% {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /*
+    Uso exclusivo: galeria de fotos do ProjectModal
+    (src/components/ProjectModal.jsx) — troca de slide com efeito de
+    "folhear fotografias" (desliza + rotaciona + encolhe + desaparece em vez
+    de um corte/slide de carrossel genérico). 4 variantes: a foto atual sai
+    pra esquerda/direita conforme a direção (próxima/anterior), a nova
+    entra do lado oposto vindo de baixo.
+  */
+  --animate-photo-exit-left: photo-exit-left 0.4s cubic-bezier(0.4, 0, 1, 1) forwards;
+  --animate-photo-exit-right: photo-exit-right 0.4s cubic-bezier(0.4, 0, 1, 1) forwards;
+  --animate-photo-enter-right: photo-enter-right 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-photo-enter-left: photo-enter-left 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+
+  @keyframes photo-exit-left {
+    0% {
+      transform: translateX(0) rotate(0deg) scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(-40px) rotate(-2deg) scale(0.97);
+      opacity: 0;
+    }
+  }
+
+  @keyframes photo-exit-right {
+    0% {
+      transform: translateX(0) rotate(0deg) scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(40px) rotate(2deg) scale(0.97);
+      opacity: 0;
+    }
+  }
+
+  @keyframes photo-enter-right {
+    0% {
+      transform: translateX(35px) translateY(8px) rotate(1.5deg) scale(0.96);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0) translateY(0) rotate(0deg) scale(1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes photo-enter-left {
+    0% {
+      transform: translateX(-35px) translateY(8px) rotate(-1.5deg) scale(0.96);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0) translateY(0) rotate(0deg) scale(1);
+      opacity: 1;
+    }
+  }
 }
 
 @layer base {
   body {
     @apply bg-background text-primary font-sans antialiased;
   }
+}
+
+/* Máscara SVG da fileira de ícones de stack do Hero — abaixo de sm (onde o
+   container encolhe, ver Hero.jsx) preserva a proporção original do recorte
+   (auto), senão a textura rasgada fica espremida/distorcida; a partir de sm
+   o container já tem a largura nativa do SVG (379.14px), então estica 100%
+   para preencher a borda até o fim sem sobrar corte reto nas pontas. */
+.hero-stack-mask {
+  -webkit-mask-size: auto calc(100% + 6px);
+  mask-size: auto calc(100% + 6px);
+}
+@media (min-width: 640px) {
+  .hero-stack-mask {
+    -webkit-mask-size: 100% calc(100% + 6px);
+    mask-size: 100% calc(100% + 6px);
+  }
+}
+
+/* Textura de papel kraft extremamente sutil, sobre a cor sólida da "pasta"
+   do ProjectModal — só quebra o efeito de cor digital chapada, ruído quase
+   imperceptível (alpha 0.03). */
+.modal-folder-texture {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.03 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
 }
 
 /*
@@ -180,5 +390,19 @@
     clip-path: path(
       "M 30 0 H 210 Q 222 0 230 10 L 252 40 Q 260 50 274 50 H 502 Q 520 50 520 68 V 334 Q 520 360 494 360 H 26 Q 0 360 0 334 V 30 Q 0 0 30 0 Z"
     );
+  }
+}
+
+/*
+  Respeita prefers-reduced-motion: as animações de slide da galeria do
+  ProjectModal (--animate-photo-*) terminam instantaneamente no estado
+  final em vez de animar, sem perder o resultado (troca de foto).
+*/
+@media (prefers-reduced-motion: reduce) {
+  .animate-photo-exit-left,
+  .animate-photo-exit-right,
+  .animate-photo-enter-right,
+  .animate-photo-enter-left {
+    animation-duration: 0.01ms !important;
   }
 }

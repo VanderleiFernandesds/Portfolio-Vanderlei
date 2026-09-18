@@ -17,7 +17,7 @@ import ambienteDesenvolvimento from '../assets/ambiente-desenvolvimento.webp'
  */
 function About() {
   return (
-    <Section id="sobre" className="overflow-hidden">
+    <Section id="sobre" className="overflow-hidden" containerClassName="!px-3 lg:!px-desktop">
       {/* Placeholder — reserva o espaço do conteúdo antigo (3 blocos folha + foto) até definir o novo. */}
       <div
         className=" flex w-full flex-col items-center gap-3  border border-dashed border-primary/30  text-primary/50 "

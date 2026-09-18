@@ -57,7 +57,7 @@ function Hero() {
 
   return (
     <section id="hero" className="bg-background pt-6 mt-0 sm:mt-5">
-      <Container className="flex flex-col gap-4">
+      <Container className="flex flex-col gap-4 !px-3 lg:!px-desktop">
         {/* Container principal: engloba faixa superior, conteúdo, respiro e faixa inferior */}
         <div className="rounded-card flex flex-col  bg-primary">
           {/* Faixa superior — mesma textura da faixa inferior, invertida (de cabeça para baixo) */}
@@ -72,13 +72,13 @@ function Hero() {
           </div>
 
           {/* Conteúdo: saudação + descrição + ações | foto — sem card próprio */}
-          <div className="grid gap-8 px-6 py-8 sm:p-8 lg:grid-cols-[1.1fr_1fr] lg:gap-8 lg:p-12">
+          <div className="grid grid-cols-1 gap-8 px-6 py-8 sm:p-8 lg:grid-cols-[1.1fr_1fr] lg:gap-8 lg:p-12">
             <div className="flex flex-col items-start justify-center gap-6 font-kalam text-text">
               <div>
                 <p className="font-permanent-marker text-3xl leading-tight -mb-1 text-black [-webkit-text-stroke:2px_#fff] drop-shadow-[3px_3px_0_rgba(0,0,0,0.3)]">
                   Olá, eu sou
                 </p>
-                <h1 className="font-permanent-marker text-8xl leading-tight whitespace-nowrap text-black [-webkit-text-stroke:2px_#fff] drop-shadow-[3px_3px_0_rgba(0,0,0,0.3)] sm:text-5xl lg:text-6xl xl:text-7xl">
+                <h1 className="font-permanent-marker text-4xl leading-tight text-black [-webkit-text-stroke:2px_#fff] drop-shadow-[3px_3px_0_rgba(0,0,0,0.3)] sm:text-5xl sm:whitespace-nowrap lg:text-6xl xl:text-7xl">
                   Vanderlei Fernandes
                 </h1>
               </div>
@@ -93,12 +93,20 @@ function Hero() {
                 com foco em experiência do usuário e código limpo.
               </p>
 
-              <div className="flex flex-nowrap gap-3 sm:gap-4">
-                <PaperButton as="a" href="#projetos">
+              <div className="flex flex-nowrap gap-2 sm:gap-4">
+                <PaperButton
+                  as="a"
+                  href="#projetos"
+                  className="!px-3 !py-2.5 !text-xs whitespace-nowrap sm:!px-8 sm:!py-3.5 sm:!text-sm"
+                >
                   Ver projetos
                   <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
                 </PaperButton>
-                <PaperButton as="a" href="#contato">
+                <PaperButton
+                  as="a"
+                  href="#contato"
+                  className="!px-3 !py-2.5 !text-xs whitespace-nowrap sm:!px-8 sm:!py-3.5 sm:!text-sm"
+                >
                   Entrar em contato
                   <MailIcon className="h-4 w-4" aria-hidden="true" />
                 </PaperButton>
@@ -126,7 +134,7 @@ function Hero() {
                 {/* Máscara do SVG por cima da base, em bege */}
                 <div
                   aria-hidden="true"
-                  className="absolute inset-0 z-10 bg-primary"
+                  className="hero-stack-mask absolute inset-0 z-10 bg-primary"
                   style={{
                     WebkitMaskImage: `url(${molduraRecorteSvg})`,
                     maskImage: `url(${molduraRecorteSvg})`,
@@ -134,8 +142,6 @@ function Hero() {
                     maskRepeat: "no-repeat",
                     WebkitMaskPosition: "center",
                     maskPosition: "center",
-                    WebkitMaskSize: "100%  calc(100% + 6px)",
-                    maskSize: "100% calc(100% + 6px)",
                   }}
                 />
 

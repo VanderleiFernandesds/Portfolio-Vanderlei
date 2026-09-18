@@ -12,7 +12,7 @@ const SQUARE_CHANNELS = ['linkedin', 'whatsapp', 'email', 'github']
 
 function Contact() {
   return (
-    <Section id="contato">
+    <Section id="contato" containerClassName="!px-3 lg:!px-desktop">
       <div className="flex w-full flex-col items-center justify-center gap-6 rounded-card bg-primary">
         {/* Container extra topo */}
         <div className="h-8 w-full lg:h-22">
@@ -61,8 +61,8 @@ function Contact() {
                     className="h-full w-full object-cover"
                   />
                   <span className="absolute inset-0 flex flex-col items-center justify-center gap-2">
-                    <Icon className="h-16 w-16 text-text" />
-                    <span className="relative mt-6 font-kalam text-lg font-semibold text-text">
+                    <Icon className="h-9 w-9 text-text lg:h-16 lg:w-16" />
+                    <span className="relative mt-3 font-kalam text-sm font-semibold text-text lg:mt-6 lg:text-lg">
                       {item.title}
                       <span
                         aria-hidden="true"

@@ -89,7 +89,7 @@ function Projects() {
   }
 
   return (
-    <Section id="projetos">
+    <Section id="projetos" containerClassName="!px-3 lg:!px-desktop">
       {/*
         Containers do painel (SectionTitle, carrossel de pastas, informações
         do projeto em destaque, botões e navegação) excluídos — a seção fica
@@ -269,13 +269,13 @@ function Projects() {
               <p className="line-clamp-2 text-sm text-text-muted">{project.description}</p>
             </div>
 
-            {/* Placeholder interno — medida de referência 265x159 (38.35% x 71.62% do pai), do lado direito do anterior. Botão "Ver detalhes" em cima, links GitHub/Live Demo embaixo. No mobile fica depois do container das stacks (order-3); a partir do sm volta pra ordem natural (order-2), lado a lado com as informações. */}
+            {/* Placeholder interno — medida de referência 265x159 (38.35% x 71.62% do pai), do lado direito do anterior. Botão "Ver detalhes" em cima, links GitHub/Ver projeto embaixo. No mobile fica depois do container das stacks (order-3); a partir do sm volta pra ordem natural (order-2), lado a lado com as informações. */}
             <div className="order-3 sm:order-2 flex w-full sm:w-[38.35%] lg:h-[71.62%] lg:max-w-[265px] flex-row sm:flex-col items-center justify-start sm:justify-center gap-6 sm:gap-2 overflow-hidden border border-dashed border-primary/30 p-3 sm:p-2 text-primary/50">
               <PaperButton
                 type="button"
                 onClick={openModal}
                 showBackground={false}
-                className="rounded-button bg-text"
+                className="rounded-button bg-text whitespace-nowrap"
                 style={{ color: 'var(--color-primary)' }}
               >
                 Ver detalhes
@@ -309,17 +309,17 @@ function Projects() {
                     href={project.demoHref}
                     target="_blank"
                     rel="noreferrer"
-                    className="font-medium text-text-muted transition-colors hover:text-text"
+                    className="font-medium whitespace-nowrap text-text-muted transition-colors hover:text-text"
                   >
-                    Live Demo
+                    Ver projeto
                   </a>
                 ) : (
                   <span
                     aria-disabled="true"
                     title="Link ainda não disponível"
-                    className="cursor-not-allowed font-medium text-text-muted/50"
+                    className="cursor-not-allowed font-medium whitespace-nowrap text-text-muted/50"
                   >
-                    Live Demo
+                    Ver projeto
                   </span>
                 )}
               </div>

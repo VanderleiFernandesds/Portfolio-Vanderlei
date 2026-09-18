@@ -24,7 +24,7 @@ function Skills() {
   ).filter(Boolean)
 
   return (
-    <Section id="habilidades">
+    <Section id="habilidades" containerClassName="!px-3 lg:!px-desktop">
       {/* Faixa perfurada encostada no topo do container principal (sem vão) */}
       <div className="mx-auto w-full max-w-[1440px] aspect-1992/138 bg-background">
         <BordaPapelPerfuradaSkill className="h-full w-full text-primary" />
