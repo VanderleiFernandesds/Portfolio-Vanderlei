@@ -16,12 +16,14 @@ import { socials } from '../data/socials'
 import { stats } from '../data/stats'
 import { stackIcons } from '../data/stackIcons'
 import profilePhoto from '../assets/img-portfolio-vanderlei.webp'
+import openToWorkStamp from '../assets/open_to_work_stamp.svg'
+import folhaCadernoHorizontal from '../assets/folha-caderno-horizontal.svg'
 import tornPaperBottom from '../assets/folha-rasgada-debaixo.svg'
 import molduraRecorteSvg from '../assets/moldura-recorte.svg'
-import pastaIcon from '../assets/icon/pasta(1).svg'
-import calendarioIcon from '../assets/icon/calendario(1) 1.svg'
+import propositoIcon from '../assets/icones-portfolio-svg/icone-proposito-lampada.svg'
+import projetosIcon from '../assets/icones-portfolio-svg/icone-projetos-codigo.svg'
 import alvoIcon from '../assets/icon/alvo(1) 1.svg'
-import fogueteIcon from '../assets/icon/foguete(1) 1.svg'
+import evolucaoIcon from '../assets/icones-portfolio-svg/icone-evolucao-grafico.svg'
 
 // Quantos ícones ficam visíveis ao mesmo tempo na fileira de stacks do Hero.
 const STACK_ICON_SLOTS = 5
@@ -72,20 +74,22 @@ function Hero() {
           </div>
 
           {/* Conteúdo: saudação + descrição + ações | foto — sem card próprio */}
-          <div className="grid grid-cols-1 gap-8 px-6 py-8 sm:p-8 lg:grid-cols-[1.1fr_1fr] lg:gap-8 lg:p-12">
-            <div className="flex flex-col items-start justify-center gap-6 font-kalam text-text">
+          <div className="grid grid-cols-1 gap-8 px-6 py-8 sm:p-8 lg:grid-cols-[1.1fr_1fr] lg:gap-8 lg:p-8">
+            <div className="order-2 flex flex-col items-start justify-center gap-6 font-kalam text-text lg:order-none">
               <div>
-                <p className="font-permanent-marker text-3xl leading-tight -mb-1 text-black [-webkit-text-stroke:2px_#fff] drop-shadow-[3px_3px_0_rgba(0,0,0,0.3)]">
+                <p className="font-granesta text-2xl leading-tight -mb-1 tracking-wide text-black">
                   Olá, eu sou
                 </p>
-                <h1 className="font-permanent-marker text-4xl leading-tight text-black [-webkit-text-stroke:2px_#fff] drop-shadow-[3px_3px_0_rgba(0,0,0,0.3)] sm:text-5xl sm:whitespace-nowrap lg:text-6xl xl:text-7xl">
+                <h1 className="font-granesta text-4xl leading-tight tracking-wide text-black sm:text-5xl sm:whitespace-nowrap lg:text-6xl xl:text-7xl">
                   Vanderlei Fernandes
                 </h1>
               </div>
 
-              <p className="text-xl font-bold sm:text-2xl">
-                Desenvolvedor Full-Stack
-              </p>
+              <div className="-mt-3 border border-text bg-background px-2 py-0.5 sm:-mt-9 sm:px-3 sm:py-1">
+                <p className="font-granesta text-base font-bold tracking-widest text-primary sm:text-2xl">
+                  Desenvolvedor Full-Stack
+                </p>
+              </div>
 
               <p className="max-w-xl text-text-muted">
                 Crio aplicações web modernas, responsivas e performáticas
@@ -97,7 +101,8 @@ function Hero() {
                 <PaperButton
                   as="a"
                   href="#projetos"
-                  className="!px-3 !py-2.5 !text-xs whitespace-nowrap sm:!px-8 sm:!py-3.5 sm:!text-sm"
+                  showBackground={false}
+                  className="!px-3 !py-2.5 !text-xs whitespace-nowrap border border-text bg-background !text-primary sm:!px-8 sm:!py-3.5 sm:!text-sm"
                 >
                   Ver projetos
                   <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
@@ -105,7 +110,8 @@ function Hero() {
                 <PaperButton
                   as="a"
                   href="#contato"
-                  className="!px-3 !py-2.5 !text-xs whitespace-nowrap sm:!px-8 sm:!py-3.5 sm:!text-sm"
+                  showBackground={false}
+                  className="!px-3 !py-2.5 !text-xs whitespace-nowrap border border-text sm:!px-8 sm:!py-3.5 sm:!text-sm"
                 >
                   Entrar em contato
                   <MailIcon className="h-4 w-4" aria-hidden="true" />
@@ -161,11 +167,17 @@ function Hero() {
             </div>
 
             {/* Foto de perfil — moldura com a foto real */}
-            <div className="mx-auto flex w-full max-w-sm items-center rotate-12 justify-center lg:mx-0 lg:h-full lg:max-w-none">
+            <div className="order-1 relative mx-auto flex w-full max-w-sm items-center rotate-12 justify-center lg:order-none lg:mx-0 lg:h-full lg:max-w-none">
               <img
                 src={profilePhoto}
                 alt="Vanderlei Fernandes"
                 className="max-h-80 w-auto object-contain lg:h-[88%] lg:max-h-[88%]"
+              />
+              <img
+                src={openToWorkStamp}
+                alt=""
+                aria-hidden="true"
+                className="pointer-events-none absolute top-6 right-6 h-20 w-20 select-none lg:top-10 lg:right-10 lg:h-28 lg:w-28"
               />
             </div>
           </div>
@@ -185,36 +197,42 @@ function Hero() {
         </div>
 
         {/* Estatísticas — fora do container principal */}
-        <div className="z-10 mx-auto -mt-10 grid w-[92%] max-w-312.5 grid-cols-2 gap-6 rounded-card border border-b-gray-50 bg-primary p-6 sm:-mt-20 sm:divide-y-0 lg:-mt-37.5 lg:grid-cols-4 lg:divide-x lg:divide-text/10">
+        <div className="relative z-10 mx-auto -mt-16 grid w-[92%] max-w-312.5 grid-cols-2 gap-6 overflow-hidden bg-transparent px-10 py-6 sm:-mt-20 sm:divide-y-0 lg:-mt-37.5 lg:grid-cols-4 lg:divide-x lg:divide-text/10 lg:px-16 lg:py-12">
+          <img
+            src={folhaCadernoHorizontal}
+            alt=""
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 -z-10 h-full w-full object-cover shadow-lg select-none"
+          />
           <div className="flex items-center justify-center gap-3">
             <div className="flex items-center justify-center">
               <img
-                src={pastaIcon}
+                src={propositoIcon}
                 alt=""
                 aria-hidden="true"
-                className="h-8 w-10 lg:h-16 lg:w-20"
+                className="h-8 w-10 lg:h-24 lg:w-28"
               />
             </div>
             <div className="flex flex-col items-start justify-center text-left font-kalam text-text">
-              <p className="text-lg font-bold sm:text-xl">15+</p>
+              <p className="text-lg font-bold sm:text-xl">Propósito</p>
               <p className="text-xs text-text-muted sm:text-sm">
-                Projetos Desenvolvidos
+                Transformar ideias em soluções
               </p>
             </div>
           </div>
           <div className="flex items-center justify-center gap-3">
             <div className="flex items-center justify-center">
               <img
-                src={calendarioIcon}
+                src={projetosIcon}
                 alt=""
                 aria-hidden="true"
-                className="h-8 w-10 lg:h-16 lg:w-20"
+                className="h-8 w-10 lg:h-24 lg:w-28"
               />
             </div>
             <div className="flex flex-col items-start justify-center text-left font-kalam text-text">
-              <p className="text-lg font-bold sm:text-xl">2+</p>
+              <p className="text-lg font-bold sm:text-xl">Projetos</p>
               <p className="text-xs text-text-muted sm:text-sm">
-                Anos de Estudos
+                Construindo na prática
               </p>
             </div>
           </div>
@@ -224,27 +242,29 @@ function Hero() {
                 src={alvoIcon}
                 alt=""
                 aria-hidden="true"
-                className="h-8 w-10 lg:h-16 lg:w-20"
+                className="h-8 w-10 lg:h-24 lg:w-28"
               />
             </div>
             <div className="flex flex-col items-start justify-center text-left font-kalam text-text">
-              <p className="text-lg font-bold sm:text-xl">UI/UX</p>
-              <p className="text-xs text-text-muted sm:text-sm">Foco Atual</p>
+              <p className="text-lg font-bold sm:text-xl">Foco atual</p>
+              <p className="text-xs text-text-muted sm:text-sm">
+                UI/UX & Performance
+              </p>
             </div>
           </div>
           <div className="flex items-center justify-center gap-3">
             <div className="flex items-center justify-center">
               <img
-                src={fogueteIcon}
+                src={evolucaoIcon}
                 alt=""
                 aria-hidden="true"
-                className="h-8 w-10 lg:h-16 lg:w-20"
+                className="h-8 w-10 lg:h-24 lg:w-28"
               />
             </div>
             <div className="flex flex-col items-start justify-center text-left font-kalam text-text">
-              <p className="text-lg font-bold sm:text-xl">IA</p>
+              <p className="text-lg font-bold sm:text-xl">Evolução</p>
               <p className="text-xs text-text-muted sm:text-sm">
-                Em constante evolução
+                IA & novas tecnologias
               </p>
             </div>
           </div>

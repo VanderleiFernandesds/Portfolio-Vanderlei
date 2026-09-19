@@ -12,6 +12,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Coiny&family=Permanent+Marker&display=swap");
 @import "tailwindcss";
 
+/* Fonte exclusiva do bloco principal do Hero ("Olá, eu sou" + nome) */
+@font-face {
+  font-family: "Granesta";
+  src: url("./assets/font/Granesta.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 /*
   Design tokens do projeto.
   Fonte da verdade: design/tokens.md — não alterar valores aqui
@@ -83,6 +92,8 @@
   --font-coiny: "Coiny", cursive;
   /* Uso exclusivo: nome no bloco principal do Hero */
   --font-permanent-marker: "Permanent Marker", cursive;
+  /* Uso exclusivo: "Olá, eu sou" + nome no bloco principal do Hero */
+  --font-granesta: "Granesta", cursive;
 
   --spacing-section: 100px;
   --spacing-mobile: 24px;
