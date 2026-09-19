@@ -21,6 +21,15 @@
   font-display: swap;
 }
 
+/* Fonte exclusiva do texto da Navbar */
+@font-face {
+  font-family: "Ultra Fresh Demo";
+  src: url("./assets/font/Ultra Fresh - Demo.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 /*
   Design tokens do projeto.
   Fonte da verdade: design/tokens.md — não alterar valores aqui
@@ -84,8 +93,10 @@
   --font-handwriting: "Patrick Hand", cursive;
   /* Uso exclusivo: bloco de estatísticas do Hero */
   --font-kalam: "Kalam", cursive;
-  /* Uso exclusivo: texto da Navbar */
+  /* Uso exclusivo: texto do CurriculoButton (Navbar) */
   --font-ibm: "IBM Plex Sans", sans-serif;
+  /* Uso exclusivo: texto da Navbar (exceto CurriculoButton) */
+  --font-navbar: "Ultra Fresh Demo", sans-serif;
   /* Uso exclusivo: modal de detalhes de projeto (ProjectModal) */
   --font-ibm-mono: "IBM Plex Mono", monospace;
   /* Uso exclusivo: "Olá, eu sou" no bloco principal do Hero */

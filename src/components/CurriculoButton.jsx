@@ -19,7 +19,7 @@ import hoverStroke from '../assets/HoverStroke.svg'
 function CurriculoButton({ as: Tag = 'button', className = '', children, ...props }) {
   return (
     <Tag
-      className={`group relative inline-flex items-center justify-center gap-2 px-12 pt-4 pb-5 text-base font-semibold text-primary md:px-10 md:pt-5 md:pb-4 md:text-sm ${className}`.trim()}
+      className={`group relative inline-flex items-center justify-center gap-2 px-12 pt-4 pb-5 font-ibm text-base font-semibold text-primary md:px-10 md:pt-5 md:pb-4 md:text-sm ${className}`.trim()}
       {...props}
     >
       <img

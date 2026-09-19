@@ -82,7 +82,7 @@ function Navbar() {
     <header className="sticky top-5 z-50  w-full px-3 sm:px-6 -mb-10 sm:-mb-16 lg:-mb-20">
       <Container className="px-0! flex justify-center">
         <div
-          className={`flex lg:mx-desktop w-full items-center justify-between gap-4 border bg-primary py-2 pr-2 pl-5 font-ibm text-text shadow-lg shadow-primary/20 transition-colors md:py-0 ${
+          className={`flex lg:mx-desktop w-full items-center justify-between gap-4 border bg-primary py-2 pr-2 pl-5 font-navbar text-text shadow-lg shadow-primary/20 transition-colors md:py-0 ${
             isScrolled ? 'border-text/10' : 'border-transparent'
           }`}
         >
@@ -100,11 +100,7 @@ function Navbar() {
               <a
                 key={href}
                 href={href}
-                className={`group relative z-10 flex items-center gap-2 rounded-full px-4 py-2 text-sm transition-colors ${
-                  activeHref === href
-                    ? "text-text"
-                    : "text-text/70 hover:text-text"
-                }`}
+                className={`group relative z-10 flex items-center gap-2 rounded-full px-4 py-2 text-lg text-text transition-colors`}
               >
                 <Icon className="h-4 w-4" aria-hidden="true" />
                 {label}
@@ -175,7 +171,7 @@ function Navbar() {
           <nav
             id="mobile-menu"
             aria-label="Navegação mobile"
-            className="mx-auto mt-2 flex w-full flex-col gap-1 rounded-2xl border border-text/10 bg-primary/90 px-4 pt-4 font-ibm text-text shadow-lg shadow-primary/20 backdrop-blur-md"
+            className="mx-auto mt-2 flex w-full flex-col gap-1 rounded-2xl border border-text/10 bg-primary/90 px-4 pt-4 font-navbar text-text shadow-lg shadow-primary/20 backdrop-blur-md"
           >
             <div className="mx-auto flex w-fit flex-col gap-1">
               {NAV_LINKS.map(({ label, href, icon: Icon }) => (
