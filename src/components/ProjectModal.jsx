@@ -3,6 +3,7 @@ import { CloseIcon } from './icons'
 import { SiChartdotjs, SiPostgresql, SiGithub } from 'react-icons/si'
 import { ExternalLinkIcon, ArrowRightIcon } from './icons'
 import { stackIcons } from '../data/stackIcons'
+import { useLanguage } from '../i18n/LanguageContext'
 
 // Fallback (react-icons) pra tecnologias sem SVG em stackIcons.js
 // (src/assets/icones-preto-branco-svg), como Chart.js e PostgreSQL — mesmo
@@ -27,6 +28,11 @@ const FALLBACK_TECH_ICONS = {
  *   - onClose: fecha o modal (X, backdrop ou Escape)
  */
 function ProjectModal({ project, isOpen, onClose }) {
+  const { t } = useLanguage()
+  const projectText = project ? t.projects.items[project.id] : null
+  const projectDescription = projectText?.description ?? project?.description
+  const projectChallenges = projectText?.challenges ?? project?.challenges
+  const projectLearnings = projectText?.learnings ?? project?.learnings
   const closeButtonRef = useRef(null)
   const previousFocusRef = useRef(null)
 
@@ -168,7 +174,7 @@ function ProjectModal({ project, isOpen, onClose }) {
             style={{ backgroundImage: 'url(/aba-pasta.svg)' }}
           >
             <span className="rounded-md bg-modal-paper px-[70px] py-1.5 text-sm font-semibold text-text">
-              Detalhes do Projeto
+              {t.modal.detailsLabel}
             </span>
           </div>
         </div>
@@ -181,14 +187,14 @@ function ProjectModal({ project, isOpen, onClose }) {
             style={{ backgroundImage: 'url(/aba-pasta.svg)' }}
           >
             <span className="rounded-md bg-modal-paper px-3 py-1.5 text-sm font-semibold text-text">
-              Detalhes do Projeto
+              {t.modal.detailsLabel}
             </span>
           </div>
           <button
             ref={closeButtonRef}
             type="button"
             onClick={onClose}
-            aria-label="Fechar detalhes do projeto"
+            aria-label={t.modal.closeAria}
             className="-mt-2 inline-flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-text bg-text text-modal-paper transition-colors hover:bg-text/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
           >
             <CloseIcon className="h-5 w-5" aria-hidden="true" />
@@ -204,7 +210,7 @@ function ProjectModal({ project, isOpen, onClose }) {
         <button
           type="button"
           onClick={onClose}
-          aria-label="Fechar detalhes do projeto"
+          aria-label={t.modal.closeAria}
           className="absolute top-4 right-4 z-20 hidden h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-text bg-text text-modal-paper transition-colors hover:bg-text/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent lg:inline-flex"
         >
           <CloseIcon className="h-5 w-5" aria-hidden="true" />
@@ -217,13 +223,13 @@ function ProjectModal({ project, isOpen, onClose }) {
             <div className="absolute inset-x-0 top-0 z-10 hidden items-center justify-between p-6 pt-3 pb-0 lg:flex">
               <div className="flex h-12 w-[446px] max-w-full items-center">
                 <span className="rounded-md bg-modal-paper px-3 py-1.5 text-sm font-semibold text-text">
-                  Detalhes do Projeto
+                  {t.modal.detailsLabel}
                 </span>
               </div>
               <button
                 type="button"
                 onClick={onClose}
-                aria-label="Fechar detalhes do projeto"
+                aria-label={t.modal.closeAria}
                 className="inline-flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-text bg-text text-modal-paper transition-colors hover:bg-text/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
               >
                 <CloseIcon className="h-5 w-5" aria-hidden="true" />
@@ -277,7 +283,7 @@ function ProjectModal({ project, isOpen, onClose }) {
                 className="relative flex w-full max-w-[601px] aspect-[601/401] items-center justify-center text-text/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
                 role="group"
                 aria-roledescription="carrossel"
-                aria-label="Capturas de tela do projeto"
+                aria-label={t.modal.galleryAria}
                 tabIndex={0}
                 onKeyDown={handlePhotoKeyDown}
               >
@@ -310,7 +316,7 @@ function ProjectModal({ project, isOpen, onClose }) {
                   <img
                     key={`current-${photoIndex}`}
                     src={photos[photoIndex]}
-                    alt={`Captura de tela do projeto ${project.title}`}
+                    alt={`${t.modal.screenshotAlt} ${project.title}`}
                     draggable={false}
                     onPointerDown={handlePhotoPointerDown}
                     onPointerMove={handlePhotoPointerMove}
@@ -336,7 +342,7 @@ function ProjectModal({ project, isOpen, onClose }) {
                 <button
                   type="button"
                   onClick={goPrevPhoto}
-                  aria-label="Imagem anterior"
+                  aria-label={t.modal.prevImageAria}
                   className="absolute top-1/2 -left-4 z-10 inline-flex h-8 w-8 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-text/30 bg-white text-text transition-colors hover:bg-text/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
                 >
                   <ArrowRightIcon className="h-4 w-4 rotate-180" aria-hidden="true" />
@@ -344,7 +350,7 @@ function ProjectModal({ project, isOpen, onClose }) {
                 <button
                   type="button"
                   onClick={goNextPhoto}
-                  aria-label="Próxima imagem"
+                  aria-label={t.modal.nextImageAria}
                   className="absolute top-1/2 -right-4 z-10 inline-flex h-8 w-8 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-text/30 bg-white text-text transition-colors hover:bg-text/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
                 >
                   <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
@@ -361,7 +367,7 @@ function ProjectModal({ project, isOpen, onClose }) {
                       key={index}
                       type="button"
                       onClick={() => goToPhoto(index, index > photoIndex ? 'next' : 'prev')}
-                      aria-label={`Ver captura ${index + 1}`}
+                      aria-label={`${t.modal.thumbnailAria} ${index + 1}`}
                       aria-current={isActive}
                       className={`flex min-w-0 flex-1 aspect-[186/124] cursor-pointer items-center justify-center overflow-hidden text-text/50 transition-[transform,box-shadow,opacity] duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${
                         isActive
@@ -371,7 +377,7 @@ function ProjectModal({ project, isOpen, onClose }) {
                     >
                       <img
                         src={src}
-                        alt={`Miniatura ${index + 1} do projeto ${project.title}`}
+                        alt={`${t.modal.thumbnailAlt} ${index + 1} ${t.modal.of} ${project.title}`}
                         draggable={false}
                         className="h-full w-full object-contain object-top"
                       />
@@ -398,7 +404,7 @@ function ProjectModal({ project, isOpen, onClose }) {
                   {project.title}
                 </h2>
                 <p className="mt-3 text-base leading-relaxed text-modal-body">
-                  {project.description}
+                  {projectDescription}
                 </p>
               </div>
 
@@ -412,10 +418,10 @@ function ProjectModal({ project, isOpen, onClose }) {
                   >
                     01 —
                   </span>
-                  Sobre o Projeto
+                  {t.modal.about}
                 </h3>
                 <p className="mt-3 text-[15px] leading-relaxed text-modal-body">
-                  {project.description}
+                  {projectDescription}
                 </p>
               </div>
 
@@ -429,10 +435,10 @@ function ProjectModal({ project, isOpen, onClose }) {
                   >
                     02 —
                   </span>
-                  Desafios
+                  {t.modal.challenges}
                 </h3>
                 <p className="mt-3 text-[15px] leading-relaxed text-modal-body">
-                  {project.challenges ?? '—'}
+                  {projectChallenges ?? '—'}
                 </p>
               </div>
 
@@ -446,10 +452,10 @@ function ProjectModal({ project, isOpen, onClose }) {
                   >
                     03 —
                   </span>
-                  Aprendizado
+                  {t.modal.learnings}
                 </h3>
                 <p className="mt-3 text-[15px] leading-relaxed text-modal-body">
-                  {project.learnings ?? '—'}
+                  {projectLearnings ?? '—'}
                 </p>
               </div>
 
@@ -463,7 +469,7 @@ function ProjectModal({ project, isOpen, onClose }) {
                   >
                     04 —
                   </span>
-                  Stack
+                  {t.modal.stack}
                 </h3>
                 <div className="mt-4 flex flex-wrap gap-3">
                   {project.technologies.map((tech) => {
@@ -502,15 +508,16 @@ function ProjectModal({ project, isOpen, onClose }) {
                     className="flex items-center gap-1.5 rounded-md bg-modal-heading px-4 py-2 text-sm font-semibold text-modal-paper transition-[transform,background-color,box-shadow] duration-150 hover:-translate-y-px hover:bg-[#38352f] hover:shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent active:translate-y-0 active:bg-[#151412]"
                   >
                     <ExternalLinkIcon className="h-4 w-4" aria-hidden="true" />
-                    Ver projeto
+                    {t.modal.viewProject}
                   </a>
                 ) : (
                   <span
                     aria-disabled="true"
+                    title={t.modal.linkUnavailable}
                     className="flex items-center gap-1.5 rounded-md bg-modal-heading/40 px-4 py-2 text-sm font-semibold text-modal-paper/70"
                   >
                     <ExternalLinkIcon className="h-4 w-4" aria-hidden="true" />
-                    Ver projeto
+                    {t.modal.viewProject}
                   </span>
                 )}
 
@@ -522,15 +529,16 @@ function ProjectModal({ project, isOpen, onClose }) {
                     className="flex items-center gap-1.5 rounded-md border border-modal-github-border bg-modal-paper px-3.5 py-2 text-sm font-medium text-modal-github-text transition-[transform,background-color,border-color] duration-150 hover:-translate-y-px hover:border-text/40 hover:bg-text/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent active:translate-y-0"
                   >
                     <SiGithub className="h-4 w-4" aria-hidden="true" />
-                    GitHub
+                    {t.modal.github}
                   </a>
                 ) : (
                   <span
                     aria-disabled="true"
+                    title={t.modal.linkUnavailable}
                     className="flex items-center gap-1.5 rounded-md border border-text/15 px-3.5 py-2 text-sm font-medium text-modal-text-secondary/70"
                   >
                     <SiGithub className="h-4 w-4" aria-hidden="true" />
-                    GitHub
+                    {t.modal.github}
                   </span>
                 )}
               </div>

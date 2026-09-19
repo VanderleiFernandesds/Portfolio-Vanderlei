@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import Container from './Container'
 import CurriculoButton from './CurriculoButton'
+import LanguageSwitcher from './LanguageSwitcher'
+import { useLanguage } from '../i18n/LanguageContext'
 import logo from '../assets/logo.svg'
 import hoverStroke from '../assets/HoverStroke.svg'
 import {
@@ -14,12 +16,12 @@ import {
 } from './icons'
 
 // Links de navegação (ver design/references/hero.png). Apontam para os ids
-// das seções.
+// das seções. `labelKey` referencia src/i18n/translations.js (t.nav).
 const NAV_LINKS = [
-  { label: 'Sobre', href: '#sobre', icon: UserIcon },
-  { label: 'Habilidades', href: '#habilidades', icon: ZapIcon },
-  { label: 'Projetos', href: '#projetos', icon: FolderIcon },
-  { label: 'Contato', href: '#contato', icon: MailIcon },
+  { labelKey: 'about', href: '#sobre', icon: UserIcon },
+  { labelKey: 'skills', href: '#habilidades', icon: ZapIcon },
+  { labelKey: 'projects', href: '#projetos', icon: FolderIcon },
+  { labelKey: 'contact', href: '#contato', icon: MailIcon },
 ]
 
 // TODO: substituir pelo link real do PDF do currículo quando existir.
@@ -34,6 +36,7 @@ const RESUME_HREF = '#'
  * código-fonte, que é pago). Usa só os tokens já existentes do projeto.
  */
 function Navbar() {
+  const { t } = useLanguage()
   const [isOpen, setIsOpen] = useState(false)
   const [activeHref, setActiveHref] = useState(null)
   const [isScrolled, setIsScrolled] = useState(false)
@@ -93,17 +96,17 @@ function Navbar() {
 
           {/* Links de navegação (desktop) */}
           <nav
-            aria-label="Navegação principal"
+            aria-label={t.nav.navAriaDesktop}
             className="relative hidden items-center gap-1 md:flex"
           >
-            {NAV_LINKS.map(({ label, href, icon: Icon }) => (
+            {NAV_LINKS.map(({ labelKey, href, icon: Icon }) => (
               <a
                 key={href}
                 href={href}
                 className={`group relative z-10 flex items-center gap-2 rounded-full px-4 py-2 text-lg text-text transition-colors`}
               >
                 <Icon className="h-4 w-4" aria-hidden="true" />
-                {label}
+                {t.nav[labelKey]}
 
                 {/* Rabisco de marca-texto (HoverStroke.svg, ver
                     PaperButton/CurriculoButton) revelado sob o link no
@@ -126,9 +129,10 @@ function Navbar() {
 
           {/* Ações à direita: CTA (desktop) + botão do menu (mobile) */}
           <div className="flex items-center gap-2 ">
-            <div className="hidden md:block">
+            <div className="hidden items-center gap-4 md:flex">
+              <LanguageSwitcher />
               <CurriculoButton as="a" href={RESUME_HREF} className="-translate-y-2.5">
-                Currículo
+                {t.nav.resume}
                 <DownloadIcon className="h-4 w-4" aria-hidden="true" />
               </CurriculoButton>
             </div>
@@ -138,7 +142,7 @@ function Navbar() {
               onClick={() => setIsOpen((open) => !open)}
               aria-expanded={isOpen}
               aria-controls="mobile-menu"
-              aria-label={isOpen ? "Fechar menu" : "Abrir menu"}
+              aria-label={isOpen ? t.nav.closeMenu : t.nav.openMenu}
               className="inline-flex h-10 w-10 items-center justify-center rounded-full text-text transition-colors hover:bg-text/10 md:hidden"
             >
               {isOpen ? (
@@ -170,11 +174,11 @@ function Navbar() {
         <div className="overflow-hidden">
           <nav
             id="mobile-menu"
-            aria-label="Navegação mobile"
+            aria-label={t.nav.navAriaMobile}
             className="mx-auto mt-2 flex w-full flex-col gap-1 rounded-2xl border border-text/10 bg-primary/90 px-4 pt-4 font-navbar text-text shadow-lg shadow-primary/20 backdrop-blur-md"
           >
             <div className="mx-auto flex w-fit flex-col gap-1">
-              {NAV_LINKS.map(({ label, href, icon: Icon }) => (
+              {NAV_LINKS.map(({ labelKey, href, icon: Icon }) => (
                 <a
                   key={href}
                   href={href}
@@ -184,18 +188,19 @@ function Navbar() {
                   }`}
                 >
                   <Icon className="h-4 w-4" aria-hidden="true" />
-                  {label}
+                  {t.nav[labelKey]}
                 </a>
               ))}
             </div>
 
-            <div className=" flex translate-y-2.5 justify-center">
+            <div className="flex translate-y-2.5 flex-col items-center gap-3">
+              <LanguageSwitcher />
               <CurriculoButton
                 as="a"
                 href={RESUME_HREF}
                 onClick={() => setIsOpen(false)}
               >
-                Currículo
+                {t.nav.resume}
                 <DownloadIcon className="h-4 w-4" aria-hidden="true" />
               </CurriculoButton>
             </div>

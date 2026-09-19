@@ -8,6 +8,7 @@ import { ArrowRightIcon } from '../components/icons'
 import { SiGithub, SiChartdotjs, SiPostgresql } from 'react-icons/si'
 import { projects } from '../data/projects'
 import { stackIcons } from '../data/stackIcons'
+import { useLanguage } from '../i18n/LanguageContext'
 
 // Fallback (react-icons) pra tecnologias sem SVG em stackIcons.js
 // (src/assets/icones-preto-branco-svg), como Chart.js e PostgreSQL.
@@ -31,6 +32,7 @@ import pastaProjetosFrente from '../assets/pasta-projetos-frente.svg'
  * navegam o carrossel.
  */
 function Projects() {
+  const { t } = useLanguage()
   const total = projects.length
   const [order, setOrder] = useState(() => projects.map((_, index) => index))
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -43,6 +45,8 @@ function Projects() {
   )
   const frontIndex = order[0]
   const project = projects[frontIndex]
+  const projectText = t.projects.items[project.id]
+  const projectDescription = projectText?.description ?? project.description
 
   useEffect(() => {
     const query = window.matchMedia('(max-width: 1023px)')
@@ -100,9 +104,9 @@ function Projects() {
       {/* Placeholder — medida de referência 1440x908, responsivo (w-full, teto no valor de referência, aspect-ratio no lugar de h/w fixos em px). */}
       <div className="relative mx-auto flex w-full max-w-[1440px] flex-col items-center justify-center gap-4 rounded-card border border-dashed border-primary/30 bg-primary text-primary/50">
         <SectionTitle
-          eyebrow="Projetos"
-          title="O que eu já construí"
-          description="Uma seleção de projetos que mostram como eu penso e desenvolvo soluções."
+          eyebrow={t.projects.eyebrow}
+          title={t.projects.title}
+          description={t.projects.description}
           titleClassName="text-text"
         />
 
@@ -125,7 +129,7 @@ function Projects() {
           <button
             type="button"
             onClick={goPrev}
-            aria-label="Projeto anterior"
+            aria-label={t.projects.prevAria}
             className="absolute top-1/2 left-0 sm:left-4 z-40 inline-flex h-8 w-8 sm:h-10 sm:w-10 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-text/30 bg-text transition-colors hover:bg-surface focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-text"
             style={{ color: 'var(--color-primary)' }}
           >
@@ -134,7 +138,7 @@ function Projects() {
           <button
             type="button"
             onClick={goNext}
-            aria-label="Próximo projeto"
+            aria-label={t.projects.nextAria}
             className="absolute top-1/2 right-0 sm:right-4 z-40 inline-flex h-8 w-8 sm:h-10 sm:w-10 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-text/30 bg-text transition-colors hover:bg-surface focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-text"
             style={{ color: 'var(--color-primary)' }}
           >
@@ -266,7 +270,7 @@ function Projects() {
                 </span>
                 <h3 className="text-lg font-extrabold text-text">{project.title}</h3>
               </div>
-              <p className="line-clamp-2 text-sm text-text-muted">{project.description}</p>
+              <p className="line-clamp-2 text-sm text-text-muted">{projectDescription}</p>
             </div>
 
             {/* Placeholder interno — medida de referência 265x159 (38.35% x 71.62% do pai), do lado direito do anterior. Botão "Ver detalhes" em cima, links GitHub/Ver projeto embaixo. No mobile fica depois do container das stacks (order-3); a partir do sm volta pra ordem natural (order-2), lado a lado com as informações. */}
@@ -278,7 +282,7 @@ function Projects() {
                 className="rounded-button bg-text whitespace-nowrap"
                 style={{ color: 'var(--color-primary)' }}
               >
-                Ver detalhes
+                {t.projects.viewDetails}
                 <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
               </PaperButton>
 
@@ -291,16 +295,16 @@ function Projects() {
                     className="flex items-center gap-1.5 font-medium text-text-muted transition-colors hover:text-text"
                   >
                     <SiGithub className="h-4 w-4" aria-hidden="true" />
-                    GitHub
+                    {t.projects.github}
                   </a>
                 ) : (
                   <span
                     aria-disabled="true"
-                    title="Link ainda não disponível"
+                    title={t.projects.linkUnavailable}
                     className="flex cursor-not-allowed items-center gap-1.5 font-medium text-text-muted/50"
                   >
                     <SiGithub className="h-4 w-4" aria-hidden="true" />
-                    GitHub
+                    {t.projects.github}
                   </span>
                 )}
 
@@ -311,15 +315,15 @@ function Projects() {
                     rel="noreferrer"
                     className="font-medium whitespace-nowrap text-text-muted transition-colors hover:text-text"
                   >
-                    Ver projeto
+                    {t.projects.viewProject}
                   </a>
                 ) : (
                   <span
                     aria-disabled="true"
-                    title="Link ainda não disponível"
+                    title={t.projects.linkUnavailable}
                     className="cursor-not-allowed font-medium whitespace-nowrap text-text-muted/50"
                   >
-                    Ver projeto
+                    {t.projects.viewProject}
                   </span>
                 )}
               </div>

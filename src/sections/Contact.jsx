@@ -2,6 +2,7 @@ import Section from '../components/Section'
 import SectionTitle from '../components/SectionTitle'
 import { MailIcon } from '../components/icons'
 import { contactChannels } from '../data/contactChannels'
+import { useLanguage } from '../i18n/LanguageContext'
 import folhaDeRedes from '../assets/folha de redes.png'
 import folhaDeAviso from '../assets/folha de aviso.webp'
 import hoverStroke from '../assets/HoverStroke.svg'
@@ -11,6 +12,7 @@ import parteSuperiorFolha from '../assets/parte superior da folha.svg'
 const SQUARE_CHANNELS = ['linkedin', 'whatsapp', 'email', 'github']
 
 function Contact() {
+  const { t } = useLanguage()
   return (
     <Section id="contato" containerClassName="!px-3 lg:!px-desktop">
       <div className="flex w-full flex-col items-center justify-center gap-6 rounded-card bg-primary">
@@ -26,13 +28,13 @@ function Contact() {
         {/* Container extra */}
         <div className="flex w-full items-center justify-center">
           <SectionTitle
-            eyebrow="Contato"
+            eyebrow={t.contact.eyebrow}
             titleClassName="text-black"
             title={
               <>
-                Tem uma ideia?
+                {t.contact.titleLine1}
                 <br />
-                Vamos transformá-la em realidade.
+                {t.contact.titleLine2}
               </>
             }
           />
@@ -46,6 +48,7 @@ function Contact() {
                 (c) => c.channel === channelName,
               );
               const Icon = item.icon === "mail" ? MailIcon : item.icon;
+              const channelTitle = t.contact.channels[channelName]?.title ?? item.title;
 
               return (
                 <a
@@ -63,7 +66,7 @@ function Contact() {
                   <span className="absolute inset-0 flex flex-col items-center justify-center gap-2">
                     <Icon className="h-9 w-9 text-text lg:h-16 lg:w-16" />
                     <span className="relative mt-3 font-kalam text-sm font-semibold text-text lg:mt-6 lg:text-lg">
-                      {item.title}
+                      {channelTitle}
                       <span
                         aria-hidden="true"
                         className="hover-stroke-wipe pointer-events-none absolute -inset-x-4 -bottom-4 h-8"

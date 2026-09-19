@@ -1,5 +1,6 @@
 import Section from '../components/Section'
 import SectionTitle from '../components/SectionTitle'
+import { useLanguage } from '../i18n/LanguageContext'
 import folhaPautadaComGrampo from '../assets/folha-pautada-com-grampo.svg'
 import folhaPautadaComGrampoDireita from '../assets/folha-pautada-com-grampo-direita.svg'
 import folhaPautadaComGrampoEsquerda from '../assets/folha-pautada-com-grampo-esquerda.svg'
@@ -16,6 +17,7 @@ import ambienteDesenvolvimento from '../assets/ambiente-desenvolvimento.webp'
  * (borda tracejada) até o novo conteúdo da seção ser definido.
  */
 function About() {
+  const { t } = useLanguage()
   return (
     <Section id="sobre" className="overflow-hidden" containerClassName="!px-3 lg:!px-desktop">
       {/* Placeholder — reserva o espaço do conteúdo antigo (3 blocos folha + foto) até definir o novo. */}
@@ -24,9 +26,9 @@ function About() {
         style={{ backgroundColor: "#AE9573" }}
       >
         <SectionTitle
-          eyebrow="Sobre mim"
-          title="Quem está por trás do código"
-          description="Construindo aplicações com propósito e qualidade."
+          eyebrow={t.about.eyebrow}
+          title={t.about.title}
+          description={t.about.description}
         />
         {/*
           Placeholder interno — medida de referência 769.07x495.24, agora responsivo:
@@ -61,23 +63,16 @@ function About() {
           {/* Placeholder interno — medida de referência 574x397 (84.52% do pai, deslocado 11.70%). Título + texto "Quem sou eu" (src/data/aboutItems.js) ativados dentro dele, com fonte/tamanho reduzidos pra caber. */}
           <div className="absolute left-[11.70%] flex w-[84.52%] max-h-full max-w-[650px] flex-col items-start gap-2 overflow-y-auto border border-dashed border-primary/30 text-primary/50">
             <h3 className="sticky top-0 z-10 w-full bg-primary font-handwriting font-bold text-black text-xl sm:text-3xl">
-              Quem sou eu
+              {t.about.whoAmI.title}
             </h3>
             <p className="font-handwriting  text-base text-black sm:text-[22px]">
-              Sou Vanderlei Fernandes, desenvolvedor Full Stack que gosta de
-              transformar ideias em experiências digitais funcionais, intuitivas
-              e bem construídas.
+              {t.about.whoAmI.p1}
             </p>
             <p className="font-handwriting text-base text-black sm:text-[22px]">
-              Tenho um interesse especial pela união entre desenvolvimento e
-              design. Para mim, uma boa aplicação não precisa apenas funcionar:
-              ela também deve ser fácil de usar, responsiva e agradável
-              visualmente.
+              {t.about.whoAmI.p2}
             </p>
             <p className="font-handwriting text-base text-black sm:text-[22px]">
-              Gosto de entender como cada parte de um projeto se conecta, desde
-              a interface que o usuário vê até a lógica, APIs e dados que fazem
-              tudo funcionar por trás.
+              {t.about.whoAmI.p3}
             </p>
           </div>
         </div>
@@ -111,23 +106,16 @@ function About() {
           </div>
           <div className="absolute left-[11.70%] flex w-[84.52%] max-h-full max-w-[650px] flex-col items-start gap-2 overflow-y-auto border border-dashed border-primary/30 text-primary/50 lg:left-auto lg:right-[11.70%] lg:max-w-[600px]">
             <h3 className="sticky top-0 z-10 w-full bg-primary font-handwriting text-xl font-bold text-black sm:text-3xl">
-              Como eu trabalho
+              {t.about.howIWork.title}
             </h3>
             <p className="font-handwriting text-base text-black sm:text-[22px]">
-              Antes de começar a escrever código, gosto de entender o problema,
-              organizar as ideias e pensar na melhor experiência para quem vai
-              utilizar o produto.
+              {t.about.howIWork.p1}
             </p>
             <p className="font-handwriting text-base text-black sm:text-[22px]">
-              Durante o desenvolvimento, procuro trabalhar com código limpo,
-              organização e boas práticas, construindo cada funcionalidade de
-              forma clara e pensando também em manutenção e evolução.
+              {t.about.howIWork.p2}
             </p>
             <p className="font-handwriting text-base text-black sm:text-[22px]">
-              Gosto de testar, revisar e melhorar o que desenvolvo. Para mim, um
-              projeto não termina quando simplesmente funciona — sempre existe
-              espaço para aprimorar usabilidade, desempenho e detalhes da
-              interface.
+              {t.about.howIWork.p3}
             </p>
           </div>
         </div>
@@ -161,23 +149,16 @@ function About() {
           </div>
           <div className="absolute left-[11.70%] flex w-[84.52%] max-h-full max-w-[650px] flex-col items-start gap-2 overflow-y-auto border border-dashed border-primary/30 text-primary/50">
             <h3 className="sticky top-0 z-10 w-full bg-primary font-handwriting text-xl font-bold text-black sm:text-3xl">
-              Em constante evolução
+              {t.about.evolving.title}
             </h3>
             <p className="font-handwriting text-base text-black sm:text-[22px]">
-              Uma das coisas que mais gosto em tecnologia é saber que sempre
-              existe algo novo para aprender.
+              {t.about.evolving.p1}
             </p>
             <p className="font-handwriting text-base text-black sm:text-[22px]">
-              Estou constantemente aprofundando meus conhecimentos em Front-End,
-              Back-End, APIs, bancos de dados, arquitetura e Inteligência
-              Artificial, enquanto coloco o aprendizado em prática através de
-              projetos.
+              {t.about.evolving.p2}
             </p>
             <p className="font-handwriting text-base text-black sm:text-[22px]">
-              Meu objetivo é continuar evoluindo como desenvolvedor Full Stack,
-              enfrentar desafios cada vez maiores e participar de projetos reais
-              onde eu possa aprender, colaborar e construir soluções que gerem
-              valor.
+              {t.about.evolving.p3}
             </p>
           </div>
         </div>

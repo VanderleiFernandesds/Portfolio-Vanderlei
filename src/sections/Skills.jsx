@@ -5,6 +5,7 @@ import { skillCategories } from '../data/skills'
 import folhaPequena from '../assets/folha pequena.svg'
 import BordaPapelPerfuradaSkill from '../components/BordaPapelPerfuradaSkill'
 import { DeviceIcon, LockIcon, LayersIcon } from '../components/icons'
+import { useLanguage } from '../i18n/LanguageContext'
 
 // Ícone (src/components/icons.jsx) referenciado por `note.icon` de
 // src/data/skills.js. O badge de ícone da categoria (`icon`) não é exibido.
@@ -19,6 +20,7 @@ const ICONS = {
 const CARD_ORDER = ['frontend', 'database', 'backend', 'tools']
 
 function Skills() {
+  const { t } = useLanguage()
   const cards = CARD_ORDER.map((category) =>
     skillCategories.find((card) => card.category === category)
   ).filter(Boolean)
@@ -33,22 +35,24 @@ function Skills() {
       {/* Placeholder temporário: referência visual 1440x951 para reconstrução da seção */}
       <div className="mx-auto w-full max-w-[1440px] min-h-150 lg:h-237.75 border-2 border-dashed border-primary/40 bg-primary flex flex-col items-center">
         <SectionTitle
-          eyebrow="Habilidades"
+          eyebrow={t.skills.eyebrow}
           title={
             <>
-              Tecnologias <span className="font-normal">&amp;</span> Ferramentas
+              {t.skills.titlePrefix}{' '}
+              <span className="font-normal">{t.skills.titleAmp}</span> {t.skills.titleSuffix}
             </>
           }
-          description="Principais tecnologias que utilizo para transformar ideias em soluções digitais de qualidade."
+          description={t.skills.description}
           titleClassName="text-black"
         />
 
         <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-280">
-          {cards.map(({ icon: _icon, note, ...card }) => {
+          {cards.map(({ icon: _icon, note, category, ...card }) => {
             const NoteIcon = note && ICONS[note.icon]
+            const categoryText = t.skills.categories[category]
             return (
               <div
-                key={card.category}
+                key={category}
                 className="relative w-full max-w-130 mx-auto aspect-[400/276.41] rounded-card"
               >
                 <img
@@ -58,9 +62,12 @@ function Skills() {
                 />
                 <SkillCard
                   {...card}
+                  category={category}
+                  title={categoryText?.title ?? card.title}
+                  description={categoryText?.description ?? card.description}
                   note={
                     note && {
-                      label: note.label,
+                      label: categoryText?.note ?? note.label,
                       iconNode: NoteIcon && <NoteIcon className="h-4 w-4" />,
                     }
                   }

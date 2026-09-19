@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import Container from '../components/Container'
 import PaperButton from '../components/PaperButton'
 import SocialLink from '../components/SocialLink'
+import { useLanguage } from '../i18n/LanguageContext'
 import {
   MailIcon,
   CodeIcon,
@@ -45,6 +46,7 @@ const STAT_ICONS = {
 }
 
 function Hero() {
+  const { t } = useLanguage()
   // Rodízio automático dos ícones de stack: a cada intervalo, avança um índice
   // e cada um dos slots visíveis mostra um ícone diferente da lista (com offset),
   // repetindo em loop até passar pelos 16 ícones de src/data/stackIcons.js.
@@ -58,7 +60,7 @@ function Hero() {
   }, [])
 
   return (
-    <section id="hero" className="bg-background pt-6 mt-0 sm:mt-5">
+    <section id="hero" className="bg-background pt-12 pb-12 mt-0 sm:mt-5">
       <Container className="flex flex-col gap-4 !px-3 lg:!px-desktop">
         {/* Container principal: engloba faixa superior, conteúdo, respiro e faixa inferior */}
         <div className="rounded-card flex flex-col  bg-primary">
@@ -78,7 +80,7 @@ function Hero() {
             <div className="order-2 flex flex-col items-start justify-center gap-6 font-kalam text-text lg:order-none">
               <div>
                 <p className="font-granesta text-2xl leading-tight -mb-1 tracking-wide text-black">
-                  Olá, eu sou
+                  {t.hero.greeting}
                 </p>
                 <h1 className="font-granesta text-4xl leading-tight tracking-wide text-black sm:text-5xl sm:whitespace-nowrap lg:text-6xl xl:text-7xl">
                   Vanderlei Fernandes
@@ -87,15 +89,11 @@ function Hero() {
 
               <div className="-mt-3 border border-text bg-background px-2 py-0.5 sm:-mt-9 sm:px-3 sm:py-1">
                 <p className="font-granesta text-base font-bold tracking-widest text-primary sm:text-2xl">
-                  Desenvolvedor Full-Stack
+                  {t.hero.role}
                 </p>
               </div>
 
-              <p className="max-w-xl text-text-muted">
-                Crio aplicações web modernas, responsivas e performáticas
-                utilizando React, TypeScript, Node.js e bancos de dados, sempre
-                com foco em experiência do usuário e código limpo.
-              </p>
+              <p className="max-w-xl text-text-muted">{t.hero.description}</p>
 
               <div className="flex flex-nowrap gap-2 sm:gap-4">
                 <PaperButton
@@ -104,7 +102,7 @@ function Hero() {
                   showBackground={false}
                   className="!px-3 !py-2.5 !text-xs whitespace-nowrap border border-text bg-background !text-primary sm:!px-8 sm:!py-3.5 sm:!text-sm"
                 >
-                  Ver projetos
+                  {t.hero.ctaProjects}
                   <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
                 </PaperButton>
                 <PaperButton
@@ -113,7 +111,7 @@ function Hero() {
                   showBackground={false}
                   className="!px-3 !py-2.5 !text-xs whitespace-nowrap border border-text sm:!px-8 sm:!py-3.5 sm:!text-sm"
                 >
-                  Entrar em contato
+                  {t.hero.ctaContact}
                   <MailIcon className="h-4 w-4" aria-hidden="true" />
                 </PaperButton>
               </div>
@@ -123,7 +121,7 @@ function Hero() {
                   <SocialLink
                     key={social.name}
                     href={social.href}
-                    label={social.label}
+                    label={t.hero.socialLabels[social.name] ?? social.label}
                     icon={SOCIAL_ICONS[social.name]}
                   />
                 ))}
@@ -171,13 +169,13 @@ function Hero() {
               <img
                 src={profilePhoto}
                 alt="Vanderlei Fernandes"
-                className="max-h-80 w-auto object-contain lg:h-[88%] lg:max-h-[88%]"
+                className="max-h-96 w-auto object-contain lg:h-[95%] lg:max-h-[95%]"
               />
               <img
                 src={openToWorkStamp}
                 alt=""
                 aria-hidden="true"
-                className="pointer-events-none absolute top-6 right-6 h-20 w-20 select-none lg:top-10 lg:right-10 lg:h-28 lg:w-28"
+                className="pointer-events-none -rotate-12 absolute top-6 right-6 h-20 w-20 select-none lg:top-10 lg:right-10 lg:h-38 lg:w-38"
               />
             </div>
           </div>
@@ -214,9 +212,9 @@ function Hero() {
               />
             </div>
             <div className="flex flex-col items-start justify-center text-left font-kalam text-text">
-              <p className="text-lg font-bold sm:text-xl">Propósito</p>
+              <p className="text-lg font-bold sm:text-xl">{t.hero.stats.purpose.title}</p>
               <p className="text-xs text-text-muted sm:text-sm">
-                Transformar ideias em soluções
+                {t.hero.stats.purpose.description}
               </p>
             </div>
           </div>
@@ -230,9 +228,9 @@ function Hero() {
               />
             </div>
             <div className="flex flex-col items-start justify-center text-left font-kalam text-text">
-              <p className="text-lg font-bold sm:text-xl">Projetos</p>
+              <p className="text-lg font-bold sm:text-xl">{t.hero.stats.projects.title}</p>
               <p className="text-xs text-text-muted sm:text-sm">
-                Construindo na prática
+                {t.hero.stats.projects.description}
               </p>
             </div>
           </div>
@@ -246,9 +244,9 @@ function Hero() {
               />
             </div>
             <div className="flex flex-col items-start justify-center text-left font-kalam text-text">
-              <p className="text-lg font-bold sm:text-xl">Foco atual</p>
+              <p className="text-lg font-bold sm:text-xl">{t.hero.stats.focus.title}</p>
               <p className="text-xs text-text-muted sm:text-sm">
-                UI/UX & Performance
+                {t.hero.stats.focus.description}
               </p>
             </div>
           </div>
@@ -262,9 +260,9 @@ function Hero() {
               />
             </div>
             <div className="flex flex-col items-start justify-center text-left font-kalam text-text">
-              <p className="text-lg font-bold sm:text-xl">Evolução</p>
+              <p className="text-lg font-bold sm:text-xl">{t.hero.stats.evolution.title}</p>
               <p className="text-xs text-text-muted sm:text-sm">
-                IA & novas tecnologias
+                {t.hero.stats.evolution.description}
               </p>
             </div>
           </div>

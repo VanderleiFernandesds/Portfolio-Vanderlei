@@ -1,11 +1,13 @@
 import Container from './Container'
 import { CodeIcon, HeartIcon } from './icons'
+import { useLanguage } from '../i18n/LanguageContext'
 
 /**
  * Footer
  * Rodapé do site (ver design/references/Footer.png).
  */
 function Footer() {
+  const { t } = useLanguage()
   const year = new Date().getFullYear()
 
   return (
@@ -17,13 +19,13 @@ function Footer() {
             <CodeIcon className="h-4 w-4" />
           </span>
           <p className="text-sm text-text-muted">
-            © {year} · Desenvolvido por Vanderlei Fernandes
+            © {year} · {t.footer.copyright}
           </p>
         </div>
 
         {/* Créditos */}
         <p className="flex items-center gap-2 text-sm text-text-muted">
-          Feito com <HeartIcon className="h-4 w-4 text-accent-light" /> React + Tailwind CSS.
+          {t.footer.madeWith} <HeartIcon className="h-4 w-4 text-accent-light" /> {t.footer.with}
         </p>
       </Container>
     </footer>
