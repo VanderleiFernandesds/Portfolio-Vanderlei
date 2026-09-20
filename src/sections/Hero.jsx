@@ -77,12 +77,22 @@ function Hero() {
 
           {/* Conteúdo: saudação + descrição + ações | foto — sem card próprio */}
           <div className="grid grid-cols-1 gap-8 px-6 py-8 sm:p-8 lg:grid-cols-[1.1fr_1fr] lg:gap-8 lg:p-8">
-            <div className="order-2 flex flex-col items-start justify-center gap-6 font-kalam text-text lg:order-none">
-              <div>
+            {/* Saudação + nome — no mobile fica acima da foto; no desktop volta ao bloco de texto abaixo */}
+            <div className="order-1 lg:hidden">
+              <p className="font-granesta text-2xl leading-tight -mb-1 tracking-wide text-black">
+                {t.hero.greeting}
+              </p>
+              <h1 className="font-granesta text-2xl leading-tight tracking-wide whitespace-nowrap text-black sm:text-5xl">
+                Vanderlei Fernandes
+              </h1>
+            </div>
+
+            <div className="order-3 flex flex-col items-start justify-center gap-6 font-kalam text-text lg:order-none">
+              <div className="hidden lg:block">
                 <p className="font-granesta text-2xl leading-tight -mb-1 tracking-wide text-black">
                   {t.hero.greeting}
                 </p>
-                <h1 className="font-granesta text-4xl leading-tight tracking-wide text-black sm:text-5xl sm:whitespace-nowrap lg:text-6xl xl:text-7xl">
+                <h1 className="font-granesta text-4xl leading-tight tracking-wide whitespace-nowrap text-black lg:text-6xl xl:text-7xl">
                   Vanderlei Fernandes
                 </h1>
               </div>
@@ -165,7 +175,7 @@ function Hero() {
             </div>
 
             {/* Foto de perfil — moldura com a foto real */}
-            <div className="order-1 relative mx-auto flex w-full max-w-sm items-center rotate-12 justify-center lg:order-none lg:mx-0 lg:h-full lg:max-w-none">
+            <div className="order-2 relative mx-auto flex w-full max-w-sm items-center rotate-12 justify-center lg:order-none lg:mx-0 lg:h-full lg:max-w-none">
               <img
                 src={profilePhoto}
                 alt="Vanderlei Fernandes"
@@ -195,20 +205,20 @@ function Hero() {
         </div>
 
         {/* Estatísticas — fora do container principal */}
-        <div className="relative z-10 mx-auto -mt-16 grid w-[92%] max-w-312.5 grid-cols-2 gap-6 overflow-hidden bg-transparent px-10 py-6 sm:-mt-20 sm:divide-y-0 lg:-mt-37.5 lg:grid-cols-4 lg:divide-x lg:divide-text/10 lg:px-16 lg:py-12">
+        <div className="relative z-10 mx-auto -mt-16 grid w-[92%] max-w-312.5 grid-cols-2 gap-x-3 gap-y-4 overflow-hidden bg-transparent px-4 py-6 sm:-mt-20 sm:gap-6 sm:divide-y-0 sm:px-10 lg:-mt-37.5 lg:grid-cols-4 lg:divide-x lg:divide-text/10 lg:px-16 lg:py-12">
           <img
             src={folhaCadernoHorizontal}
             alt=""
             aria-hidden="true"
             className="pointer-events-none absolute inset-0 -z-10 h-full w-full object-cover shadow-lg select-none"
           />
-          <div className="flex items-center justify-center gap-3">
+          <div className="flex items-center justify-start gap-2 sm:justify-center sm:gap-3">
             <div className="flex items-center justify-center">
               <img
                 src={propositoIcon}
                 alt=""
                 aria-hidden="true"
-                className="h-8 w-10 lg:h-24 lg:w-28"
+                className="h-7 w-9 sm:h-8 sm:w-10 lg:h-24 lg:w-28"
               />
             </div>
             <div className="flex flex-col items-start justify-center text-left font-kalam text-text">
@@ -218,13 +228,13 @@ function Hero() {
               </p>
             </div>
           </div>
-          <div className="flex items-center justify-center gap-3">
+          <div className="flex items-center justify-start gap-2 sm:justify-center sm:gap-3">
             <div className="flex items-center justify-center">
               <img
                 src={projetosIcon}
                 alt=""
                 aria-hidden="true"
-                className="h-8 w-10 lg:h-24 lg:w-28"
+                className="h-7 w-9 sm:h-8 sm:w-10 lg:h-24 lg:w-28"
               />
             </div>
             <div className="flex flex-col items-start justify-center text-left font-kalam text-text">
@@ -234,13 +244,13 @@ function Hero() {
               </p>
             </div>
           </div>
-          <div className="flex items-center justify-center gap-3">
+          <div className="flex items-center justify-start gap-2 sm:justify-center sm:gap-3">
             <div className="flex items-center justify-center">
               <img
                 src={alvoIcon}
                 alt=""
                 aria-hidden="true"
-                className="h-8 w-10 lg:h-24 lg:w-28"
+                className="h-7 w-9 sm:h-8 sm:w-10 lg:h-24 lg:w-28"
               />
             </div>
             <div className="flex flex-col items-start justify-center text-left font-kalam text-text">
@@ -250,13 +260,13 @@ function Hero() {
               </p>
             </div>
           </div>
-          <div className="flex items-center justify-center gap-3">
+          <div className="flex items-center justify-start gap-2 sm:justify-center sm:gap-3">
             <div className="flex items-center justify-center">
               <img
                 src={evolucaoIcon}
                 alt=""
                 aria-hidden="true"
-                className="h-8 w-10 lg:h-24 lg:w-28"
+                className="h-7 w-9 sm:h-8 sm:w-10 lg:h-24 lg:w-28"
               />
             </div>
             <div className="flex flex-col items-start justify-center text-left font-kalam text-text">

@@ -86,7 +86,7 @@ function Navbar() {
       <Container className="px-0! flex justify-center">
         <div
           className={`flex lg:mx-desktop w-full items-center justify-between gap-4 border bg-primary py-2 pr-2 pl-5 font-navbar text-text shadow-lg shadow-primary/20 transition-colors md:py-0 ${
-            isScrolled ? 'border-text/10' : 'border-transparent'
+            isScrolled ? 'border-text/10 shadow-xl shadow-text/30 md:shadow-lg md:shadow-primary/20' : 'border-transparent shadow-none'
           }`}
         >
           {/* Logo */}
@@ -137,6 +137,10 @@ function Navbar() {
               </CurriculoButton>
             </div>
 
+            <div className="md:hidden">
+              <LanguageSwitcher />
+            </div>
+
             <button
               type="button"
               onClick={() => setIsOpen((open) => !open)}
@@ -175,7 +179,7 @@ function Navbar() {
           <nav
             id="mobile-menu"
             aria-label={t.nav.navAriaMobile}
-            className="mx-auto mt-2 flex w-full flex-col gap-1 rounded-2xl border border-text/10 bg-primary/90 px-4 pt-4 font-navbar text-text shadow-lg shadow-primary/20 backdrop-blur-md"
+            className="mx-auto mt-2 flex w-full flex-col gap-1 border border-text/10 bg-primary/90 px-4 pt-4 font-navbar text-text shadow-lg shadow-primary/20 backdrop-blur-md"
           >
             <div className="mx-auto flex w-fit flex-col gap-1">
               {NAV_LINKS.map(({ labelKey, href, icon: Icon }) => (
@@ -183,18 +187,17 @@ function Navbar() {
                   key={href}
                   href={href}
                   onClick={() => setIsOpen(false)}
-                  className={`flex items-center gap-3 rounded-button px-3 py-2 text-sm transition-colors hover:bg-text/10 hover:text-text ${
+                  className={`flex items-center gap-3 px-5 py-4 text-lg transition-colors hover:bg-text/10 hover:text-text ${
                     activeHref === href ? "bg-text/10 text-text" : "text-text/80"
                   }`}
                 >
-                  <Icon className="h-4 w-4" aria-hidden="true" />
+                  <Icon className="h-6 w-6" aria-hidden="true" />
                   {t.nav[labelKey]}
                 </a>
               ))}
             </div>
 
             <div className="flex translate-y-2.5 flex-col items-center gap-3">
-              <LanguageSwitcher />
               <CurriculoButton
                 as="a"
                 href={RESUME_HREF}

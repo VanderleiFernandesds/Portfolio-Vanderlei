@@ -42,7 +42,7 @@ function Contact() {
 
         <div className="flex w-full flex-col items-center justify-center gap-6 lg:h-170.5 lg:flex-row">
           {/* Coluna esquerda */}
-          <div className="grid w-full grid-cols-2 grid-rows-2 gap-6 border border-surface p-6 lg:h-159 lg:w-170">
+          <div className="grid w-full grid-cols-2 grid-rows-2 gap-6 p-6 lg:h-159 lg:w-170">
             {SQUARE_CHANNELS.map((channelName) => {
               const item = contactChannels.find(
                 (c) => c.channel === channelName,
