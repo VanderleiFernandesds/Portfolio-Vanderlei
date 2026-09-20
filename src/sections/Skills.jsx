@@ -53,7 +53,7 @@ function Skills() {
             return (
               <div
                 key={category}
-                className="relative w-full max-w-130 mx-auto aspect-[400/276.41] rounded-card"
+                className="relative w-full max-w-130 mx-auto lg:aspect-[400/276.41] rounded-card"
               >
                 <img
                   src={folhaPequena}
@@ -71,7 +71,7 @@ function Skills() {
                       iconNode: NoteIcon && <NoteIcon className="h-4 w-4" />,
                     }
                   }
-                  className="relative h-full bg-transparent! pt-20! max-lg:pl-10! font-kalam"
+                  className="relative h-auto bg-transparent! pt-10! pl-6! lg:h-full lg:pt-20! lg:pl-10! font-kalam"
                 />
               </div>
             )

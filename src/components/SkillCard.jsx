@@ -32,57 +32,59 @@ function SkillCard({
     <div
       className={`flex flex-col gap-4 rounded-card bg-primary p-6 lg:px-desktop  ${className}`.trim()}
     >
-      <div className="flex flex-col gap-3">
-        {icon && <IconBadge icon={icon} className={CATEGORY_BG[category]} />}
-        <div>
-          <h3 className="font-bold text-black">{title}</h3>
-          <p className="text-sm text-text-muted">{description}</p>
+      <div className="-mt-2 p-2 sm:-mt-4 sm:p-3">
+        <div className="flex flex-col gap-2 sm:gap-3">
+          {icon && <IconBadge icon={icon} className={CATEGORY_BG[category]} />}
+          <div>
+            <h3 className="font-bold text-black">{title}</h3>
+            <p className="text-xs text-text-muted sm:text-sm">{description}</p>
+          </div>
         </div>
+
+        {technologies && (
+          <>
+            <hr className="mt-2 border-surface sm:mt-4" />
+            <div className="mt-2 flex flex-wrap gap-3 sm:mt-4 sm:gap-6">
+              {technologies.map(({ name, Icon }) => (
+                <span
+                  key={name}
+                  className="flex flex-col items-center gap-1 text-[10px] text-text-muted sm:text-xs"
+                >
+                  <Icon className="h-6 w-6 text-text sm:h-8 sm:w-8" />
+                  {name}
+                </span>
+              ))}
+            </div>
+          </>
+        )}
+
+        {concepts && (
+          <>
+            <hr className="mt-2 border-surface sm:mt-4" />
+            <ul className="mt-2 grid grid-cols-1 gap-x-4 gap-y-2 sm:mt-4 sm:grid-cols-2">
+              {concepts.map((concept) => (
+                <li
+                  key={concept.label}
+                  className="flex items-center gap-2 text-xs text-text-muted sm:text-sm"
+                >
+                  {concept.iconNode}
+                  {concept.label}
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
+
+        {note && (
+          <>
+            <hr className="mt-2 border-surface sm:mt-4" />
+            <div className="mt-2 flex items-center gap-2 text-xs text-text-muted sm:mt-4 sm:text-sm">
+              {note.iconNode}
+              {note.label}
+            </div>
+          </>
+        )}
       </div>
-
-      {technologies && (
-        <>
-          <hr className="border-surface" />
-          <div className="flex flex-wrap gap-6">
-            {technologies.map(({ name, Icon }) => (
-              <span
-                key={name}
-                className="flex flex-col items-center gap-1 text-xs text-text-muted"
-              >
-                <Icon className="h-8 w-8 text-text" />
-                {name}
-              </span>
-            ))}
-          </div>
-        </>
-      )}
-
-      {concepts && (
-        <>
-          <hr className="border-surface" />
-          <ul className="grid grid-cols-1 gap-x-4 gap-y-2 sm:grid-cols-2">
-            {concepts.map((concept) => (
-              <li
-                key={concept.label}
-                className="flex items-center gap-2 text-sm text-text-muted"
-              >
-                {concept.iconNode}
-                {concept.label}
-              </li>
-            ))}
-          </ul>
-        </>
-      )}
-
-      {note && (
-        <>
-          <hr className="border-surface" />
-          <div className="flex items-center gap-2 text-sm text-text-muted">
-            {note.iconNode}
-            {note.label}
-          </div>
-        </>
-      )}
     </div>
   );
 }
