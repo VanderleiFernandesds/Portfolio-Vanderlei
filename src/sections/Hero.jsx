@@ -79,7 +79,7 @@ function Hero() {
           <div className="grid grid-cols-1 gap-8 px-6 py-8 sm:p-8 lg:grid-cols-[1.1fr_1fr] lg:gap-8 lg:p-8">
             {/* Saudação + nome — no mobile fica acima da foto; no desktop volta ao bloco de texto abaixo */}
             <div className="order-1 lg:hidden">
-              <p className="font-granesta text-2xl leading-tight -mb-1 tracking-wide text-black">
+              <p className="font-granesta text-lg leading-tight -mb-1 tracking-wide text-black">
                 {t.hero.greeting}
               </p>
               <h1 className="font-granesta text-2xl leading-tight tracking-wide whitespace-nowrap text-black sm:text-5xl">
