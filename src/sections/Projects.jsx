@@ -103,7 +103,7 @@ function Projects() {
       */}
 
       {/* Placeholder — medida de referência 1440x908, responsivo (w-full, teto no valor de referência, aspect-ratio no lugar de h/w fixos em px). */}
-      <div className="relative mx-auto flex w-full max-w-[1440px] flex-col items-center justify-center gap-4 rounded-card border border-dashed border-primary/30 bg-primary text-primary/50">
+      <div className="relative mx-auto flex w-full max-w-[1440px] flex-col items-center justify-center gap-4 rounded-card bg-primary text-primary/50">
         <SectionTitle
           eyebrow={t.projects.eyebrow}
           title={t.projects.title}
@@ -121,7 +121,7 @@ function Projects() {
           em qualquer card chama goTo(index) e a transição desliza suavemente
           (CSS transition, sem lib nova) até ele virar o card central.
         */}
-        <div className="relative flex w-[94.24%] aspect-[5/4] sm:aspect-[3/2] lg:aspect-[1357/542] max-w-[1357px] items-center justify-center overflow-hidden border border-dashed border-primary/30 text-primary/50 [perspective:1400px] transform-3d">
+        <div className="relative flex w-[94.24%] aspect-[5/4] sm:aspect-[3/2] lg:aspect-[1357/542] max-w-[1357px] items-center justify-center overflow-hidden text-primary/50 [perspective:1400px] transform-3d">
           {false && (
             <FolderCarousel order={order} projects={projects} onGoTo={goTo} onNext={goNext} onPrev={goPrev} />
           )}
@@ -145,16 +145,6 @@ function Projects() {
           >
             <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
           </button>
-
-          {/* Degradê nos cantos — dá a impressão de que os cards das laterais estão sumindo/aparecendo, fundindo com o fundo da seção. */}
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-y-0 left-0 z-30 w-6 sm:w-40 bg-gradient-to-r from-primary to-transparent"
-          />
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-y-0 right-0 z-30 w-6 sm:w-40 bg-gradient-to-l from-primary to-transparent"
-          />
 
           {projects.map((item, index) => {
             // Distância com sinal mais curta até o card ativo (circular): ex. com
@@ -248,7 +238,7 @@ function Projects() {
           })}
 
           {/* Contador do projeto em destaque (ex.: 02 / 05), na base do container das pastas. */}
-          <p className="absolute bottom-2 left-1/2 z-40 -translate-x-1/2 font-kalam text-sm tracking-widest text-text/60">
+          <p className="absolute bottom-2 left-1/2 z-40 -translate-x-1/2 font-kalam text-sm tracking-widest text-text/60 sm:bottom-6">
             {String(frontIndex + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
           </p>
         </div>
@@ -262,27 +252,30 @@ function Projects() {
           a largura de info+detalhes soma 100% e badges (w-full) quebra pra
           a 2ª linha, voltando à ordem original (badges por último).
         */}
-        <div className="-mt-6 lg:-mt-8 flex w-full flex-wrap items-center justify-center gap-4 sm:w-[80%] lg:w-[47.99%] lg:aspect-[691/222] lg:gap-0 max-w-[691px] border border-text text-primary/50">
+        <div className="-mt-6 lg:-mt-8 flex w-full flex-wrap items-center justify-center gap-4 sm:w-[80%] lg:w-[47.99%] lg:aspect-[691/222] lg:gap-0 max-w-[691px] border bg-background text-primary/50">
             {/* Placeholder interno — medida de referência 426x159 (61.65% x 71.62% do pai). Informações do projeto em destaque (título + descrição). */}
-            <div className="order-1 flex w-full sm:w-[61.65%] lg:h-[71.62%] lg:max-w-[426px] flex-col items-start justify-center gap-2 overflow-hidden border border-dashed border-primary/30 p-3 font-kalam text-primary/50">
+            <div
+              key={`info-${project.id}`}
+              className="animate-fade-up-in order-1 flex w-full sm:w-[61.65%] lg:h-[71.62%] lg:max-w-[426px] flex-col items-start justify-center gap-2 overflow-hidden p-3 font-kalam text-primary/50"
+            >
               <div className="flex flex-wrap items-center gap-2">
-                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-text/30 bg-projects-light/10 text-xs font-bold text-text">
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-projects-light/10 text-xs font-bold text-primary">
                   {project.logo}
                 </span>
-                <h3 className="text-lg font-extrabold text-text">{project.title}</h3>
+                <h3 className="text-lg font-extrabold text-primary">{project.title}</h3>
                 <ProjectCategoryTag category={project.category} className="ml-2" />
               </div>
-              <p className="line-clamp-2 text-sm text-text-muted">{projectDescription}</p>
+              <p className="line-clamp-2 text-sm text-primary/70">{projectDescription}</p>
             </div>
 
             {/* Placeholder interno — medida de referência 265x159 (38.35% x 71.62% do pai), do lado direito do anterior. Botão "Ver detalhes" em cima, links GitHub/Ver projeto embaixo. No mobile fica depois do container das stacks (order-3); a partir do sm volta pra ordem natural (order-2), lado a lado com as informações. */}
-            <div className="order-3 sm:order-2 flex w-full sm:w-[38.35%] lg:h-[71.62%] lg:max-w-[265px] flex-row sm:flex-col items-center justify-start sm:justify-center gap-6 sm:gap-2 overflow-hidden border border-dashed border-primary/30 p-3 sm:p-2 font-kalam text-primary/50">
+            <div className="order-3 sm:order-2 flex w-full sm:w-[38.35%] lg:h-[71.62%] lg:max-w-[265px] flex-col items-center justify-start sm:justify-center gap-3 sm:gap-2 overflow-hidden p-3 sm:p-2 font-kalam text-primary/50">
               <PaperButton
                 type="button"
                 onClick={openModal}
                 showBackground={false}
-                className="w-[218px] rounded-button bg-text whitespace-nowrap"
-                style={{ color: 'var(--color-primary)' }}
+                className="w-full sm:w-[218px] rounded-button bg-primary whitespace-nowrap"
+                style={{ color: 'var(--color-text)' }}
               >
                 {t.projects.viewDetails}
                 <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
@@ -294,7 +287,7 @@ function Projects() {
                     href={project.githubHref}
                     target="_blank"
                     rel="noreferrer"
-                    className="flex items-center gap-1.5 rounded-button border border-text/20 px-3 py-1.5 font-medium text-text-muted transition-colors hover:text-text"
+                    className="flex items-center gap-1.5 rounded-button border border-primary/20 px-3 py-1.5 font-medium text-primary/70 transition-colors hover:text-primary"
                   >
                     <SiGithub className="h-4 w-4" aria-hidden="true" />
                     {t.projects.github}
@@ -302,7 +295,7 @@ function Projects() {
                 ) : (
                   <span
                     aria-disabled="true"
-                    className="flex items-center gap-1.5 rounded-button border border-text/20 px-3 py-1.5 font-medium text-text-muted"
+                    className="flex items-center gap-1.5 rounded-button border border-primary/20 px-3 py-1.5 font-medium text-primary/70"
                   >
                     <SiGithub className="h-4 w-4" aria-hidden="true" />
                     {t.projects.github}
@@ -314,7 +307,7 @@ function Projects() {
                     href={project.demoHref}
                     target="_blank"
                     rel="noreferrer"
-                    className="flex items-center gap-1.5 rounded-button border border-text/20 px-3 py-1.5 font-medium whitespace-nowrap text-text-muted transition-colors hover:text-text"
+                    className="flex items-center gap-1.5 rounded-button border border-primary/20 px-3 py-1.5 font-medium whitespace-nowrap text-primary/70 transition-colors hover:text-primary"
                   >
                     <ExternalLinkIcon className="h-4 w-4" aria-hidden="true" />
                     {t.projects.viewProject}
@@ -322,7 +315,7 @@ function Projects() {
                 ) : (
                   <span
                     aria-disabled="true"
-                    className="flex items-center gap-1.5 rounded-button border border-text/20 px-3 py-1.5 font-medium whitespace-nowrap text-text-muted"
+                    className="flex items-center gap-1.5 rounded-button border border-primary/20 px-3 py-1.5 font-medium whitespace-nowrap text-primary/70"
                   >
                     <ExternalLinkIcon className="h-4 w-4" aria-hidden="true" />
                     {t.projects.viewProject}
@@ -332,7 +325,10 @@ function Projects() {
             </div>
 
           {/* Placeholder interno — medida de referência 691x63 (100% x 28.38% do pai). Badges das tecnologias do projeto em destaque — order-2 no mobile (entre info e detalhes), order-3 a partir do sm (quebra pra 2ª linha, largura total). */}
-          <div className="order-2 sm:order-3 flex h-auto lg:h-[28.38%] w-full lg:max-h-[63px] flex-wrap content-center items-center justify-start gap-2 overflow-hidden border border-dashed border-primary/30 p-3 text-primary/50">
+          <div
+            key={`stack-${project.id}`}
+            className="animate-fade-up-in order-2 sm:order-3 flex h-auto lg:h-[28.38%] w-full lg:max-h-[63px] flex-wrap content-center items-center justify-start gap-2 overflow-hidden p-3 text-primary/50"
+          >
             {project.technologies.map((tech) => {
               const icon = stackIcons.find(
                 (item) => item.label.toLowerCase() === tech.toLowerCase(),
@@ -346,9 +342,9 @@ function Projects() {
                   {icon ? (
                     <img src={icon.src} alt="" aria-hidden="true" className="h-6 w-6" />
                   ) : FallbackIcon ? (
-                    <FallbackIcon className="h-6 w-6 text-text-muted" aria-hidden="true" />
+                    <FallbackIcon className="h-6 w-6 text-primary/70" aria-hidden="true" />
                   ) : null}
-                  <span className="text-[11px] font-medium tracking-wide text-text-muted uppercase">
+                  <span className="text-[11px] font-medium tracking-wide text-primary/70 uppercase">
                     {tech}
                   </span>
                 </span>

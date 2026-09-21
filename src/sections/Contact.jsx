@@ -1,15 +1,51 @@
+import { useState } from 'react'
 import Section from '../components/Section'
 import SectionTitle from '../components/SectionTitle'
+import HoverStrokeCircle from '../components/HoverStrokeCircle'
 import { MailIcon } from '../components/icons'
 import { contactChannels } from '../data/contactChannels'
 import { useLanguage } from '../i18n/LanguageContext'
 import folhaDeRedes from '../assets/folha de redes.png'
 import folhaDeAviso from '../assets/folha de aviso.webp'
-import hoverStroke from '../assets/HoverStroke.svg'
 import parteSuperiorFolha from '../assets/parte superior da folha.svg'
 
 // Ordem dos 4 quadrados: LinkedIn e WhatsApp em cima, e-mail e GitHub embaixo.
 const SQUARE_CHANNELS = ['linkedin', 'whatsapp', 'email', 'github']
+
+// Card de canal — hover próprio (estado por item, por isso não fica
+// direto no .map do componente pai) revela o contorno HoverStrokeCircle.
+function ChannelCard({ href, imageSrc, Icon, title }) {
+  const [hover, setHover] = useState(false)
+
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+      onFocus={() => setHover(true)}
+      onBlur={() => setHover(false)}
+      className="group relative aspect-4/5 overflow-hidden rounded-card shadow-lg lg:aspect-auto lg:h-72 lg:w-61"
+    >
+      <img src={imageSrc} alt="" className="h-full w-full object-cover" />
+      <span className="absolute inset-0 flex flex-col items-center justify-center gap-2">
+        <span className="relative flex flex-col items-center gap-3">
+          <Icon className="h-9 w-9 text-text lg:h-16 lg:w-16" />
+          <span className="font-kalam text-sm font-semibold text-text lg:text-lg">
+            {title}
+          </span>
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute -inset-x-10 -inset-y-8"
+          >
+            <HoverStrokeCircle hover={hover} />
+          </span>
+        </span>
+      </span>
+    </a>
+  )
+}
 
 function Contact() {
   const { t } = useLanguage()
@@ -51,36 +87,13 @@ function Contact() {
               const channelTitle = t.contact.channels[channelName]?.title ?? item.title;
 
               return (
-                <a
+                <ChannelCard
                   key={item.channel}
                   href={item.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="group relative aspect-4/5 overflow-hidden rounded-card shadow-lg lg:aspect-auto lg:h-72 lg:w-61"
-                >
-                  <img
-                    src={folhaDeRedes}
-                    alt=""
-                    className="h-full w-full object-cover"
-                  />
-                  <span className="absolute inset-0 flex flex-col items-center justify-center gap-2">
-                    <Icon className="h-9 w-9 text-text lg:h-16 lg:w-16" />
-                    <span className="relative mt-3 font-kalam text-sm font-semibold text-text lg:mt-6 lg:text-lg">
-                      {channelTitle}
-                      <span
-                        aria-hidden="true"
-                        className="hover-stroke-wipe pointer-events-none absolute -inset-x-4 -bottom-4 h-8"
-                      >
-                        <img
-                          src={hoverStroke}
-                          alt=""
-                          draggable={false}
-                          className="h-full w-full object-contain select-none"
-                        />
-                      </span>
-                    </span>
-                  </span>
-                </a>
+                  imageSrc={folhaDeRedes}
+                  Icon={Icon}
+                  title={channelTitle}
+                />
               );
             })}
           </div>

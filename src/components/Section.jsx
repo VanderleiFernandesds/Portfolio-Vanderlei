@@ -16,7 +16,11 @@ function Section({
   ...props
 }) {
   return (
-    <Tag id={id} className={`py-12.5 lg:py-section ${className}`.trim()} {...props}>
+    <Tag
+      id={id}
+      className={`scroll-mt-28 py-12.5 lg:py-section ${className}`.trim()}
+      {...props}
+    >
       {container ? (
         <Container className={containerClassName}>{children}</Container>
       ) : (

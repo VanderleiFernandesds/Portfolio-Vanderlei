@@ -33,7 +33,7 @@ function Skills() {
       </div>
 
       {/* Placeholder temporário: referência visual 1440x951 para reconstrução da seção */}
-      <div className="mx-auto w-full max-w-[1440px] min-h-150 lg:h-237.75 border-2 border-dashed border-primary/40 bg-primary flex flex-col items-center">
+      <div className="mx-auto w-full max-w-[1440px] min-h-150 lg:h-237.75 border-2 border-dashed border-primary/40 bg-primary flex flex-col items-center pb-8 lg:pb-0">
         <SectionTitle
           eyebrow={t.skills.eyebrow}
           title={
@@ -53,7 +53,7 @@ function Skills() {
             return (
               <div
                 key={category}
-                className="relative w-full max-w-130 mx-auto lg:aspect-[400/276.41] rounded-card"
+                className="relative w-full max-w-130 mx-auto min-h-[235px] lg:min-h-0 lg:aspect-[400/276.41] rounded-card"
               >
                 <img
                   src={folhaPequena}
@@ -71,7 +71,7 @@ function Skills() {
                       iconNode: NoteIcon && <NoteIcon className="h-4 w-4" />,
                     }
                   }
-                  className="relative h-auto bg-transparent! pt-10! pl-6! lg:h-full lg:pt-20! lg:pl-10! font-kalam"
+                  className="relative h-full bg-transparent! pt-10! pl-6! lg:pt-20! lg:pl-10! font-kalam"
                 />
               </div>
             )
