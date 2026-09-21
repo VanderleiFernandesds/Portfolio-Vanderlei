@@ -8,6 +8,7 @@ import molduraPolaroidAlfinete from '../assets/moldura-polaroid-alfinete.svg'
 import minhaFotoPerfil from '../assets/minha-foto-perfil.webp'
 import fotoComoEuTrabalho from '../assets/foto-como-eu-trabalho.webp'
 import ambienteDesenvolvimento from '../assets/ambiente-desenvolvimento.webp'
+import grampoDaPrancheta from '../assets/grampo da prancheta.svg'
 
 /**
  * About
@@ -19,11 +20,21 @@ import ambienteDesenvolvimento from '../assets/ambiente-desenvolvimento.webp'
 function About() {
   const { t } = useLanguage()
   return (
-    <Section id="sobre" className="overflow-hidden" containerClassName="!px-3 lg:!px-desktop">
+    <Section id="sobre"  containerClassName="!px-3 lg:!px-desktop">
+      {/* Novo container externo — envolve o título e os 3 blocos. */}
+      <div className="w-full rounded-card p-4 lg:p-8" style={{ backgroundColor: "#59331F" }}>
+      <div className="relative z-10 mx-auto -mt-20 h-20 w-full max-w-70 sm:-mt-20 sm:h-28 sm:max-w-100 lg:-mt-28 lg:h-36 lg:max-w-123.25">
+        <img
+          src={grampoDaPrancheta}
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-x-0 -bottom-6 h-full w-full object-contain"
+        />
+      </div>
       {/* Placeholder — reserva o espaço do conteúdo antigo (3 blocos folha + foto) até definir o novo. */}
       <div
-        className=" flex w-full flex-col items-center gap-3   text-primary/50 "
-        style={{ backgroundColor: "#AE9573" }}
+        className=" flex w-full flex-col items-center gap-3 pt-8  text-primary/50 "
+        style={{ backgroundColor: "#F2E6CD" }}
       >
         <SectionTitle
           eyebrow={t.about.eyebrow}
@@ -43,7 +54,7 @@ function About() {
             src={folhaPautadaComGrampo}
             alt=""
             aria-hidden="true"
-            className="absolute inset-0 h-full w-full object-contain drop-shadow-[0_10px_18px_rgba(0,0,0,0.65)] lg:drop-shadow-lg"
+            className="absolute inset-0 h-full w-full object-contain lg:drop-shadow-lg"
           />
           {/* Placeholder interno — medida de referência 400.87x449.78 (52.13% x 90.79% do pai). Posicionado de forma independente (absolute) pra não empurrar/ser empurrado pelo placeholder 574x397 ao lado — deslocado para a esquerda, saindo do pai, deixando só ~16% (124px de referência) visíveis para dentro. Desativado no mobile. */}
           <div className="absolute top-1/2 left-[-45.51%] z-20 hidden h-[90.79%] w-[52.13%] max-h-[449.78px] max-w-[400.87px] rotate-6 -translate-y-1/2 items-center justify-center text-primary/50 lg:flex">
@@ -61,7 +72,7 @@ function About() {
           </div>
           {/* Placeholder interno — medida de referência 574x397 (84.52% do pai, deslocado 11.70%). Título + texto "Quem sou eu" (src/data/aboutItems.js) ativados dentro dele, com fonte/tamanho reduzidos pra caber. No mobile fica em fluxo normal (sem overflow-y-auto) pra crescer com o conteúdo; volta a ser absolute/scroll interno a partir do lg. */}
           <div className="absolute left-[11.70%] flex w-[84.52%] max-h-full max-w-[650px] flex-col items-start gap-2 overflow-y-auto text-primary/50">
-            <h3 className="sticky top-0 z-10 w-full bg-primary font-handwriting font-bold text-black text-xl sm:text-3xl">
+            <h3 className="sticky top-0 z-10 inline-block w-auto font-handwriting font-bold text-black text-xl sm:text-3xl" style={{ backgroundColor: "#DBEC00" }}>
               {t.about.whoAmI.title}
             </h3>
             <p className="font-handwriting  text-base text-black sm:text-[22px]">
@@ -81,7 +92,7 @@ function About() {
             src={folhaPautadaComGrampo}
             alt=""
             aria-hidden="true"
-            className="absolute inset-0 h-full w-full object-contain drop-shadow-[0_10px_18px_rgba(0,0,0,0.65)] lg:hidden"
+            className="absolute inset-0 h-full w-full object-contain lg:hidden"
           />
           {/* No desktop, o grampo dessa folha fica mais pra direita (variante folha-pautada-com-grampo-direita.svg). */}
           <img
@@ -104,7 +115,7 @@ function About() {
             />
           </div>
           <div className="absolute left-[11.70%] flex w-[84.52%] max-h-full max-w-[650px] flex-col items-start gap-2 overflow-y-auto text-primary/50 lg:left-auto lg:right-[11.70%] lg:max-w-[600px]">
-            <h3 className="sticky top-0 z-10 w-full bg-primary font-handwriting text-xl font-bold text-black sm:text-3xl">
+            <h3 className="sticky top-0 z-10 inline-block w-auto font-handwriting text-xl font-bold text-black sm:text-3xl" style={{ backgroundColor: "#DBEC00" }}>
               {t.about.howIWork.title}
             </h3>
             <p className="font-handwriting text-base text-black sm:text-[22px]">
@@ -124,7 +135,7 @@ function About() {
             src={folhaPautadaComGrampo}
             alt=""
             aria-hidden="true"
-            className="absolute inset-0 h-full w-full object-contain drop-shadow-[0_10px_18px_rgba(0,0,0,0.65)] lg:hidden"
+            className="absolute inset-0 h-full w-full object-contain lg:hidden"
           />
           {/* No desktop, o grampo dessa folha fica mais pra esquerda (variante folha-pautada-com-grampo-esquerda.svg). */}
           <img
@@ -147,7 +158,7 @@ function About() {
             />
           </div>
           <div className="absolute left-[11.70%] flex w-[84.52%] max-h-full max-w-[650px] flex-col items-start gap-2 overflow-y-auto text-primary/50">
-            <h3 className="sticky top-0 z-10 w-full bg-primary font-handwriting text-xl font-bold text-black sm:text-3xl">
+            <h3 className="sticky top-0 z-10 inline-block w-auto font-handwriting text-xl font-bold text-black sm:text-3xl" style={{ backgroundColor: "#DBEC00" }}>
               {t.about.evolving.title}
             </h3>
             <p className="font-handwriting text-base text-black sm:text-[22px]">
@@ -161,6 +172,7 @@ function About() {
             </p>
           </div>
         </div>
+      </div>
       </div>
     </Section>
   );

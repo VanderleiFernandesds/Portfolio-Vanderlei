@@ -18,7 +18,7 @@ function Section({
   return (
     <Tag
       id={id}
-      className={`scroll-mt-28 py-12.5 lg:py-section ${className}`.trim()}
+      className={`scroll-mt-28 py-12.5 lg:pt-0 lg:pb-section ${className}`.trim()}
       {...props}
     >
       {container ? (
