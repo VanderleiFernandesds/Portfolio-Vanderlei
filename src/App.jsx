@@ -8,7 +8,7 @@ import Contact from './sections/Contact'
 
 function App() {
   return (
-    <div className="flex min-h-screen flex-col bg-background text-primary">
+    <div className="bg-grid-squares flex min-h-screen flex-col text-primary">
       <Navbar />
 
       <main className="flex-1">

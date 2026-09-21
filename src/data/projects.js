@@ -25,6 +25,7 @@ export const projects = [
     id: 1,
     title: 'EnvelopPack',
     logo: 'EP',
+    category: 'ecommerce',
     description:
       'E-commerce completo para soluções de embalagem, com catálogo por categoria e um funil de checkout simplificado.',
     technologies: ['HTML5', 'CSS3', 'JavaScript'],
@@ -41,6 +42,7 @@ export const projects = [
     id: 2,
     title: 'TaskFlow',
     logo: 'TF',
+    category: 'saas',
     description:
       'Aplicação de gerenciamento de tarefas e produtividade, com quadros arrastáveis e acompanhamento de progresso em tempo real.',
     technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Node.js'],
@@ -57,6 +59,7 @@ export const projects = [
     id: 3,
     title: 'FinanceX',
     logo: 'FX',
+    category: 'dashboard',
     description:
       'Dashboard financeiro para acompanhar receitas, despesas e indicadores de performance com gráficos interativos.',
     technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Chart.js'],
@@ -73,6 +76,7 @@ export const projects = [
     id: 4,
     title: 'DevHub',
     logo: 'DH',
+    category: 'saas',
     description:
       'Plataforma para organização de projetos, equipes e atividades de desenvolvimento em um só lugar.',
     technologies: ['React', 'Node.js', 'PostgreSQL', 'TypeScript'],
@@ -89,6 +93,7 @@ export const projects = [
     id: 5,
     title: 'Odonto Bram',
     logo: 'OB',
+    category: 'landingPage',
     description:
       'Landing page para consultório odontológico completo, com especialidades em ortodontia, dentística, endodontia, próteses, implantodontia e estética avançada.',
     technologies: ['React', 'Tailwind CSS'],

@@ -166,7 +166,7 @@ function ProjectModal({ project, isOpen, onClose }) {
       {/* Camada de fundo isolada do modal (irmã, não pai) — assim a
           animação de opacidade dela não "vaza" pros filhos do modal, que
           têm sua própria animação de entrada/saída. */}
-      <div aria-hidden="true" onClick={onClose} className="absolute inset-0 bg-text/80" />
+      <div aria-hidden="true" onClick={onClose} className="absolute inset-0 bg-text/50 backdrop-blur-sm" />
       <div className="relative z-10 flex w-full max-w-[1400px] flex-col">
         <div className="hidden h-12 w-full items-center justify-between pr-6 lg:flex">
           <div
@@ -205,7 +205,7 @@ function ProjectModal({ project, isOpen, onClose }) {
           role="dialog"
           aria-modal="true"
           aria-labelledby="project-modal-title"
-          className="relative mt-1 flex h-200 max-h-[calc(100vh-6rem)] w-full flex-col overflow-hidden rounded-tr-card rounded-br-card rounded-bl-card bg-modal-paper font-ibm-mono lg:mt-0 lg:flex-row"
+          className="relative mt-1 flex h-200 max-h-[calc(100vh-6rem)] w-full flex-col overflow-hidden rounded-tr-card rounded-br-card rounded-bl-card bg-modal-paper font-kalam lg:mt-0 lg:flex-row"
         >
         <button
           type="button"
@@ -399,7 +399,7 @@ function ProjectModal({ project, isOpen, onClose }) {
               >
                 <h2
                   id="project-modal-title"
-                  className="text-3xl leading-tight font-extrabold text-modal-heading lg:text-4xl"
+                  className="mb-2 text-3xl leading-tight font-extrabold text-modal-heading lg:text-4xl"
                 >
                   {project.title}
                 </h2>
@@ -505,7 +505,7 @@ function ProjectModal({ project, isOpen, onClose }) {
                     href={project.demoHref}
                     target="_blank"
                     rel="noreferrer"
-                    className="flex items-center gap-1.5 rounded-md bg-modal-heading px-4 py-2 text-sm font-semibold text-modal-paper transition-[transform,background-color,box-shadow] duration-150 hover:-translate-y-px hover:bg-[#38352f] hover:shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent active:translate-y-0 active:bg-[#151412]"
+                    className="flex items-center gap-1.5 rounded-md border border-modal-heading bg-modal-heading px-4 py-2 text-sm font-semibold text-modal-paper transition-[transform,background-color,box-shadow] duration-150 hover:-translate-y-px hover:bg-[#38352f] hover:shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent active:translate-y-0 active:bg-[#151412]"
                   >
                     <ExternalLinkIcon className="h-4 w-4" aria-hidden="true" />
                     {t.modal.viewProject}
@@ -513,8 +513,7 @@ function ProjectModal({ project, isOpen, onClose }) {
                 ) : (
                   <span
                     aria-disabled="true"
-                    title={t.modal.linkUnavailable}
-                    className="flex items-center gap-1.5 rounded-md bg-modal-heading/40 px-4 py-2 text-sm font-semibold text-modal-paper/70"
+                    className="flex items-center gap-1.5 rounded-md border border-modal-heading bg-modal-heading px-4 py-2 text-sm font-semibold text-modal-paper"
                   >
                     <ExternalLinkIcon className="h-4 w-4" aria-hidden="true" />
                     {t.modal.viewProject}
@@ -534,8 +533,7 @@ function ProjectModal({ project, isOpen, onClose }) {
                 ) : (
                   <span
                     aria-disabled="true"
-                    title={t.modal.linkUnavailable}
-                    className="flex items-center gap-1.5 rounded-md border border-text/15 px-3.5 py-2 text-sm font-medium text-modal-text-secondary/70"
+                    className="flex items-center gap-1.5 rounded-md border border-modal-github-border bg-modal-paper px-3.5 py-2 text-sm font-medium text-modal-github-text"
                   >
                     <SiGithub className="h-4 w-4" aria-hidden="true" />
                     {t.modal.github}

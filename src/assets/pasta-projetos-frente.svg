@@ -1,3 +1,11 @@
 <svg width="689" height="453" viewBox="0 0 689 453" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M0 85.4409C7.49157 80.8503 10.979 74.7991 10.979 67.1829V62.6967C10.979 59.7754 13.9498 57.3758 17.5664 57.3758H221.002C229.656 57.3758 237.277 52.5765 239.343 45.795L240.635 41.7261C241.927 37.4485 246.706 34.4229 252.131 34.4229H661.196C669.979 34.4229 677.083 39.9524 677.471 47.047V48.4033C677.729 54.0372 682.121 58.9408 688.45 60.8187V453H0V85.4409Z" fill="#FFD34F"/>
+<defs>
+  <filter id="kraft-texture-front" x="-5%" y="-5%" width="110%" height="110%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="3" stitchTiles="stitch" result="noise"/>
+    <feColorMatrix in="noise" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.05 0" result="fadedNoise"/>
+    <feComposite in="fadedNoise" in2="SourceGraphic" operator="in" result="clippedNoise"/>
+    <feBlend in="SourceGraphic" in2="clippedNoise" mode="multiply"/>
+  </filter>
+</defs>
+<path d="M0 85.4409C7.49157 80.8503 10.979 74.7991 10.979 67.1829V62.6967C10.979 59.7754 13.9498 57.3758 17.5664 57.3758H221.002C229.656 57.3758 237.277 52.5765 239.343 45.795L240.635 41.7261C241.927 37.4485 246.706 34.4229 252.131 34.4229H661.196C669.979 34.4229 677.083 39.9524 677.471 47.047V48.4033C677.729 54.0372 682.121 58.9408 688.45 60.8187V453H0V85.4409Z" fill="#CFA66A" stroke="#9C7447" stroke-width="1" filter="url(#kraft-texture-front)"/>
 </svg>

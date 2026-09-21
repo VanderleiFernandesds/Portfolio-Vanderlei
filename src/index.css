@@ -75,6 +75,16 @@
   --color-projects-light: #fde9b8;
 
   /*
+    Uso exclusivo: pastas do carrossel de Projects (pasta-projetos-fundo.svg /
+    pasta-projetos-frente.svg) — kraft/manila, não o carrossel genérico
+    (FolderCarousel, ver --color-folder-yellow-* acima, desativado).
+  */
+  --color-folder-main: #cfa66a;
+  --color-folder-tab: #d9b477;
+  --color-folder-dark: #b98e55;
+  --color-folder-border: #9c7447;
+
+  /*
     Uso exclusivo: FolderCarousel (src/components/FolderCarousel.jsx).
     Cores fixas do protótipo design/Carrossel de Pastas/ — carrossel
     genérico, não vinculado aos dados/tokens de projetos reais.
@@ -335,6 +345,15 @@
   body {
     @apply bg-background text-primary font-sans antialiased;
   }
+}
+
+/* Grade sutil de quadrados sobre o fundo preto geral do site (ver App.jsx) */
+.bg-grid-squares {
+  background-color: var(--color-background);
+  background-image:
+    linear-gradient(to right, rgba(255, 244, 227, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 244, 227, 0.08) 1px, transparent 1px);
+  background-size: 40px 40px;
 }
 
 /* Máscara SVG da fileira de ícones de stack do Hero — abaixo de sm (onde o

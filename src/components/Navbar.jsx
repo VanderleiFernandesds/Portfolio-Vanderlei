@@ -187,12 +187,24 @@ function Navbar() {
                   key={href}
                   href={href}
                   onClick={() => setIsOpen(false)}
-                  className={`flex items-center gap-3 px-5 py-4 text-lg transition-colors hover:bg-text/10 hover:text-text ${
+                  className={`group relative flex items-center gap-3 px-5 py-4 text-lg transition-colors active:bg-text/10 active:text-text ${
                     activeHref === href ? "bg-text/10 text-text" : "text-text/80"
                   }`}
                 >
                   <Icon className="h-6 w-6" aria-hidden="true" />
                   {t.nav[labelKey]}
+
+                  <span
+                    aria-hidden="true"
+                    className="hover-stroke-wipe pointer-events-none absolute inset-x-5 bottom-1.5 h-2.5"
+                  >
+                    <img
+                      src={hoverStroke}
+                      alt=""
+                      draggable={false}
+                      className="h-full w-full object-contain select-none"
+                    />
+                  </span>
                 </a>
               ))}
             </div>

@@ -4,7 +4,8 @@ import SectionTitle from '../components/SectionTitle'
 import FolderCarousel from '../components/FolderCarousel'
 import ProjectModal from '../components/ProjectModal'
 import PaperButton from '../components/PaperButton'
-import { ArrowRightIcon } from '../components/icons'
+import ProjectCategoryTag from '../components/ProjectCategoryTag'
+import { ArrowRightIcon, ExternalLinkIcon } from '../components/icons'
 import { SiGithub, SiChartdotjs, SiPostgresql } from 'react-icons/si'
 import { projects } from '../data/projects'
 import { stackIcons } from '../data/stackIcons'
@@ -189,8 +190,8 @@ function Projects() {
                       ? 'drop-shadow(0 6px 10px rgba(0,0,0,0.3))'
                       : 'drop-shadow(0 10px 18px rgba(0,0,0,0.45))'
                     : isCompact
-                      ? 'drop-shadow(0 3px 6px rgba(0,0,0,0.15))'
-                      : 'drop-shadow(0 6px 10px rgba(0,0,0,0.2))',
+                      ? 'brightness(0.92) drop-shadow(0 3px 6px rgba(0,0,0,0.15))'
+                      : 'brightness(0.92) drop-shadow(0 6px 10px rgba(0,0,0,0.2))',
                 }}
                 className={`absolute top-1/2 left-1/2 flex aspect-[689/453] max-h-[390px] ${isCenter ? 'w-[95%]' : 'w-[75%]'} sm:w-[52%] lg:w-[44%] max-w-[597px] shrink items-center justify-center transition-[transform,opacity] duration-500 ease-out`}
               >
@@ -261,25 +262,26 @@ function Projects() {
           a largura de info+detalhes soma 100% e badges (w-full) quebra pra
           a 2ª linha, voltando à ordem original (badges por último).
         */}
-        <div className="-mt-6 lg:-mt-8 flex w-full flex-wrap items-center justify-center gap-4 sm:w-[80%] lg:w-[47.99%] lg:aspect-[691/222] lg:gap-0 max-w-[691px] border border-dashed border-primary/30 text-primary/50">
+        <div className="-mt-6 lg:-mt-8 flex w-full flex-wrap items-center justify-center gap-4 sm:w-[80%] lg:w-[47.99%] lg:aspect-[691/222] lg:gap-0 max-w-[691px] border border-text text-primary/50">
             {/* Placeholder interno — medida de referência 426x159 (61.65% x 71.62% do pai). Informações do projeto em destaque (título + descrição). */}
-            <div className="order-1 flex w-full sm:w-[61.65%] lg:h-[71.62%] lg:max-w-[426px] flex-col items-start justify-center gap-2 overflow-hidden border border-dashed border-primary/30 p-3 text-primary/50">
-              <div className="flex items-center gap-2">
+            <div className="order-1 flex w-full sm:w-[61.65%] lg:h-[71.62%] lg:max-w-[426px] flex-col items-start justify-center gap-2 overflow-hidden border border-dashed border-primary/30 p-3 font-kalam text-primary/50">
+              <div className="flex flex-wrap items-center gap-2">
                 <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-text/30 bg-projects-light/10 text-xs font-bold text-text">
                   {project.logo}
                 </span>
                 <h3 className="text-lg font-extrabold text-text">{project.title}</h3>
+                <ProjectCategoryTag category={project.category} className="ml-2" />
               </div>
               <p className="line-clamp-2 text-sm text-text-muted">{projectDescription}</p>
             </div>
 
             {/* Placeholder interno — medida de referência 265x159 (38.35% x 71.62% do pai), do lado direito do anterior. Botão "Ver detalhes" em cima, links GitHub/Ver projeto embaixo. No mobile fica depois do container das stacks (order-3); a partir do sm volta pra ordem natural (order-2), lado a lado com as informações. */}
-            <div className="order-3 sm:order-2 flex w-full sm:w-[38.35%] lg:h-[71.62%] lg:max-w-[265px] flex-row sm:flex-col items-center justify-start sm:justify-center gap-6 sm:gap-2 overflow-hidden border border-dashed border-primary/30 p-3 sm:p-2 text-primary/50">
+            <div className="order-3 sm:order-2 flex w-full sm:w-[38.35%] lg:h-[71.62%] lg:max-w-[265px] flex-row sm:flex-col items-center justify-start sm:justify-center gap-6 sm:gap-2 overflow-hidden border border-dashed border-primary/30 p-3 sm:p-2 font-kalam text-primary/50">
               <PaperButton
                 type="button"
                 onClick={openModal}
                 showBackground={false}
-                className="rounded-button bg-text whitespace-nowrap"
+                className="w-[218px] rounded-button bg-text whitespace-nowrap"
                 style={{ color: 'var(--color-primary)' }}
               >
                 {t.projects.viewDetails}
@@ -292,7 +294,7 @@ function Projects() {
                     href={project.githubHref}
                     target="_blank"
                     rel="noreferrer"
-                    className="flex items-center gap-1.5 font-medium text-text-muted transition-colors hover:text-text"
+                    className="flex items-center gap-1.5 rounded-button border border-text/20 px-3 py-1.5 font-medium text-text-muted transition-colors hover:text-text"
                   >
                     <SiGithub className="h-4 w-4" aria-hidden="true" />
                     {t.projects.github}
@@ -300,8 +302,7 @@ function Projects() {
                 ) : (
                   <span
                     aria-disabled="true"
-                    title={t.projects.linkUnavailable}
-                    className="flex cursor-not-allowed items-center gap-1.5 font-medium text-text-muted/50"
+                    className="flex items-center gap-1.5 rounded-button border border-text/20 px-3 py-1.5 font-medium text-text-muted"
                   >
                     <SiGithub className="h-4 w-4" aria-hidden="true" />
                     {t.projects.github}
@@ -313,16 +314,17 @@ function Projects() {
                     href={project.demoHref}
                     target="_blank"
                     rel="noreferrer"
-                    className="font-medium whitespace-nowrap text-text-muted transition-colors hover:text-text"
+                    className="flex items-center gap-1.5 rounded-button border border-text/20 px-3 py-1.5 font-medium whitespace-nowrap text-text-muted transition-colors hover:text-text"
                   >
+                    <ExternalLinkIcon className="h-4 w-4" aria-hidden="true" />
                     {t.projects.viewProject}
                   </a>
                 ) : (
                   <span
                     aria-disabled="true"
-                    title={t.projects.linkUnavailable}
-                    className="cursor-not-allowed font-medium whitespace-nowrap text-text-muted/50"
+                    className="flex items-center gap-1.5 rounded-button border border-text/20 px-3 py-1.5 font-medium whitespace-nowrap text-text-muted"
                   >
+                    <ExternalLinkIcon className="h-4 w-4" aria-hidden="true" />
                     {t.projects.viewProject}
                   </span>
                 )}

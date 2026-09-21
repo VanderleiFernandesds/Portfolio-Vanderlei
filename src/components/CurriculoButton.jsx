@@ -27,7 +27,7 @@ function CurriculoButton({ as: Tag = 'button', className = '', children, ...prop
         alt=""
         aria-hidden="true"
         draggable={false}
-        className="pointer-events-none absolute inset-0 z-0 h-full w-full rotate-180 object-contain select-none drop-shadow-lg md:rotate-0"
+        className="pointer-events-none absolute inset-0 z-0 h-full w-full -scale-x-100 object-contain select-none drop-shadow-lg md:scale-x-100"
       />
       <span
         aria-hidden="true"

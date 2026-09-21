@@ -1,3 +1,11 @@
 <svg width="689" height="453" viewBox="0 0 689 453" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M0 453V29.081C0 24.3767 4.00412 20.3139 9.55821 19.3517L10.3332 11.9745C11.1082 5.23885 17.9539 0 26.0913 0H221.906C230.043 0 237.018 4.81119 238.439 11.4399L239.085 14.4336C240.247 19.9932 246.059 24.0559 252.905 24.0559H661.196C669.979 24.0559 677.083 29.7224 677.471 36.9927V38.3826C677.729 44.156 682.121 49.181 688.45 51.1055V453H0Z" fill="#FFB53F"/>
+<defs>
+  <filter id="kraft-texture-back" x="-5%" y="-5%" width="110%" height="110%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7" stitchTiles="stitch" result="noise"/>
+    <feColorMatrix in="noise" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.05 0" result="fadedNoise"/>
+    <feComposite in="fadedNoise" in2="SourceGraphic" operator="in" result="clippedNoise"/>
+    <feBlend in="SourceGraphic" in2="clippedNoise" mode="multiply"/>
+  </filter>
+</defs>
+<path d="M0 453V29.081C0 24.3767 4.00412 20.3139 9.55821 19.3517L10.3332 11.9745C11.1082 5.23885 17.9539 0 26.0913 0H221.906C230.043 0 237.018 4.81119 238.439 11.4399L239.085 14.4336C240.247 19.9932 246.059 24.0559 252.905 24.0559H661.196C669.979 24.0559 677.083 29.7224 677.471 36.9927V38.3826C677.729 44.156 682.121 49.181 688.45 51.1055V453H0Z" fill="#B98E55" stroke="#9C7447" stroke-width="1" filter="url(#kraft-texture-back)"/>
 </svg>

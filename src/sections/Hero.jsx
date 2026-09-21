@@ -60,7 +60,7 @@ function Hero() {
   }, [])
 
   return (
-    <section id="hero" className="bg-background pt-12 pb-12 mt-0 sm:mt-5">
+    <section id="hero" className="bg-grid-squares pt-12 pb-12 mt-0 sm:mt-5">
       <Container className="flex flex-col gap-4 !px-3 lg:!px-desktop">
         {/* Container principal: engloba faixa superior, conteúdo, respiro e faixa inferior */}
         <div className="rounded-card flex flex-col  bg-primary">

@@ -26,7 +26,7 @@ export const translations = {
       greeting: 'Olá, eu sou',
       role: 'Desenvolvedor Full-Stack',
       description:
-        'Crio aplicações web modernas, responsivas e performáticas utilizando React, TypeScript, Node.js e bancos de dados, sempre com foco em experiência do usuário e código limpo.',
+        'Desenvolvedor Full-Stack com foco em front-end, UI/UX e na criação de experiências digitais que unem performance, clareza e atenção aos detalhes.',
       ctaProjects: 'Ver projetos',
       ctaContact: 'Entrar em contato',
       socialLabels: {
@@ -47,21 +47,21 @@ export const translations = {
       description: 'Construindo aplicações com propósito e qualidade.',
       whoAmI: {
         title: 'Quem sou eu',
-        p1: 'Sou Vanderlei Fernandes, desenvolvedor Full Stack que gosta de transformar ideias em experiências digitais funcionais, intuitivas e bem construídas.',
-        p2: 'Tenho um interesse especial pela união entre desenvolvimento e design. Para mim, uma boa aplicação não precisa apenas funcionar: ela também deve ser fácil de usar, responsiva e agradável visualmente.',
-        p3: 'Gosto de entender como cada parte de um projeto se conecta, desde a interface que o usuário vê até a lógica, APIs e dados que fazem tudo funcionar por trás.',
+        p1: 'Sou Vanderlei Fernandes, desenvolvedor Full Stack com uma afinidade maior por front-end e UI/UX.',
+        p2: 'Gosto de transformar ideias em interfaces claras, intuitivas e bem construídas, pensando não só no visual, mas também em como a experiência funciona para quem vai usar.',
+        p3: 'Ao mesmo tempo, gosto de entender o que acontece por trás da tela, trabalhando com lógica, APIs, integrações e banco de dados. Para mim, desenvolver é juntar essas partes e transformar uma ideia em algo que realmente funciona.',
       },
       howIWork: {
         title: 'Como eu trabalho',
-        p1: 'Antes de começar a escrever código, gosto de entender o problema, organizar as ideias e pensar na melhor experiência para quem vai utilizar o produto.',
-        p2: 'Durante o desenvolvimento, procuro trabalhar com código limpo, organização e boas práticas, construindo cada funcionalidade de forma clara e pensando também em manutenção e evolução.',
-        p3: 'Gosto de testar, revisar e melhorar o que desenvolvo. Para mim, um projeto não termina quando simplesmente funciona — sempre existe espaço para aprimorar usabilidade, desempenho e detalhes da interface.',
+        p1: 'Antes de começar a escrever código, gosto de entender o que precisa ser resolvido e organizar as ideias antes de sair construindo.',
+        p2: 'Durante o desenvolvimento, procuro manter o projeto organizado e o código fácil de entender. Também vou testando e revisando ao longo do processo, porque muitas vezes uma solução melhora bastante quando você começa a usar e observar os detalhes.',
+        p3: 'E dificilmente considero algo pronto só porque está funcionando. Normalmente volto para ajustar uma interação, melhorar o visual, simplificar alguma parte ou deixar o código mais organizado.',
       },
       evolving: {
         title: 'Em constante evolução',
-        p1: 'Uma das coisas que mais gosto em tecnologia é saber que sempre existe algo novo para aprender.',
-        p2: 'Estou constantemente aprofundando meus conhecimentos em Front-End, Back-End, APIs, bancos de dados, arquitetura e Inteligência Artificial, enquanto coloco o aprendizado em prática através de projetos.',
-        p3: 'Meu objetivo é continuar evoluindo como desenvolvedor Full Stack, enfrentar desafios cada vez maiores e participar de projetos reais onde eu possa aprender, colaborar e construir soluções que gerem valor.',
+        p1: 'Quanto mais estudo e desenvolvo projetos, mais percebo o quanto ainda existe para aprender, e essa é uma das coisas que mais me mantém interessado na área.',
+        p2: 'Hoje venho aprofundando meus conhecimentos em Front-End, Back-End, APIs, bancos de dados, arquitetura e Inteligência Artificial, tentando sempre colocar o que aprendo em prática nos meus próprios projetos.',
+        p3: 'Quero continuar evoluindo como desenvolvedor Full Stack, ganhar experiência em projetos reais, aprender com outras pessoas da área e participar da construção de produtos que realmente sejam usados.',
       },
     },
     skills: {
@@ -227,7 +227,7 @@ export const translations = {
       greeting: "Hi, I'm",
       role: 'Full-Stack Developer',
       description:
-        'I build modern, responsive and performant web applications using React, TypeScript, Node.js and databases, always focused on user experience and clean code.',
+        'Full-Stack Developer focused on front-end, UI/UX, and building digital experiences that bring together performance, clarity, and attention to detail.',
       ctaProjects: 'View projects',
       ctaContact: 'Get in touch',
       socialLabels: {
