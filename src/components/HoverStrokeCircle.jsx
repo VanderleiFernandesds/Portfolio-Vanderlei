@@ -1,12 +1,10 @@
 import { useState } from 'react'
 
-// Gerado pelo Hover Stroke Lab — React + Tailwind, textura "pincel", formato
-// "circulo". Os valores do traço (dasharray, cor, largura, duração por
-// segmento) ficam inline porque são calculados dinamicamente — isso é
-// normal mesmo em projetos 100% Tailwind, já que são números únicos por
-// elemento. Extraído em componente próprio pra reuso (SocialLink.jsx,
-// Contact.jsx) — cor fixa (STROKE_COLOR), igual ao rabisco estático
-// HoverStroke.svg usado no resto do site.
+// Valores do traço (dasharray, cor, largura, duração por segmento) ficam
+// inline por serem calculados dinamicamente — números únicos por elemento,
+// não expressáveis como classes Tailwind estáticas. Extraído em componente
+// próprio para reuso (SocialLink.jsx, Contact.jsx); cor fixa (STROKE_COLOR)
+// igual ao rabisco estático HoverStroke.svg usado no resto do site.
 const STROKE_COLOR = '#E50000'
 
 const EXTRAS = [

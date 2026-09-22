@@ -3,18 +3,10 @@ import Container from '../components/Container'
 import PaperButton from '../components/PaperButton'
 import SocialLink from '../components/SocialLink'
 import { useLanguage } from '../i18n/LanguageContext'
-import {
-  MailIcon,
-  CodeIcon,
-  LayersIcon,
-  TargetIcon,
-  RefreshIcon,
-  ArrowRightIcon,
-} from '../components/icons'
+import { MailIcon, ArrowRightIcon } from '../components/icons'
 import { SiGithub } from 'react-icons/si'
 import { FaLinkedin } from 'react-icons/fa'
 import { socials } from '../data/socials'
-import { stats } from '../data/stats'
 import { stackIcons } from '../data/stackIcons'
 import profilePhoto from '../assets/img-portfolio-vanderlei.webp'
 import openToWorkStamp from '../assets/open-to-work-stamp.svg'
@@ -26,30 +18,20 @@ import projetosIcon from '../assets/icons/portfolio/icone-projetos-codigo.svg'
 import alvoIcon from '../assets/icons/ui/alvo.svg'
 import evolucaoIcon from '../assets/icons/portfolio/icone-evolucao-grafico.svg'
 
-// Quantos ícones ficam visíveis ao mesmo tempo na fileira de stacks do Hero.
 const STACK_ICON_SLOTS = 5
-// Intervalo do rodízio automático dos ícones de stack (ver src/data/stackIcons.js).
 const STACK_ICON_INTERVAL_MS = 5000
 
-// Mesmos ícones de marca utilizados em Contact (design/tokens.md — consistência visual).
+// Mesmos ícones de marca utilizados em Contact, para consistência visual.
 const SOCIAL_ICONS = {
   github: <SiGithub className="h-10 w-10" />,
   linkedin: <FaLinkedin className="h-10 w-10" />,
   email: <MailIcon className="h-10 w-10" />,
 }
 
-const STAT_ICONS = {
-  layers: <LayersIcon />,
-  code: <CodeIcon />,
-  target: <TargetIcon />,
-  refresh: <RefreshIcon />,
-}
-
 function Hero() {
   const { t } = useLanguage()
-  // Rodízio automático dos ícones de stack: a cada intervalo, avança um índice
-  // e cada um dos slots visíveis mostra um ícone diferente da lista (com offset),
-  // repetindo em loop até passar pelos 16 ícones de src/data/stackIcons.js.
+  // Rodízio automático: a cada intervalo, avança um índice e cada slot
+  // visível mostra um ícone diferente da lista (com offset), em loop.
   const [stackIconStep, setStackIconStep] = useState(0)
 
   useEffect(() => {
@@ -62,22 +44,22 @@ function Hero() {
   return (
     <section id="hero" className="bg-grid-squares pt-12 pb-12 mt-0 sm:mt-5 lg:pb-25">
       <Container className="flex flex-col gap-4 !px-3 lg:!px-desktop">
-        {/* Container principal: engloba faixa superior, conteúdo, respiro e faixa inferior */}
         <div className="rounded-card flex flex-col  bg-primary">
-          {/* Faixa superior — mesma textura da faixa inferior, invertida (de cabeça para baixo) */}
+          {/* Mesma textura da faixa inferior, invertida. */}
           <div className=" h-5 sm:h-17.5 shrink-0 overflow-hidden">
             <img
               src={tornPaperBottom}
               alt=""
               aria-hidden="true"
               hidden
+              width="1461"
+              height="104"
               className="block h-full w-full scale-105 rotate-180 object-cover"
             />
           </div>
 
-          {/* Conteúdo: saudação + descrição + ações | foto — sem card próprio */}
           <div className="grid grid-cols-1 gap-8 px-6 py-8 sm:p-8 lg:grid-cols-[1.1fr_1fr] lg:gap-8 lg:p-8">
-            {/* Saudação + nome — no mobile fica acima da foto; no desktop volta ao bloco de texto abaixo */}
+            {/* No mobile fica acima da foto; no desktop volta ao bloco de texto abaixo. */}
             <div className="order-1 lg:hidden">
               <p className="font-granesta text-lg leading-tight -mb-1 tracking-wide text-black">
                 {t.hero.greeting}
@@ -137,7 +119,7 @@ function Hero() {
                 ))}
               </div>
 
-              {/* Fileira de ícones das stacks (379.14x69) — SVGs preto-e-branco (src/assets/icons/stack-mono) */}
+              {/* Ícones de stack em preto-e-branco (src/assets/icons/stack-mono). */}
               <div className="relative flex h-17.25 w-[379.14px] max-w-full items-center justify-center gap-3 overflow-hidden  px-3 sm:gap-4 sm:px-4">
                 {/* Base preta, atrás de tudo — fica visível onde os ícones estão */}
                 <div
@@ -167,6 +149,8 @@ function Hero() {
                       key={`${slot}-${icon.name}`}
                       src={icon.src}
                       alt={icon.label}
+                      width="1254"
+                      height="1254"
                       className="animate-stack-icon relative z-20 h-9 w-9 sm:h-11 sm:w-11 lg:h-12 lg:w-12"
                     />
                   );
@@ -174,17 +158,21 @@ function Hero() {
               </div>
             </div>
 
-            {/* Foto de perfil — moldura com a foto real */}
             <div className="order-2 relative mx-auto flex w-full max-w-sm items-center rotate-12 justify-center lg:order-none lg:mx-0 lg:h-full lg:max-w-none">
               <img
                 src={profilePhoto}
                 alt="Vanderlei Fernandes"
+                width="577"
+                height="613"
+                fetchPriority="high"
                 className="max-h-96 w-auto object-contain lg:h-[95%] lg:max-h-[95%]"
               />
               <img
                 src={openToWorkStamp}
                 alt=""
                 aria-hidden="true"
+                width="175"
+                height="178"
                 className="pointer-events-none -rotate-12 absolute top-6 right-6 h-20 w-20 select-none lg:top-10 lg:right-10 lg:h-38 lg:w-38"
               />
             </div>
@@ -193,12 +181,13 @@ function Hero() {
           {/* Respiro — apenas espaço restante dentro do container, sem conteúdo */}
           <div className="grow" />
 
-          {/* Faixa inferior — elemento estrutural (papel rasgado) */}
           <div className="shrink-0 overflow-hidden">
             <img
               src={tornPaperBottom}
               alt=""
               aria-hidden="true"
+              width="1461"
+              height="104"
               className="block h-auto w-[calc(100%+5px)] max-w-none  scale-105"
             />
           </div>
@@ -210,6 +199,8 @@ function Hero() {
             src={folhaCadernoHorizontal}
             alt=""
             aria-hidden="true"
+            width="1237"
+            height="197"
             className="pointer-events-none absolute inset-0 -z-10 h-full w-full object-cover shadow-lg select-none"
           />
           <div className="flex items-center justify-start gap-2 sm:justify-center sm:gap-3">
@@ -218,6 +209,8 @@ function Hero() {
                 src={propositoIcon}
                 alt=""
                 aria-hidden="true"
+                width="128"
+                height="128"
                 className="h-7 w-9 sm:h-8 sm:w-10 lg:h-24 lg:w-28"
               />
             </div>
@@ -234,6 +227,8 @@ function Hero() {
                 src={projetosIcon}
                 alt=""
                 aria-hidden="true"
+                width="128"
+                height="128"
                 className="h-7 w-9 sm:h-8 sm:w-10 lg:h-24 lg:w-28"
               />
             </div>
@@ -250,6 +245,8 @@ function Hero() {
                 src={alvoIcon}
                 alt=""
                 aria-hidden="true"
+                width="80"
+                height="64"
                 className="h-7 w-9 sm:h-8 sm:w-10 lg:h-24 lg:w-28"
               />
             </div>
@@ -266,6 +263,8 @@ function Hero() {
                 src={evolucaoIcon}
                 alt=""
                 aria-hidden="true"
+                width="128"
+                height="128"
                 className="h-7 w-9 sm:h-8 sm:w-10 lg:h-24 lg:w-28"
               />
             </div>

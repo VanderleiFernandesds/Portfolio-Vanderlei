@@ -1,14 +1,12 @@
-// Textos traduzíveis do site (PT/EN), centralizados aqui — ver
-// src/i18n/LanguageContext.jsx para o Provider que expõe `t` (o objeto
-// deste idioma atual) via useLanguage().
+// Textos traduzíveis do site (PT/EN). Ver src/i18n/LanguageContext.jsx
+// para o Provider que expõe `t` (o objeto do idioma atual) via useLanguage().
 //
-// Nomes de tecnologias (React, TypeScript, Node.js, PostgreSQL, Tailwind
-// CSS, etc.) e nomes próprios de projetos (TaskFlow, DevHub, FinanceX...)
-// NÃO entram aqui — continuam como strings simples em src/data/*.js.
+// Nomes de tecnologias e nomes próprios de projetos não entram aqui —
+// continuam como strings simples em src/data/*.js.
 //
 // Textos por projeto (description/challenges/learnings) ficam em
-// `projects.items[id]`, com fallback para o texto em português já
-// existente em src/data/projects.js quando a chave não existir.
+// `projects.items[id]`, com fallback para o texto em português de
+// src/data/projects.js quando a chave não existir.
 export const translations = {
   pt: {
     nav: {

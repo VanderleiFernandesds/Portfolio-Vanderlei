@@ -4,22 +4,19 @@ import financeXImg from '../assets/projects/financex.webp'
 import devHubImg from '../assets/projects/devhub.webp'
 import odontoBramImg from '../assets/projects/odonto-bram.webp'
 
-// Projetos em destaque da seção Projects (design/references/projetos.png).
-// 4 projetos fictícios — apenas para demonstrar a seção com o carrossel em
-// pilha completo (nenhum deles existe de verdade).
+// Projetos em destaque da seção Projects. 5 projetos fictícios, usados
+// apenas para demonstrar a seção com o carrossel completo.
 //
 // `logo`: iniciais usadas no selo da coluna esquerda (não há asset de logo).
 // `image`: screenshot da landing page do projeto (src/assets/projects/),
 // exibida na coluna de fotos do ProjectModal.
-// `preview`: identifica o mockup ilustrado renderizado em <ProjectMockup>
-// (src/components/ProjectMockup.jsx) — construído só com elementos/tokens
-// do projeto, sem imagens ou capturas de tela reais.
+// `preview`: identificador reservado para uma futura ilustração de mockup;
+// não é lido em nenhum componente hoje.
 // `githubHref` / `demoHref`: `null` enquanto os links reais não forem
 // definidos — a seção trata esse estado como "link ainda não disponível",
 // sem apontar para URLs falsas.
-// `challenges` / `learnings`: textos fictícios (mesmo caráter ilustrativo
-// dos projetos) exibidos nas seções "Desafios" e "Aprendizado" do
-// ProjectModal (src/components/ProjectModal.jsx).
+// `challenges` / `learnings`: textos fictícios exibidos nas seções
+// "Desafios" e "Aprendizado" do ProjectModal.
 export const projects = [
   {
     id: 1,

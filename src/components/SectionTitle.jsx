@@ -18,7 +18,8 @@ function SectionTitle({
     <div className={`flex flex-col gap-3 ${alignment} ${className}`.trim()}>
       {eyebrow && (
         <span
-          className="font-kalam text-sm font-semibold tracking-widest text-black uppercase"
+          data-nav-target
+          className="scroll-mt-28 font-kalam text-sm font-semibold tracking-widest text-black uppercase"
           style={{ backgroundColor: '#DBEC00' }}
         >
           {eyebrow}

@@ -15,8 +15,7 @@ import {
   CloseIcon,
 } from './icons'
 
-// Links de navegação (ver design/references/hero.png). Apontam para os ids
-// das seções. `labelKey` referencia src/i18n/translations.js (t.nav).
+// Apontam para os ids das seções. `labelKey` referencia src/i18n/translations.js (t.nav).
 const NAV_LINKS = [
   { labelKey: 'about', href: '#sobre', icon: UserIcon },
   { labelKey: 'skills', href: '#habilidades', icon: ZapIcon },
@@ -30,10 +29,7 @@ const RESUME_HREF = '#'
 /**
  * Navbar
  * Pílula flutuante com vidro fosco (glassmorphism), link ativo destacado
- * via scroll spy e menu mobile que expande com transição — inspirado em
- * https://pro.reactbits.dev/docs/blocks/navigation/navigation-12 (só a
- * descrição pública do componente foi usada como referência, sem acesso ao
- * código-fonte, que é pago). Usa só os tokens já existentes do projeto.
+ * via scroll spy e menu mobile que expande com transição.
  */
 function Navbar() {
   const { t } = useLanguage()
@@ -49,6 +45,17 @@ function Navbar() {
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  // Ao navegar, para no rótulo (eyebrow) da seção em vez do topo dela —
+  // procura um elemento [data-nav-target] dentro da seção (ver
+  // SectionTitle.jsx) e usa a própria seção como fallback se não achar.
+  const handleNavClick = (event, href) => {
+    const section = document.getElementById(href.slice(1))
+    if (!section) return
+    event.preventDefault()
+    const target = section.querySelector('[data-nav-target]') ?? section
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
 
   // Scroll spy: observa as seções e marca como ativo o link cuja seção está
   // cruzando a faixa central da viewport.
@@ -75,11 +82,9 @@ function Navbar() {
   }, [])
 
   return (
-    // -mb-*: puxa o conteúdo seguinte (Hero) pra cima, fazendo a navbar
-    // sobrepor por completo a faixa superior de papel rasgado do Hero (ver
-    // Hero.jsx) — ela fica escondida atrás da navbar, que passa a parecer
-    // parte do próprio card do Hero, sem vão nem tira de papel visível
-    // acima dela. z-50 garante que a navbar continue totalmente visível.
+    // -mb-*: puxa o Hero para cima, fazendo a navbar sobrepor por completo a
+    // faixa de papel rasgado do topo dele (ver Hero.jsx) — ela fica
+    // escondida atrás da navbar, sem vão nem tira de papel visível acima.
     // Valores menores no mobile porque a faixa ali é proporcionalmente mais
     // fina (mesma arte, container mais estreito).
     <header className="sticky top-5 z-50  w-full px-3 sm:px-6 -mb-10 sm:-mb-16 lg:-mb-20">
@@ -89,12 +94,10 @@ function Navbar() {
             isScrolled ? 'border-text/10 shadow-xl shadow-text/30 md:shadow-lg md:shadow-primary/20' : 'border-transparent shadow-none'
           }`}
         >
-          {/* Logo */}
           <a href="#hero" className="shrink-0 -rotate-2 transition-opacity hover:opacity-80">
-            <img src={logo} alt="Vanderlei Fernandes" className="h-8 w-auto md:h-[38px]" />
+            <img src={logo} alt="Vanderlei Fernandes" width="189" height="67" className="h-8 w-auto md:h-[38px]" />
           </a>
 
-          {/* Links de navegação (desktop) */}
           <nav
             aria-label={t.nav.navAriaDesktop}
             className="relative hidden items-center gap-1 md:flex"
@@ -103,15 +106,14 @@ function Navbar() {
               <a
                 key={href}
                 href={href}
+                onClick={(event) => handleNavClick(event, href)}
                 className={`group relative z-10 flex items-center gap-2 rounded-full px-4 py-2 text-lg text-text transition-colors`}
               >
                 <Icon className="h-4 w-4" aria-hidden="true" />
                 {t.nav[labelKey]}
 
-                {/* Rabisco de marca-texto (HoverStroke.svg, ver
-                    PaperButton/CurriculoButton) revelado sob o link no
-                    hover/foco via clip-path (classe .hover-stroke-wipe em
-                    src/index.css), sem alterar o layout. */}
+                {/* Sublinhado revelado no hover/foco via clip-path
+                    (.hover-stroke-wipe em src/index.css), sem alterar o layout. */}
                 <span
                   aria-hidden="true"
                   className="hover-stroke-wipe pointer-events-none absolute inset-x-3 -bottom-1 h-2.5"
@@ -120,6 +122,8 @@ function Navbar() {
                     src={hoverStroke}
                     alt=""
                     draggable={false}
+                    width="450"
+                    height="50"
                     className="h-full w-full object-contain select-none"
                   />
                 </span>
@@ -127,7 +131,6 @@ function Navbar() {
             ))}
           </nav>
 
-          {/* Ações à direita: CTA (desktop) + botão do menu (mobile) */}
           <div className="flex items-center gap-2 ">
             <div className="hidden items-center gap-4 md:flex">
               <LanguageSwitcher />
@@ -159,8 +162,7 @@ function Navbar() {
         </div>
       </Container>
 
-      {/* Overlay — escurece o resto da página enquanto o menu mobile está aberto;
-          clicar nele fecha o menu, igual ao clique fora. */}
+      {/* Escurece o restante da página com o menu mobile aberto; clicar fecha o menu. */}
       <div
         aria-hidden="true"
         onClick={() => setIsOpen(false)}
@@ -169,7 +171,7 @@ function Navbar() {
         }`}
       />
 
-      {/* Menu mobile — expande com transição (grid-template-rows 0fr -> 1fr) */}
+      {/* Expande via transição de grid-template-rows (0fr -> 1fr). */}
       <div
         className={`grid transition-[grid-template-rows] duration-300 ease-out md:hidden ${
           isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
@@ -186,7 +188,10 @@ function Navbar() {
                 <a
                   key={href}
                   href={href}
-                  onClick={() => setIsOpen(false)}
+                  onClick={(event) => {
+                    handleNavClick(event, href)
+                    setIsOpen(false)
+                  }}
                   className={`group relative flex items-center gap-3 px-5 py-4 text-lg transition-colors active:bg-text/10 active:text-text ${
                     activeHref === href ? "bg-text/10 text-text" : "text-text/80"
                   }`}
@@ -202,6 +207,8 @@ function Navbar() {
                       src={hoverStroke}
                       alt=""
                       draggable={false}
+                      width="450"
+                      height="50"
                       className="h-full w-full object-contain select-none"
                     />
                   </span>

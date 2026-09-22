@@ -7,7 +7,8 @@ import { contactChannels } from '../data/contactChannels'
 import { useLanguage } from '../i18n/LanguageContext'
 import folhaDeRedes from '../assets/folha-de-redes.png'
 import folhaDeAviso from '../assets/folha-de-aviso.svg'
-import parteSuperiorFolha from '../assets/parte-superior-da-folha.svg'
+import parteSuperiorFolhaAvif from '../assets/parte-superior-da-folha.avif'
+import parteSuperiorFolhaWebp from '../assets/parte-superior-da-folha.webp'
 
 // Ordem dos 4 quadrados: LinkedIn e WhatsApp em cima, e-mail e GitHub embaixo.
 const SQUARE_CHANNELS = ['linkedin', 'whatsapp', 'email', 'github']
@@ -28,7 +29,7 @@ function ChannelCard({ href, imageSrc, Icon, title }) {
       onBlur={() => setHover(false)}
       className="group relative aspect-4/5 overflow-hidden rounded-card shadow-lg lg:aspect-auto lg:h-72 lg:w-61"
     >
-      <img src={imageSrc} alt="" className="h-full w-full object-cover" />
+      <img src={imageSrc} alt="" width="144" height="168" loading="lazy" className="h-full w-full object-cover" />
       <span className="absolute inset-0 flex flex-col items-center justify-center gap-2">
         <span className="relative flex flex-col items-center gap-3">
           <Icon className="h-9 w-9 text-text lg:h-16 lg:w-16" />
@@ -52,16 +53,20 @@ function Contact() {
   return (
     <Section id="contato" containerClassName="!px-3 lg:!px-desktop">
       <div className="flex w-full flex-col items-center justify-center gap-6 rounded-card bg-primary">
-        {/* Container extra topo */}
         <div className="h-8 w-full lg:h-22">
-          <img
-            src={parteSuperiorFolha}
-            alt=""
-            className="h-full w-full -translate-y-4 object-cover lg:-translate-y-11"
-          />
+          <picture>
+            <source srcSet={parteSuperiorFolhaAvif} type="image/avif" />
+            <img
+              src={parteSuperiorFolhaWebp}
+              alt=""
+              width="1440"
+              height="115"
+              loading="lazy"
+              className="h-full w-full -translate-y-4 object-cover lg:-translate-y-11"
+            />
+          </picture>
         </div>
 
-        {/* Container extra */}
         <div className="flex w-full items-center justify-center">
           <SectionTitle
             eyebrow={t.contact.eyebrow}
@@ -77,7 +82,6 @@ function Contact() {
         </div>
 
         <div className="flex w-full flex-col items-center justify-center gap-6 lg:h-170.5 lg:flex-row">
-          {/* Coluna esquerda */}
           <div className="grid w-full grid-cols-2 grid-rows-2 gap-6 p-6 lg:h-159 lg:w-170">
             {SQUARE_CHANNELS.map((channelName) => {
               const item = contactChannels.find(
@@ -98,11 +102,13 @@ function Contact() {
             })}
           </div>
 
-          {/* Coluna direita */}
           <div className="relative aspect-274/305 w-full max-w-68.5 -rotate-12 overflow-hidden rounded-card lg:h-76.25 lg:w-68.5">
             <img
               src={folhaDeAviso}
               alt=""
+              width="274"
+              height="305"
+              loading="lazy"
               className="h-full w-full object-cover"
             />
             <span className="absolute inset-0 flex flex-col items-center justify-center gap-2 p-4 text-center font-kalam text-black">

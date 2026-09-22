@@ -3,18 +3,10 @@ import hoverStroke from '../assets/hover-stroke.svg'
 
 /**
  * CurriculoButton
- * Botão "Currículo" da Navbar — uso EXCLUSIVO deste botão (ver
- * PaperButton.jsx para o mesmo padrão aplicado aos outros CTAs do site,
- * com outro SVG). Renderiza como <button> por padrão; passe `as="a"` +
- * `href` como no <Button />.
- *
- * Fundo em "svg com clip.svg" (retângulo preto com um clipe de papel
- * decorativo no canto superior direito) no lugar do background/borda
- * tradicional — mesmo padrão do <PaperButton />, com outro SVG.
- *
- * Sublinhado de marca-texto (HoverStroke.svg, gerado no Hover Stroke Lab —
- * mesma origem do traço de hover do Navbar, ver Navbar.jsx) revelado sob o
- * texto no hover/foco, sem alterar o layout.
+ * Botão "Currículo" da Navbar. Mesmo padrão visual do <PaperButton />
+ * (fundo SVG absoluto atrás do conteúdo, sublinhado revelado no
+ * hover/foco), com svg-com-clip.svg no lugar de botao.svg. Renderiza
+ * como <button> por padrão; passe `as="a"` + `href` para links.
  */
 function CurriculoButton({ as: Tag = 'button', className = '', children, ...props }) {
   return (
@@ -27,6 +19,8 @@ function CurriculoButton({ as: Tag = 'button', className = '', children, ...prop
         alt=""
         aria-hidden="true"
         draggable={false}
+        width="150"
+        height="56"
         className="pointer-events-none absolute inset-0 z-0 h-full w-full -scale-x-100 object-contain select-none drop-shadow-lg md:scale-x-100"
       />
       <span
@@ -37,6 +31,8 @@ function CurriculoButton({ as: Tag = 'button', className = '', children, ...prop
           src={hoverStroke}
           alt=""
           draggable={false}
+          width="450"
+          height="50"
           className="h-full w-full object-contain select-none"
         />
       </span>

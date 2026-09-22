@@ -2,16 +2,15 @@ import Section from './Section'
 import { CoffeeCupIcon } from './icons'
 import { useLanguage } from '../i18n/LanguageContext'
 
-// Furos de caderno — pequenos círculos "vazados" (cor igual ao fundo da
-// página) no lado esquerdo do footer, como se fosse uma folha destacada.
+// Furos de caderno: círculos com a cor do fundo da página, simulando
+// recortes vazados no lado esquerdo do footer.
 const HOLE_POSITIONS = ['18%', '38%', '58%', '78%']
 
 /**
  * Footer
- * Rodapé com aparência de folha de caderno/papel rasgado (scrapbook),
- * combinando com o restante do site. Não repete os links de contato
- * (já presentes na seção Contato) — apenas copyright, assinatura e um
- * post-it decorativo.
+ * Rodapé com aparência de folha de caderno/papel rasgado. Não repete os
+ * links de contato (já presentes na seção Contato) — apenas copyright,
+ * assinatura e um post-it decorativo.
  */
 function Footer() {
   const { t } = useLanguage()
@@ -23,7 +22,6 @@ function Footer() {
       className="relative w-full overflow-hidden pb-0!"
       containerClassName="relative"
     >
-      {/* Furos de caderno, lado esquerdo */}
       <div className="absolute inset-y-0 left-2 hidden w-3 sm:block" aria-hidden="true">
         {HOLE_POSITIONS.map((top) => (
           <span
@@ -34,12 +32,10 @@ function Footer() {
         ))}
       </div>
 
-      {/* Novo container interno — agrupa as 3 informações (copyright, frase, post-it). */}
       <div
         className="flex flex-col items-center gap-6 p-6 text-center sm:flex-row sm:items-center sm:justify-between sm:gap-4 sm:p-8 sm:text-left"
         style={{ backgroundColor: 'var(--color-modal-paper)' }}
       >
-        {/* Esquerda — copyright */}
         <div className="font-kalam flex flex-col gap-0.5 text-xs sm:text-sm">
           <p style={{ color: 'var(--color-modal-heading)' }}>
             © {year} · {t.footer.copyright}
@@ -49,7 +45,6 @@ function Footer() {
           </p>
         </div>
 
-        {/* Centro — frase + xícara */}
         <p
           className="font-kalam flex items-center gap-2 text-base sm:text-lg"
           style={{ color: 'var(--color-modal-heading)' }}
@@ -61,7 +56,6 @@ function Footer() {
           {t.footer.tagline}
         </p>
 
-        {/* Direita — post-it */}
         <div
           className="animate-postit-in relative shrink-0 rounded-sm px-4 py-3 text-sm shadow-[2px_3px_6px_rgba(0,0,0,0.25)] sm:px-5 sm:py-3.5 sm:text-base"
           style={{
@@ -70,7 +64,6 @@ function Footer() {
             '--postit-rotate': '-3deg',
           }}
         >
-          {/* Fita adesiva */}
           <span
             aria-hidden="true"
             className="absolute -top-2 left-1/2 h-3.5 w-10 -translate-x-1/2 -rotate-2 rounded-[1px] opacity-70 sm:h-4 sm:w-12"

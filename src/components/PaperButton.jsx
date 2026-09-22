@@ -4,22 +4,14 @@ import hoverStroke from '../assets/hover-stroke.svg'
 /**
  * PaperButton
  * Botão com fundo em textura de papel (botao.svg) no lugar do
- * background/borda tradicional do <Button /> — usado nos CTAs principais
- * (Ver projetos, Entrar em contato, Ver detalhes, Enviar mensagem).
+ * background/borda tradicional do <Button />. Usa object-fit:cover para
+ * preservar a proporção original do papel (recorta a sobra quando o
+ * botão não é exatamente 2151:510) em vez de esticar. Renderiza como
+ * <button> por padrão; passe `as="a"` + `href` para links, como no <Button />.
  *
- * O SVG fica em position:absolute/z-0, atrás do conteúdo (z-10); nunca é
- * esticado — usa object-fit:cover (preserva a proporção original do
- * papel, só recorta a sobra quando o botão não é exatamente 2151:510)
- * em vez de "fill". Renderiza como <button> por padrão; passe `as="a"` +
- * `href` para links, igual ao <Button />.
- *
- * Sublinhado de marca-texto (HoverStroke.svg, gerado no Hover Stroke Lab —
- * mesma origem do traço de hover do Navbar, ver Navbar.jsx) revelado sob o
- * texto no hover/foco, sem alterar o layout.
- *
- * `showBackground={false}` remove o SVG de papel (botao.svg) — usado quando
- * o botão fica sobre um fundo que já tem textura/cor própria (ex.: "Ver
- * detalhes" em Projects.jsx).
+ * `showBackground={false}` remove o SVG de papel — usado quando o botão
+ * fica sobre um fundo que já tem textura/cor própria (ex.: "Ver detalhes"
+ * em Projects.jsx).
  */
 function PaperButton({
   as: Tag = 'button',
@@ -39,6 +31,8 @@ function PaperButton({
           alt=""
           aria-hidden="true"
           draggable={false}
+          width="2151"
+          height="510"
           className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover select-none"
         />
       )}
@@ -50,6 +44,8 @@ function PaperButton({
           src={hoverStroke}
           alt=""
           draggable={false}
+          width="450"
+          height="50"
           className="h-full w-full object-contain select-none"
         />
       </span>

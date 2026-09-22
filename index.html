@@ -2,9 +2,42 @@
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vanderlei Fernandes — Portfólio</title>
+    <title>Vanderlei Fernandes | Desenvolvedor Full Stack</title>
+    <meta
+      name="description"
+      content="Portfólio de Vanderlei Fernandes, desenvolvedor Full Stack com foco em front-end, UI/UX e criação de experiências digitais."
+    />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#262626" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Vanderlei Fernandes | Desenvolvedor Full Stack" />
+    <meta
+      property="og:description"
+      content="Conheça meus projetos, habilidades e experiências em desenvolvimento web, front-end e UI/UX."
+    />
+    <meta property="og:locale" content="pt_BR" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Vanderlei Fernandes | Desenvolvedor Full Stack" />
+    <meta
+      name="twitter:description"
+      content="Conheça meus projetos, habilidades e experiências em desenvolvimento web, front-end e UI/UX."
+    />
+
+    <!-- Favicon: SVG moderno com fallback ICO -->
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+
+    <!-- Preload do candidato a LCP (foto de perfil da Hero) e da fonte
+         crítica do maior texto visível (Granesta). Caminhos fonte (/src/...)
+         são resolvidos e versionados pelo Vite no build, como o script
+         principal abaixo — não usar caminhos com hash manual. -->
+    <link rel="preload" as="image" href="/src/assets/img-portfolio-vanderlei.webp" fetchpriority="high" />
+    <link rel="preload" as="font" type="font/woff2" href="/src/assets/font/Granesta.woff2" crossorigin />
   </head>
   <body>
     <div id="root"></div>

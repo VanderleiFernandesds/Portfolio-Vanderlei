@@ -11,7 +11,7 @@ import { projects } from '../data/projects'
 import { stackIcons } from '../data/stackIcons'
 import { useLanguage } from '../i18n/LanguageContext'
 
-// Fallback (react-icons) pra tecnologias sem SVG em stackIcons.js
+// Fallback (react-icons) para tecnologias sem SVG em stackIcons.js
 // (src/assets/icons/stack-mono), como Chart.js e PostgreSQL.
 const FALLBACK_TECH_ICONS = {
   'chart.js': SiChartdotjs,
@@ -22,15 +22,11 @@ import pastaProjetosFrente from '../assets/pasta-projetos-frente.svg'
 
 /**
  * Projects
- * Painel escuro (`bg-primary`) igual ao padrão de About/Skills/Contact.
- *
- * Painel com as informações do projeto em destaque à esquerda, carrossel
- * de pastas (src/components/FolderCarousel.jsx — port literal de
- * design/Carrossel de Pastas/) à direita. Os dois ficam sincronizados: a
- * `order` (índice do projeto em primeiro plano) é controlada aqui e
- * passada para o carrossel, então clicar/arrastar/usar o teclado nele
- * também atualiza o painel, e as setas/paginação do painel também
- * navegam o carrossel.
+ * Painel com o projeto em destaque à esquerda e carrossel de pastas
+ * (src/components/FolderCarousel.jsx) à direita. Os dois ficam
+ * sincronizados: `order` (índice do projeto em primeiro plano) é
+ * controlada aqui e passada ao carrossel, então navegar por ele também
+ * atualiza o painel, e vice-versa.
  */
 function Projects() {
   const { t } = useLanguage()
@@ -38,9 +34,8 @@ function Projects() {
   const [order, setOrder] = useState(() => projects.map((_, index) => index))
   const [isModalOpen, setIsModalOpen] = useState(false)
   // Distâncias do coverflow (translateX/Z, rotateY) são calculadas em px
-  // fixos — precisam encolher no mobile, senão as pastas laterais saem
-  // muito para fora do container estreito. `isCompact` acompanha o
-  // breakpoint lg (1024px) via matchMedia.
+  // fixos e precisam encolher no mobile, senão as pastas laterais saem do
+  // container estreito. `isCompact` acompanha o breakpoint lg (1024px).
   const [isCompact, setIsCompact] = useState(
     () => typeof window !== 'undefined' && window.matchMedia('(max-width: 1023px)').matches,
   )
@@ -59,11 +54,10 @@ function Projects() {
   const openModal = () => setIsModalOpen(true)
   const closeModal = () => setIsModalOpen(false)
 
-  // Todas usam a forma funcional do setOrder e calculam o alvo a partir
-  // de `current` (o estado mais recente), nunca do `order` capturado no
-  // fechamento do render — senão cliques rápidos (antes do React
-  // re-renderizar) recalculam o alvo com um `order` desatualizado e o
-  // carrossel "pula" para o projeto errado.
+  // Usa sempre a forma funcional de setOrder, calculando o alvo a partir de
+  // `current` (o estado mais recente), nunca do `order` capturado no
+  // fechamento do render — cliques rápidos antes do React re-renderizar
+  // recalculariam o alvo com um `order` desatualizado.
   const goTo = (index) => {
     setOrder((current) => {
       if (index === current[0]) return current
@@ -80,12 +74,11 @@ function Projects() {
     })
   }
 
-  // Não reaproveita goTo aqui: goTo sempre joga o front antigo para o
-  // final da pilha, o que é o comportamento certo para "próximo"/clique
-  // direto, mas quebra o "voltar" (rotação precisa ser o inverso exato
-  // de goNext, com o front antigo voltando para a 2ª posição, não pro
-  // final — senão "voltar" duas vezes pula projetos em vez de andar um
-  // por um).
+  // Não reaproveita goTo: goTo sempre move o front antigo para o final da
+  // pilha (correto para "próximo"/clique direto), mas "voltar" precisa do
+  // inverso exato — o front antigo volta para a 2ª posição, não para o
+  // final, senão duas chamadas seguidas pulam projetos em vez de andar
+  // um por um.
   const goPrev = () => {
     setOrder((current) => {
       const last = current[current.length - 1]
@@ -96,13 +89,12 @@ function Projects() {
   return (
     <Section id="projetos" containerClassName="!px-3 lg:!px-desktop">
       {/*
-        Containers do painel (SectionTitle, carrossel de pastas, informações
-        do projeto em destaque, botões e navegação) excluídos — a seção fica
-        vazia até o novo conteúdo ser definido. Modal de detalhes mantido
-        (não some quando reativarem o botão "Ver detalhes").
+        Conteúdo do painel (título, carrossel, informações, botões e
+        navegação) desativado até a definição do novo conteúdo da seção.
+        O modal de detalhes permanece ativo.
       */}
 
-      {/* Placeholder — medida de referência 1440x908, responsivo (w-full, teto no valor de referência, aspect-ratio no lugar de h/w fixos em px). */}
+      {/* Aspect-ratio no lugar de altura/largura fixas mantém a proporção da referência de design em qualquer tela. */}
       <div className="relative mx-auto flex w-full max-w-[1440px] flex-col items-center justify-center gap-4 rounded-card bg-primary text-primary/50">
         <SectionTitle
           eyebrow={t.projects.eyebrow}
@@ -111,21 +103,17 @@ function Projects() {
         />
 
         {/*
-          Carrossel coverflow (ver https://examples.motion.dev/react/carousel-coverflow)
-          — todos os projetos ficam empilhados no mesmo eixo central, cada um
-          transformado (rotateY + translateX/Z + escala + opacidade) conforme a
-          distância `diff` até o projeto ativo (frontIndex): diff 0 fica de frente
-          e em tamanho real, |diff| 1/2 giram pra dentro (rotateY) e recuam
-          (translateZ negativo), diminuindo escala/opacidade a cada passo. Clicar
-          em qualquer card chama goTo(index) e a transição desliza suavemente
-          (CSS transition, sem lib nova) até ele virar o card central.
+          Carrossel coverflow: os projetos ficam empilhados no mesmo eixo
+          central, cada um transformado (rotateY + translateX/Z + escala +
+          opacidade) conforme a distância `diff` até o projeto ativo. Clicar
+          em qualquer card chama goTo(index); a transição desliza via CSS
+          transition até ele virar o card central.
         */}
         <div className="relative flex w-[94.24%] aspect-[5/4] sm:aspect-[3/2] lg:aspect-[1357/542] max-w-[1357px] items-center justify-center overflow-hidden text-primary/50 [perspective:1400px] transform-3d">
           {false && (
             <FolderCarousel order={order} projects={projects} onGoTo={goTo} onNext={goNext} onPrev={goPrev} />
           )}
 
-          {/* Setas prev/next — cada uma num canto do carrossel. */}
           <button
             type="button"
             onClick={goPrev}
@@ -146,10 +134,9 @@ function Projects() {
           </button>
 
           {projects.map((item, index) => {
-            // Distância com sinal mais curta até o card ativo (circular): ex. com
-            // 5 projetos, se frontIndex=0 e index=4, diff dá -1 (1 passo pra trás)
-            // em vez de +4 — assim os cards se distribuem pros dois lados do
-            // centro, não só pra um.
+            // Distância com sinal mais curta até o card ativo (circular):
+            // com 5 projetos, se frontIndex=0 e index=4, diff dá -1 em vez
+            // de +4 — os cards se distribuem para os dois lados do centro.
             let diff = index - frontIndex
             if (diff > total / 2) diff -= total
             if (diff < -total / 2) diff += total
@@ -174,42 +161,49 @@ function Projects() {
                   zIndex: 20 - abs,
                   opacity: visible ? opacity : 0,
                   pointerEvents: visible ? 'auto' : 'none',
+                  willChange: 'transform',
+                  // drop-shadow é caro de compositar. Com os 5 cards
+                  // animando transform ao mesmo tempo, mantê-lo só no
+                  // centro e nos vizinhos imediatos evita recalcular sombra
+                  // nos cards mais distantes, onde ela já é imperceptível.
+                  // brightness() sozinho é barato (ajuste de cor, sem
+                  // rasterização) e mantém o escurecimento dos cards fora
+                  // de foco.
                   filter: isCenter
                     ? isCompact
                       ? 'drop-shadow(0 6px 10px rgba(0,0,0,0.3))'
                       : 'drop-shadow(0 10px 18px rgba(0,0,0,0.45))'
-                    : isCompact
-                      ? 'brightness(0.92) drop-shadow(0 3px 6px rgba(0,0,0,0.15))'
-                      : 'brightness(0.92) drop-shadow(0 6px 10px rgba(0,0,0,0.2))',
+                    : abs === 1
+                      ? isCompact
+                        ? 'brightness(0.92) drop-shadow(0 3px 6px rgba(0,0,0,0.15))'
+                        : 'brightness(0.92) drop-shadow(0 6px 10px rgba(0,0,0,0.2))'
+                      : 'brightness(0.92)',
                 }}
                 className={`absolute top-1/2 left-1/2 flex aspect-[689/453] max-h-[390px] ${isCenter ? 'w-[95%]' : 'w-[75%]'} sm:w-[52%] lg:w-[44%] max-w-[597px] shrink items-center justify-center transition-[transform,opacity] duration-500 ease-out`}
               >
                 {/*
-                  Mesma mecânica do FolderCarousel.jsx original (desativado):
-                  um wrapper com clip (-top-[35%], overflow-hidden, cantos
-                  arredondados só embaixo) que deixa a folha vazar/"sair" por
-                  cima da pasta enquanto os lados ficam sempre cortados no
-                  contorno dela — em vez de 1 SVG só, a pasta virou 2 camadas
-                  (pasta-projetos-fundo.svg atrás, pasta-projetos-frente.svg na
-                  frente) pra a screenshot entrar entre elas.
+                  A pasta é composta por 2 camadas (pasta-projetos-fundo.svg
+                  atrás, pasta-projetos-frente.svg na frente) em vez de um
+                  SVG só, para a screenshot entrar entre elas. O wrapper com
+                  clip-path corta os lados/base pela silhueta da pasta e
+                  deixa a folha vazar por cima, como se saísse de dentro.
                 */}
                 <div className="absolute inset-x-0 top-[-1%] bottom-0 rounded-b-2xl [clip-path:inset(-999px_-999px_0_-999px_round_0_0_1rem_1rem)]">
-                  
+
                     <img
                       src={pastaProjetosFundo}
                       alt=""
                       aria-hidden="true"
+                      width="689"
+                      height="453"
+                      loading="lazy"
                       className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-auto w-full select-none"
                     />
 
                     {/*
-                      Screenshot do projeto — só o card central mostra (os
-                      outros ficam só com a pasta). Usa a mesma animação
-                      --animate-sheet-out do FolderCarousel (src/index.css) —
-                      a "folha" sobe saindo de dentro da pasta e se acomoda no
-                      lugar, com o clip do wrapper acima cortando os lados/base
-                      no contorno da pasta. `key={project.id}` remonta o
-                      elemento a cada troca, reiniciando a animação.
+                      Só o card central mostra a screenshot real. `key={project.id}`
+                      remonta o elemento a cada troca para reiniciar a animação
+                      --animate-sheet-out (a folha sobe saindo de dentro da pasta).
                     */}
                     {isCenter && (
                       <div
@@ -219,6 +213,10 @@ function Projects() {
                         <img
                           src={project.image}
                           alt={project.title}
+                          width="1536"
+                          height="1024"
+                          loading="lazy"
+                          decoding="async"
                           className="h-full w-full object-contain object-top"
                         />
                       </div>
@@ -228,31 +226,31 @@ function Projects() {
                       src={pastaProjetosFrente}
                       alt=""
                       aria-hidden="true"
+                      width="689"
+                      height="453"
+                      loading="lazy"
                       className="pointer-events-none absolute inset-x-0 bottom-0 z-3 h-auto w-full select-none"
                     />
-                  
+
                 </div>
               </div>
             )
           })}
 
-          {/* Contador do projeto em destaque (ex.: 02 / 05), na base do container das pastas. */}
-          <p className="absolute bottom-2 left-1/2 z-40 -translate-x-1/2 font-kalam text-sm tracking-widest text-text/60 sm:bottom-6">
+          {/* text-text/65: opacidade mínima que mantém contraste AA sobre bg-primary. */}
+          <p className="absolute bottom-2 left-1/2 z-40 -translate-x-1/2 font-kalam text-sm tracking-widest text-text/65 sm:bottom-6">
             {String(frontIndex + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
           </p>
         </div>
 
-        {/* Placeholder interno — medida de referência 691x222 (47.99% x 24.45% do pai), embaixo do anterior. No mobile empilha em coluna (largura total, altura automática) em vez de manter a proporção fixa e as 2 colunas lado a lado do desktop. */}
         {/*
-          Container achatado (info + badges + detalhes como irmãos diretos,
-          num único flex-wrap) pra poder reordenar com `order` conforme o
-          breakpoint: no mobile o container das stacks (badges) fica entre
-          as informações e o botão "Ver detalhes" (order-2); a partir do sm
-          a largura de info+detalhes soma 100% e badges (w-full) quebra pra
-          a 2ª linha, voltando à ordem original (badges por último).
+          Info, badges e detalhes como irmãos diretos num único flex-wrap
+          para poder reordenar via `order` por breakpoint: no mobile as
+          stacks ficam entre informações e o botão "Ver detalhes"; a partir
+          do sm, info+detalhes somam 100% e as stacks quebram para a 2ª
+          linha, voltando à ordem original.
         */}
         <div className="-mt-6 lg:-mt-8 flex w-full flex-wrap items-center justify-center gap-4 sm:w-[80%] lg:w-[47.99%] lg:aspect-[691/222] lg:gap-0 max-w-[691px] border bg-background text-primary/50">
-            {/* Placeholder interno — medida de referência 426x159 (61.65% x 71.62% do pai). Informações do projeto em destaque (título + descrição). */}
             <div
               key={`info-${project.id}`}
               className="animate-fade-up-in order-1 flex w-full sm:w-[61.65%] lg:h-[71.62%] lg:max-w-[426px] flex-col items-start justify-center gap-2 overflow-hidden p-3 font-kalam text-primary/50"
@@ -267,7 +265,6 @@ function Projects() {
               <p className="line-clamp-2 text-sm text-primary/70">{projectDescription}</p>
             </div>
 
-            {/* Placeholder interno — medida de referência 265x159 (38.35% x 71.62% do pai), do lado direito do anterior. Botão "Ver detalhes" em cima, links GitHub/Ver projeto embaixo. No mobile fica depois do container das stacks (order-3); a partir do sm volta pra ordem natural (order-2), lado a lado com as informações. */}
             <div className="order-3 sm:order-2 flex w-full sm:w-[38.35%] lg:h-[71.62%] lg:max-w-[265px] flex-col items-center justify-start sm:justify-center gap-3 sm:gap-2 overflow-hidden p-3 sm:p-2 font-kalam text-primary/50">
               <PaperButton
                 type="button"
@@ -323,7 +320,6 @@ function Projects() {
               </div>
             </div>
 
-          {/* Placeholder interno — medida de referência 691x63 (100% x 28.38% do pai). Badges das tecnologias do projeto em destaque — order-2 no mobile (entre info e detalhes), order-3 a partir do sm (quebra pra 2ª linha, largura total). */}
           <div
             key={`stack-${project.id}`}
             className="animate-fade-up-in order-2 sm:order-3 flex h-auto lg:h-[28.38%] w-full lg:max-h-[63px] flex-wrap content-center items-center justify-start gap-2 overflow-hidden p-3 text-primary/50"
@@ -339,7 +335,7 @@ function Projects() {
                   className="flex flex-col items-center gap-1 rounded-md px-2.5 py-1.5"
                 >
                   {icon ? (
-                    <img src={icon.src} alt="" aria-hidden="true" className="h-6 w-6" />
+                    <img src={icon.src} alt="" aria-hidden="true" width="1254" height="1254" loading="lazy" className="h-6 w-6" />
                   ) : FallbackIcon ? (
                     <FallbackIcon className="h-6 w-6 text-primary/70" aria-hidden="true" />
                   ) : null}
