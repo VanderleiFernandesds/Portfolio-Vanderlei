@@ -17,14 +17,14 @@ import { socials } from '../data/socials'
 import { stats } from '../data/stats'
 import { stackIcons } from '../data/stackIcons'
 import profilePhoto from '../assets/img-portfolio-vanderlei.webp'
-import openToWorkStamp from '../assets/open_to_work_stamp.svg'
+import openToWorkStamp from '../assets/open-to-work-stamp.svg'
 import folhaCadernoHorizontal from '../assets/folha-caderno-horizontal.svg'
 import tornPaperBottom from '../assets/folha-rasgada-debaixo.svg'
 import molduraRecorteSvg from '../assets/moldura-recorte.svg'
-import propositoIcon from '../assets/icones-portfolio-svg/icone-proposito-lampada.svg'
-import projetosIcon from '../assets/icones-portfolio-svg/icone-projetos-codigo.svg'
-import alvoIcon from '../assets/icon/alvo(1) 1.svg'
-import evolucaoIcon from '../assets/icones-portfolio-svg/icone-evolucao-grafico.svg'
+import propositoIcon from '../assets/icons/portfolio/icone-proposito-lampada.svg'
+import projetosIcon from '../assets/icons/portfolio/icone-projetos-codigo.svg'
+import alvoIcon from '../assets/icons/ui/alvo.svg'
+import evolucaoIcon from '../assets/icons/portfolio/icone-evolucao-grafico.svg'
 
 // Quantos ícones ficam visíveis ao mesmo tempo na fileira de stacks do Hero.
 const STACK_ICON_SLOTS = 5
@@ -137,7 +137,7 @@ function Hero() {
                 ))}
               </div>
 
-              {/* Fileira de ícones das stacks (379.14x69) — SVGs preto-e-branco (src/assets/icones-preto-branco-svg) */}
+              {/* Fileira de ícones das stacks (379.14x69) — SVGs preto-e-branco (src/assets/icons/stack-mono) */}
               <div className="relative flex h-17.25 w-[379.14px] max-w-full items-center justify-center gap-3 overflow-hidden  px-3 sm:gap-4 sm:px-4">
                 {/* Base preta, atrás de tudo — fica visível onde os ícones estão */}
                 <div

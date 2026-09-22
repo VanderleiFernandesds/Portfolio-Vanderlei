@@ -12,7 +12,7 @@ import { stackIcons } from '../data/stackIcons'
 import { useLanguage } from '../i18n/LanguageContext'
 
 // Fallback (react-icons) pra tecnologias sem SVG em stackIcons.js
-// (src/assets/icones-preto-branco-svg), como Chart.js e PostgreSQL.
+// (src/assets/icons/stack-mono), como Chart.js e PostgreSQL.
 const FALLBACK_TECH_ICONS = {
   'chart.js': SiChartdotjs,
   postgresql: SiPostgresql,

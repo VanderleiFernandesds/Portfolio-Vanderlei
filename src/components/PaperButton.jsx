@@ -1,5 +1,5 @@
 import botaoSvg from '../assets/botao.svg'
-import hoverStroke from '../assets/HoverStroke.svg'
+import hoverStroke from '../assets/hover-stroke.svg'
 
 /**
  * PaperButton

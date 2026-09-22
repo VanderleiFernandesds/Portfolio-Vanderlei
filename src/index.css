@@ -424,7 +424,7 @@
 
   /*
     Sublinhado de marca-texto padrão do site (Navbar, PaperButton e
-    CurriculoButton) — src/assets/HoverStroke.svg. Como o SVG é uma forma
+    CurriculoButton) — src/assets/hover-stroke.svg. Como o SVG é uma forma
     preenchida (textura de marcador), não um único traço vetorial, a
     animação de "desenho" usa clip-path em vez de stroke-dashoffset: parte
     "não desenhado" (recortado a 100% da esquerda) e é revelado da

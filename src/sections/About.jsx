@@ -8,7 +8,7 @@ import molduraPolaroidAlfinete from '../assets/moldura-polaroid-alfinete.svg'
 import minhaFotoPerfil from '../assets/minha-foto-perfil.webp'
 import fotoComoEuTrabalho from '../assets/foto-como-eu-trabalho.webp'
 import ambienteDesenvolvimento from '../assets/ambiente-desenvolvimento.webp'
-import grampoDaPrancheta from '../assets/grampo da prancheta.svg'
+import grampoDaPrancheta from '../assets/grampo-da-prancheta.svg'
 
 /**
  * About

@@ -5,9 +5,9 @@ import HoverStrokeCircle from '../components/HoverStrokeCircle'
 import { MailIcon } from '../components/icons'
 import { contactChannels } from '../data/contactChannels'
 import { useLanguage } from '../i18n/LanguageContext'
-import folhaDeRedes from '../assets/folha de redes.png'
-import folhaDeAviso from '../assets/folha de aviso.svg'
-import parteSuperiorFolha from '../assets/parte superior da folha.svg'
+import folhaDeRedes from '../assets/folha-de-redes.png'
+import folhaDeAviso from '../assets/folha-de-aviso.svg'
+import parteSuperiorFolha from '../assets/parte-superior-da-folha.svg'
 
 // Ordem dos 4 quadrados: LinkedIn e WhatsApp em cima, e-mail e GitHub embaixo.
 const SQUARE_CHANNELS = ['linkedin', 'whatsapp', 'email', 'github']

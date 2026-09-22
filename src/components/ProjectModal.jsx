@@ -7,7 +7,7 @@ import { useLanguage } from '../i18n/LanguageContext'
 import ProjectCategoryTag from './ProjectCategoryTag'
 
 // Fallback (react-icons) pra tecnologias sem SVG em stackIcons.js
-// (src/assets/icones-preto-branco-svg), como Chart.js e PostgreSQL — mesmo
+// (src/assets/icons/stack-mono), como Chart.js e PostgreSQL — mesmo
 // mapa usado em src/sections/Projects.jsx.
 const FALLBACK_TECH_ICONS = {
   'chart.js': SiChartdotjs,

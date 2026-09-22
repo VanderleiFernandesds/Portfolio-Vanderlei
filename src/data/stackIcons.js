@@ -1,20 +1,20 @@
 // Ícones preto-e-branco das stacks, usados no rodízio automático do Hero
-// (src/assets/icones-preto-branco-svg). Cada item representa um SVG monocromático.
-import react from '../assets/icones-preto-branco-svg/react.svg'
-import typescript from '../assets/icones-preto-branco-svg/typescript.svg'
-import javascript from '../assets/icones-preto-branco-svg/javascript.svg'
-import html5 from '../assets/icones-preto-branco-svg/html5.svg'
-import css3 from '../assets/icones-preto-branco-svg/css3.svg'
-import tailwind from '../assets/icones-preto-branco-svg/tailwind.svg'
-import nodejs from '../assets/icones-preto-branco-svg/nodejs.svg'
-import express from '../assets/icones-preto-branco-svg/express.svg'
-import mysql from '../assets/icones-preto-branco-svg/mysql.svg'
-import git from '../assets/icones-preto-branco-svg/git.svg'
-import github from '../assets/icones-preto-branco-svg/github.svg'
-import vscode from '../assets/icones-preto-branco-svg/vscode.svg'
-import postman from '../assets/icones-preto-branco-svg/postman.svg'
-import figma from '../assets/icones-preto-branco-svg/figma.svg'
-import jwt from '../assets/icones-preto-branco-svg/jwt.svg'
+// (src/assets/icons/stack-mono). Cada item representa um SVG monocromático.
+import react from '../assets/icons/stack-mono/react.svg'
+import typescript from '../assets/icons/stack-mono/typescript.svg'
+import javascript from '../assets/icons/stack-mono/javascript.svg'
+import html5 from '../assets/icons/stack-mono/html5.svg'
+import css3 from '../assets/icons/stack-mono/css3.svg'
+import tailwind from '../assets/icons/stack-mono/tailwind.svg'
+import nodejs from '../assets/icons/stack-mono/nodejs.svg'
+import express from '../assets/icons/stack-mono/express.svg'
+import mysql from '../assets/icons/stack-mono/mysql.svg'
+import git from '../assets/icons/stack-mono/git.svg'
+import github from '../assets/icons/stack-mono/github.svg'
+import vscode from '../assets/icons/stack-mono/vscode.svg'
+import postman from '../assets/icons/stack-mono/postman.svg'
+import figma from '../assets/icons/stack-mono/figma.svg'
+import jwt from '../assets/icons/stack-mono/jwt.svg'
 
 export const stackIcons = [
   { name: 'react', label: 'React', src: react },

@@ -4,7 +4,7 @@ import CurriculoButton from './CurriculoButton'
 import LanguageSwitcher from './LanguageSwitcher'
 import { useLanguage } from '../i18n/LanguageContext'
 import logo from '../assets/logo.svg'
-import hoverStroke from '../assets/HoverStroke.svg'
+import hoverStroke from '../assets/hover-stroke.svg'
 import {
   UserIcon,
   ZapIcon,
