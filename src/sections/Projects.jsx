@@ -107,7 +107,6 @@ function Projects() {
         <SectionTitle
           eyebrow={t.projects.eyebrow}
           title={t.projects.title}
-          description={t.projects.description}
           titleClassName="text-text"
         />
 

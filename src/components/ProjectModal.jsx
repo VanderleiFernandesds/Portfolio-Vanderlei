@@ -4,6 +4,7 @@ import { SiChartdotjs, SiPostgresql, SiGithub } from 'react-icons/si'
 import { ExternalLinkIcon, ArrowRightIcon } from './icons'
 import { stackIcons } from '../data/stackIcons'
 import { useLanguage } from '../i18n/LanguageContext'
+import ProjectCategoryTag from './ProjectCategoryTag'
 
 // Fallback (react-icons) pra tecnologias sem SVG em stackIcons.js
 // (src/assets/icones-preto-branco-svg), como Chart.js e PostgreSQL — mesmo
@@ -399,9 +400,10 @@ function ProjectModal({ project, isOpen, onClose }) {
               >
                 <h2
                   id="project-modal-title"
-                  className="mb-2 text-3xl leading-tight font-extrabold text-modal-heading lg:text-4xl"
+                  className="mb-2 flex items-baseline gap-2 text-3xl leading-tight font-extrabold text-modal-heading lg:text-4xl"
                 >
                   {project.title}
+                  <ProjectCategoryTag category={project.category} />
                 </h2>
                 <p className="mt-3 text-base leading-relaxed text-modal-body">
                   {projectDescription}

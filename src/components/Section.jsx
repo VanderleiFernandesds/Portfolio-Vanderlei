@@ -11,6 +11,7 @@ function Section({
   as: Tag = 'section',
   container = true,
   containerClassName = '',
+  containerStyle,
   className = '',
   children,
   ...props
@@ -22,7 +23,9 @@ function Section({
       {...props}
     >
       {container ? (
-        <Container className={containerClassName}>{children}</Container>
+        <Container className={containerClassName} style={containerStyle}>
+          {children}
+        </Container>
       ) : (
         children
       )}

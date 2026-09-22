@@ -335,6 +335,23 @@
       opacity: 1;
     }
   }
+
+  /*
+    Uso exclusivo: post-it do Footer (src/components/Footer.jsx) — entra
+    com opacidade + leve rotação, como se alguém tivesse acabado de colar.
+  */
+  --animate-postit-in: postit-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+
+  @keyframes postit-in {
+    0% {
+      opacity: 0;
+      transform: rotate(0deg) scale(0.9);
+    }
+    100% {
+      opacity: 1;
+      transform: rotate(var(--postit-rotate, -3deg)) scale(1);
+    }
+  }
 }
 
 @layer base {
@@ -447,7 +464,8 @@
   .animate-photo-exit-left,
   .animate-photo-exit-right,
   .animate-photo-enter-right,
-  .animate-photo-enter-left {
+  .animate-photo-enter-left,
+  .animate-postit-in {
     animation-duration: 0.01ms !important;
   }
 }

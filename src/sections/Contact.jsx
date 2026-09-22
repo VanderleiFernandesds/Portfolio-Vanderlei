@@ -99,12 +99,16 @@ function Contact() {
           </div>
 
           {/* Coluna direita */}
-          <div className="aspect-274/305 w-full max-w-68.5 -rotate-12 overflow-hidden rounded-card lg:h-76.25 lg:w-68.5">
+          <div className="relative aspect-274/305 w-full max-w-68.5 -rotate-12 overflow-hidden rounded-card lg:h-76.25 lg:w-68.5">
             <img
               src={folhaDeAviso}
               alt=""
               className="h-full w-full object-cover"
             />
+            <span className="absolute inset-0 flex flex-col items-center justify-center gap-2 p-4 text-center font-kalam text-black">
+              <span className="text-2xl font-semibold">{t.contact.thanksTitle}</span>
+              <span className="text-lg">{t.contact.thanksMessage}</span>
+            </span>
           </div>
         </div>
       </div>

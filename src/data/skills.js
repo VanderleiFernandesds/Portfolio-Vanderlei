@@ -20,6 +20,7 @@ import {
   SiFigma,
   SiVercel,
   SiNetlify,
+  SiClaude,
 } from 'react-icons/si'
 import { DiVisualstudio } from 'react-icons/di'
 import { FaAws } from 'react-icons/fa'
@@ -76,6 +77,7 @@ export const skillCategories = [
       { name: 'VS Code', Icon: DiVisualstudio },
       { name: 'Postman', Icon: SiPostman },
       { name: 'Figma', Icon: SiFigma },
+      { name: 'Claude', Icon: SiClaude },
     ],
   },
   {

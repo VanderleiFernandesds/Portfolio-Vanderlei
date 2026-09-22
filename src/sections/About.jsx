@@ -28,7 +28,7 @@ function About() {
           src={grampoDaPrancheta}
           alt=""
           aria-hidden="true"
-          className="absolute inset-x-0 -bottom-6 h-full w-full object-contain"
+          className="absolute inset-x-0 -bottom-6 h-full w-full scale-75 object-contain sm:scale-100"
         />
       </div>
       {/* Placeholder — reserva o espaço do conteúdo antigo (3 blocos folha + foto) até definir o novo. */}
@@ -39,7 +39,6 @@ function About() {
         <SectionTitle
           eyebrow={t.about.eyebrow}
           title={t.about.title}
-          description={t.about.description}
         />
         {/*
           Placeholder interno — medida de referência 769.07x495.24, agora responsivo:

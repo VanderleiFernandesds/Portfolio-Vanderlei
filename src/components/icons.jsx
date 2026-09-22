@@ -285,3 +285,16 @@ export function RocketIcon({ className = 'h-5 w-5' }) {
     </svg>
   )
 }
+
+// Desenho "à mão" de xícara de café — traço levemente imperfeito, usado
+// como elemento decorativo no Footer.
+export function CoffeeCupIcon({ className = 'h-5 w-5' }) {
+  return (
+    <svg className={className} {...defaultProps}>
+      <path d="M4.2 9.5c-.3 3.6-.1 8 1.2 9.9 1 1.5 3.1 2.1 5.7 2.1 2.7 0 4.9-.7 5.9-2.2 1.2-1.9 1.4-6.1 1.1-9.7-4.6-.6-9.3-.6-13.9-.1z" />
+      <path d="M18.1 10c1.6-.2 3 .5 3.2 2 .2 1.6-1 3.1-2.8 3.4" />
+      <path d="M7 8.7c-.3-1.1-.1-1.8.6-2.6.8-.9.7-1.5-.1-2.4" />
+      <path d="M11 8.6c-.2-1 0-1.6.7-2.4.7-.9.6-1.4-.1-2.3" />
+    </svg>
+  )
+}

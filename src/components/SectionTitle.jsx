@@ -17,13 +17,16 @@ function SectionTitle({
   return (
     <div className={`flex flex-col gap-3 ${alignment} ${className}`.trim()}>
       {eyebrow && (
-        <span className="text-sm font-semibold tracking-widest text-accent-light uppercase">
+        <span
+          className="font-kalam text-sm font-semibold tracking-widest text-black uppercase"
+          style={{ backgroundColor: '#DBEC00' }}
+        >
           {eyebrow}
         </span>
       )}
       {title && (
         <h2
-          className={`text-3xl font-bold sm:text-4xl ${titleClassName || 'text-primary'}`.trim()}
+          className={`font-kalam text-3xl font-bold sm:text-4xl ${titleClassName || 'text-black'}`.trim()}
         >
           {title}
         </h2>

@@ -42,7 +42,6 @@ function Skills() {
               <span className="font-normal">{t.skills.titleAmp}</span> {t.skills.titleSuffix}
             </>
           }
-          description={t.skills.description}
           titleClassName="text-black"
         />
 

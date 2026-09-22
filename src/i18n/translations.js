@@ -186,6 +186,8 @@ export const translations = {
         location: { title: 'Localização', value: 'Adicionar localização' },
       },
       openChannel: 'Abrir',
+      thanksTitle: 'Obrigado pela visita!',
+      thanksMessage: 'Fico feliz por você ter passado por aqui.',
     },
     modal: {
       detailsLabel: 'Detalhes do Projeto',
@@ -206,9 +208,11 @@ export const translations = {
       linkUnavailable: 'Link ainda não disponível',
     },
     footer: {
-      copyright: 'Desenvolvido por Vanderlei Fernandes',
-      madeWith: 'Feito com',
+      copyright: 'Vanderlei Fernandes',
+      madeWith: 'Desenvolvido com',
       with: 'React + Tailwind CSS.',
+      tagline: 'Código, ideias e atenção aos detalhes.',
+      postit: 'Sempre em evolução.',
     },
   },
   en: {
@@ -387,6 +391,8 @@ export const translations = {
         location: { title: 'Location', value: 'Add location' },
       },
       openChannel: 'Open',
+      thanksTitle: 'Thanks for visiting!',
+      thanksMessage: 'Glad you stopped by.',
     },
     modal: {
       detailsLabel: 'Project Details',
@@ -407,9 +413,11 @@ export const translations = {
       linkUnavailable: 'Link not available yet',
     },
     footer: {
-      copyright: 'Developed by Vanderlei Fernandes',
-      madeWith: 'Made with',
+      copyright: 'Vanderlei Fernandes',
+      madeWith: 'Developed with',
       with: 'React + Tailwind CSS.',
+      tagline: 'Code, ideas and attention to detail.',
+      postit: 'Always evolving.',
     },
   },
 }
