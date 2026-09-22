@@ -20,7 +20,7 @@ function Footer() {
     <Section
       as="footer"
       className="relative w-full overflow-hidden pb-0!"
-      containerClassName="relative"
+      containerClassName="relative max-lg:px-3!"
     >
       <div className="absolute inset-y-0 left-2 hidden w-3 sm:block" aria-hidden="true">
         {HOLE_POSITIONS.map((top) => (

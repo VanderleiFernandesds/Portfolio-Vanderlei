@@ -102,6 +102,9 @@ function ProjectGallery({ project, t }) {
       className="flex flex-1 flex-col items-center justify-center gap-3 border border-primary/10 px-4 py-8 xl:pt-3 xl:pb-13"
       style={{ backgroundColor: '#E7D7BC' }}
     >
+      <h3 className="w-full max-w-[601px] text-3xl leading-tight font-extrabold text-modal-heading lg:text-4xl">
+        {t.modal.gallery}
+      </h3>
 
       {/* Troca de slide com efeito de "folhear fotografias": a foto atual
           desliza para fora (rotação + escala + fade) enquanto a próxima

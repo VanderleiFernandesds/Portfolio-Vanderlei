@@ -189,6 +189,7 @@ export const translations = {
     },
     modal: {
       detailsLabel: 'Detalhes do Projeto',
+      gallery: 'Galeria',
       closeAria: 'Fechar detalhes do projeto',
       galleryAria: 'Capturas de tela do projeto',
       prevImageAria: 'Imagem anterior',
@@ -394,6 +395,7 @@ export const translations = {
     },
     modal: {
       detailsLabel: 'Project Details',
+      gallery: 'Gallery',
       closeAria: 'Close project details',
       galleryAria: 'Project screenshots',
       prevImageAria: 'Previous image',
