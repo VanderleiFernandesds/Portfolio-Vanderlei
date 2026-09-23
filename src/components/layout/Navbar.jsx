@@ -23,8 +23,7 @@ const NAV_LINKS = [
   { labelKey: 'contact', href: '#contato', icon: MailIcon },
 ]
 
-// TODO: substituir pelo link real do PDF do currículo quando existir.
-const RESUME_HREF = '#'
+const RESUME_HREF = '/curriculo-vanderlei-fullstack.pdf'
 
 /**
  * Navbar
@@ -134,7 +133,12 @@ function Navbar() {
           <div className="flex items-center gap-2 ">
             <div className="hidden items-center gap-4 md:flex">
               <LanguageSwitcher />
-              <CurriculoButton as="a" href={RESUME_HREF} className="-translate-y-2.5">
+              <CurriculoButton
+                as="a"
+                href={RESUME_HREF}
+                download
+                className="-translate-y-2.5"
+              >
                 {t.nav.resume}
                 <DownloadIcon className="h-4 w-4" aria-hidden="true" />
               </CurriculoButton>
@@ -220,6 +224,7 @@ function Navbar() {
               <CurriculoButton
                 as="a"
                 href={RESUME_HREF}
+                download
                 onClick={() => setIsOpen(false)}
               >
                 {t.nav.resume}
