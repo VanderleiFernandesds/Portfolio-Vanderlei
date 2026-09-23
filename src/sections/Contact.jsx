@@ -38,7 +38,7 @@ function ChannelCard({ href, imageSrc, Icon, title }) {
           </span>
           <span
             aria-hidden="true"
-            className="pointer-events-none absolute -inset-x-10 -inset-y-8"
+            className="pointer-events-none absolute -inset-x-4 -inset-y-3 lg:-inset-x-10 lg:-inset-y-8"
           >
             <HoverStrokeCircle hover={hover} />
           </span>
