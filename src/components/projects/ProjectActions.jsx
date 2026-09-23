@@ -1,4 +1,4 @@
-import { ExternalLinkIcon } from './icons'
+import { ExternalLinkIcon } from '../icons'
 import { SiGithub } from 'react-icons/si'
 
 /**

@@ -10,6 +10,7 @@ function SectionTitle({
   align = 'center',
   className = '',
   titleClassName = '',
+  eyebrowClassName = '',
 }) {
   const alignment =
     align === 'left' ? 'items-start text-left' : 'items-center text-center'
@@ -19,7 +20,7 @@ function SectionTitle({
       {eyebrow && (
         <span
           data-nav-target
-          className="scroll-mt-28 font-kalam text-sm font-semibold tracking-widest text-black uppercase"
+          className={`scroll-mt-28 font-kalam text-sm font-semibold tracking-widest text-black uppercase ${eyebrowClassName}`.trim()}
           style={{ backgroundColor: '#DBEC00' }}
         >
           {eyebrow}

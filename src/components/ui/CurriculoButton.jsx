@@ -1,5 +1,5 @@
-import clipSvg from '../assets/svg-com-clip.svg'
-import hoverStroke from '../assets/hover-stroke.svg'
+import clipSvg from '../../assets/decorative/svg-com-clip.svg'
+import hoverStroke from '../../assets/decorative/hover-stroke.svg'
 
 /**
  * CurriculoButton

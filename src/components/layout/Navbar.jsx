@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
 import Container from './Container'
-import CurriculoButton from './CurriculoButton'
-import LanguageSwitcher from './LanguageSwitcher'
-import { useLanguage } from '../i18n/LanguageContext'
-import logo from '../assets/logo.svg'
-import hoverStroke from '../assets/hover-stroke.svg'
+import CurriculoButton from '../ui/CurriculoButton'
+import LanguageSwitcher from '../ui/LanguageSwitcher'
+import { useLanguage } from '../../i18n/LanguageContext'
+import logo from '../../assets/decorative/logo.svg'
+import hoverStroke from '../../assets/decorative/hover-stroke.svg'
 import {
   UserIcon,
   ZapIcon,
@@ -13,7 +13,7 @@ import {
   DownloadIcon,
   MenuIcon,
   CloseIcon,
-} from './icons'
+} from '../icons'
 
 // Apontam para os ids das seções. `labelKey` referencia src/i18n/translations.js (t.nav).
 const NAV_LINKS = [

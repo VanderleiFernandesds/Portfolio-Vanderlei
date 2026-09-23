@@ -1,4 +1,4 @@
-import { categoryStyles } from '../data/projectCategories'
+import { categoryStyles } from '../../data/projectCategories'
 
 /**
  * ProjectCategoryTag

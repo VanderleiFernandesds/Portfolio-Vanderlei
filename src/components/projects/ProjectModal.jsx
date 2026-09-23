@@ -1,9 +1,10 @@
 import { useEffect, useRef } from 'react'
-import { CloseIcon } from './icons'
-import { useLanguage } from '../i18n/LanguageContext'
+import { CloseIcon } from '../icons'
+import { useLanguage } from '../../i18n/LanguageContext'
 import ProjectGallery from './ProjectGallery'
 import ProjectDetails from './ProjectDetails'
 import ProjectActions from './ProjectActions'
+import abaPasta from '../../assets/decorative/aba-pasta.svg'
 
 /**
  * ProjectModal
@@ -66,7 +67,7 @@ function ProjectModal({ project, isOpen, onClose }) {
         <div className="hidden h-12 w-full items-center justify-between pr-6 lg:flex">
           <div
             className="flex h-12 w-[446px] max-w-full items-center bg-contain bg-left bg-no-repeat pl-6"
-            style={{ backgroundImage: 'url(/aba-pasta.svg)' }}
+            style={{ backgroundImage: `url(${abaPasta})` }}
           >
             <span className="rounded-md bg-modal-paper px-[70px] py-1.5 text-sm font-semibold text-text">
               {t.modal.detailsLabel}
@@ -78,7 +79,7 @@ function ProjectModal({ project, isOpen, onClose }) {
         <div className="relative z-20 mt-2 -mb-3 flex items-center justify-between gap-3 lg:hidden lg:mt-0 lg:mb-0">
           <div
             className="-mt-4 flex h-12 min-w-0 flex-1 max-w-[446px] items-center justify-center bg-contain bg-left bg-no-repeat px-4 lg:mt-0 lg:justify-start lg:p-0"
-            style={{ backgroundImage: 'url(/aba-pasta.svg)' }}
+            style={{ backgroundImage: `url(${abaPasta})` }}
           >
             <span className="rounded-md bg-modal-paper px-3 py-1.5 text-sm font-semibold text-text">
               {t.modal.detailsLabel}

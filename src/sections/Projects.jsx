@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
-import Section from '../components/Section'
-import SectionTitle from '../components/SectionTitle'
-import FolderCarousel from '../components/FolderCarousel'
-import ProjectModal from '../components/ProjectModal'
-import PaperButton from '../components/PaperButton'
-import ProjectCategoryTag from '../components/ProjectCategoryTag'
+import Section from '../components/layout/Section'
+import SectionTitle from '../components/layout/SectionTitle'
+import FolderCarousel from '../components/projects/FolderCarousel'
+import ProjectModal from '../components/projects/ProjectModal'
+import PaperButton from '../components/ui/PaperButton'
+import ProjectCategoryTag from '../components/projects/ProjectCategoryTag'
 import { ArrowRightIcon, ExternalLinkIcon } from '../components/icons'
 import { SiGithub, SiChartdotjs, SiPostgresql } from 'react-icons/si'
 import { projects } from '../data/projects'
@@ -17,13 +17,13 @@ const FALLBACK_TECH_ICONS = {
   'chart.js': SiChartdotjs,
   postgresql: SiPostgresql,
 }
-import pastaProjetosFundo from '../assets/pasta-projetos-fundo.svg'
-import pastaProjetosFrente from '../assets/pasta-projetos-frente.svg'
+import pastaProjetosFundo from '../assets/decorative/pasta-projetos-fundo.svg'
+import pastaProjetosFrente from '../assets/decorative/pasta-projetos-frente.svg'
 
 /**
  * Projects
  * Painel com o projeto em destaque à esquerda e carrossel de pastas
- * (src/components/FolderCarousel.jsx) à direita. Os dois ficam
+ * (src/components/projects/FolderCarousel.jsx) à direita. Os dois ficam
  * sincronizados: `order` (índice do projeto em primeiro plano) é
  * controlada aqui e passada ao carrossel, então navegar por ele também
  * atualiza o painel, e vice-versa.
@@ -100,6 +100,7 @@ function Projects() {
           eyebrow={t.projects.eyebrow}
           title={t.projects.title}
           titleClassName="text-text"
+          eyebrowClassName="px-2 mt-2"
         />
 
         {/*

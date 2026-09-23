@@ -1,14 +1,14 @@
 import { useState } from 'react'
-import Section from '../components/Section'
-import SectionTitle from '../components/SectionTitle'
-import HoverStrokeCircle from '../components/HoverStrokeCircle'
+import Section from '../components/layout/Section'
+import SectionTitle from '../components/layout/SectionTitle'
+import HoverStrokeCircle from '../components/ui/HoverStrokeCircle'
 import { MailIcon } from '../components/icons'
 import { contactChannels } from '../data/contactChannels'
 import { useLanguage } from '../i18n/LanguageContext'
-import folhaDeRedes from '../assets/folha-de-redes.png'
-import folhaDeAviso from '../assets/folha-de-aviso.svg'
-import parteSuperiorFolhaAvif from '../assets/parte-superior-da-folha.avif'
-import parteSuperiorFolhaWebp from '../assets/parte-superior-da-folha.webp'
+import folhaDeRedes from '../assets/paper/folha-de-redes.png'
+import folhaDeAviso from '../assets/paper/folha-de-aviso.svg'
+import parteSuperiorFolhaAvif from '../assets/paper/parte-superior-da-folha.avif'
+import parteSuperiorFolhaWebp from '../assets/paper/parte-superior-da-folha.webp'
 
 // Ordem dos 4 quadrados: LinkedIn e WhatsApp em cima, e-mail e GitHub embaixo.
 const SQUARE_CHANNELS = ['linkedin', 'whatsapp', 'email', 'github']
@@ -71,6 +71,7 @@ function Contact() {
           <SectionTitle
             eyebrow={t.contact.eyebrow}
             titleClassName="text-black"
+            eyebrowClassName="px-2 mt-2"
             title={
               <>
                 {t.contact.titleLine1}

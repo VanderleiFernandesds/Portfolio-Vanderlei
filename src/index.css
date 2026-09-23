@@ -126,7 +126,7 @@
   --color-folder-border: #9c7447;
 
   /*
-    Uso exclusivo: FolderCarousel (src/components/FolderCarousel.jsx).
+    Uso exclusivo: FolderCarousel (src/components/projects/FolderCarousel.jsx).
     Cores fixas do protótipo design/Carrossel de Pastas/ — carrossel
     genérico, não vinculado aos dados/tokens de projetos reais.
   */
@@ -207,7 +207,7 @@
 
   /*
     Uso exclusivo: abertura/fechamento do ProjectModal
-    (src/components/ProjectModal.jsx) — dá a sensação de uma pasta de
+    (src/components/projects/ProjectModal.jsx) — dá a sensação de uma pasta de
     projeto sendo aberta: o backdrop esmaece, o painel "assenta" na tela
     (scale + translateY), a screenshot entra como uma foto sendo colocada
     dentro da pasta (leve rotação), e o conteúdo da direita é revelado em
@@ -322,7 +322,7 @@
 
   /*
     Uso exclusivo: galeria de fotos do ProjectModal
-    (src/components/ProjectModal.jsx) — troca de slide com efeito de
+    (src/components/projects/ProjectModal.jsx) — troca de slide com efeito de
     "folhear fotografias" (desliza + rotaciona + encolhe + desaparece em vez
     de um corte/slide de carrossel genérico). 4 variantes: a foto atual sai
     pra esquerda/direita conforme a direção (próxima/anterior), a nova
@@ -378,7 +378,7 @@
   }
 
   /*
-    Uso exclusivo: post-it do Footer (src/components/Footer.jsx) — entra
+    Uso exclusivo: post-it do Footer (src/components/layout/Footer.jsx) — entra
     com opacidade + leve rotação, como se alguém tivesse acabado de colar.
   */
   --animate-postit-in: postit-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
@@ -450,7 +450,7 @@
 @layer utilities {
   /*
     Sublinhado de marca-texto padrão do site (Navbar, PaperButton e
-    CurriculoButton) — src/assets/hover-stroke.svg. Como o SVG é uma forma
+    CurriculoButton) — src/assets/decorative/hover-stroke.svg. Como o SVG é uma forma
     preenchida (textura de marcador), não um único traço vetorial, a
     animação de "desenho" usa clip-path em vez de stroke-dashoffset: parte
     "não desenhado" (recortado a 100% da esquerda) e é revelado da
@@ -471,7 +471,7 @@
     Recorte real da pasta (aba no canto superior), igual ao protótipo
     design/Carrossel de Pastas/style.css (.folder-back). Path desenhado
     para uma caixa de 520x360 — mesma proporção usada em
-    src/components/FolderCarousel.jsx (w-[min(520px,82vw)] x
+    src/components/projects/FolderCarousel.jsx (w-[min(520px,82vw)] x
     h-[min(360px,58vw)]), então escala corretamente em telas menores.
   */
   .folder-back-shape {

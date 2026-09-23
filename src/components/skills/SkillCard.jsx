@@ -1,4 +1,4 @@
-import IconBadge from './IconBadge'
+import IconBadge from '../ui/IconBadge'
 
 // Mapeia o token de categoria (design/tokens.md) para a classe de fundo do
 // badge — cores de uso exclusivo dos badges de ícone desta seção.

@@ -1,9 +1,9 @@
-import Section from '../components/Section'
-import SectionTitle from '../components/SectionTitle'
-import SkillCard from '../components/SkillCard'
+import Section from '../components/layout/Section'
+import SectionTitle from '../components/layout/SectionTitle'
+import SkillCard from '../components/skills/SkillCard'
 import { skillCategories } from '../data/skills'
-import folhaPequena from '../assets/folha-pequena.svg'
-import BordaPapelPerfuradaSkill from '../components/BordaPapelPerfuradaSkill'
+import folhaPequena from '../assets/paper/folha-pequena.svg'
+import BordaPapelPerfuradaSkill from '../components/skills/BordaPapelPerfuradaSkill'
 import { DeviceIcon, LockIcon, LayersIcon } from '../components/icons'
 import { useLanguage } from '../i18n/LanguageContext'
 
@@ -41,6 +41,7 @@ function Skills() {
             </>
           }
           titleClassName="text-black"
+          eyebrowClassName="px-2 mt-2"
         />
 
         <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-280">

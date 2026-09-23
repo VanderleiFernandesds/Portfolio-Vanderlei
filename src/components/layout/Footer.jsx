@@ -1,6 +1,6 @@
 import Section from './Section'
-import { CoffeeCupIcon } from './icons'
-import { useLanguage } from '../i18n/LanguageContext'
+import { CoffeeCupIcon } from '../icons'
+import { useLanguage } from '../../i18n/LanguageContext'
 
 // Furos de caderno: círculos com a cor do fundo da página, simulando
 // recortes vazados no lado esquerdo do footer.

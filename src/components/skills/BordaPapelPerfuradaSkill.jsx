@@ -1,6 +1,6 @@
 /**
  * BordaPapelPerfuradaSkill
- * Versão inline de src/assets/borda-papel-perfurada-skill.svg com
+ * Versão inline de src/assets/decorative/borda-papel-perfurada-skill.svg com
  * `fill="currentColor"`, para poder ser colorida com as cores do site
  * (design/tokens.md) via className, em vez da cor fixa do arquivo original.
  * viewBox 1992x138: faixa perfurada (furos no topo) + base sólida, pensada

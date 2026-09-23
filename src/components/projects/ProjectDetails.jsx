@@ -1,5 +1,5 @@
 import { SiChartdotjs, SiPostgresql } from 'react-icons/si'
-import { stackIcons } from '../data/stackIcons'
+import { stackIcons } from '../../data/stackIcons'
 import ProjectCategoryTag from './ProjectCategoryTag'
 
 // Fallback (react-icons) para tecnologias sem SVG em stackIcons.js

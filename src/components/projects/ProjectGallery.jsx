@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { ArrowRightIcon } from './icons'
+import { ArrowRightIcon } from '../icons'
 
 /**
  * ProjectGallery

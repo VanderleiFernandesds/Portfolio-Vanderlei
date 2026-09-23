@@ -1,14 +1,14 @@
-import Section from '../components/Section'
-import SectionTitle from '../components/SectionTitle'
+import Section from '../components/layout/Section'
+import SectionTitle from '../components/layout/SectionTitle'
 import { useLanguage } from '../i18n/LanguageContext'
-import folhaPautadaComGrampo from '../assets/folha-pautada-com-grampo.svg'
-import folhaPautadaComGrampoDireita from '../assets/folha-pautada-com-grampo-direita.svg'
-import folhaPautadaComGrampoEsquerda from '../assets/folha-pautada-com-grampo-esquerda.svg'
-import molduraPolaroidAlfinete from '../assets/moldura-polaroid-alfinete.svg'
-import minhaFotoPerfil from '../assets/minha-foto-perfil.webp'
-import fotoComoEuTrabalho from '../assets/foto-como-eu-trabalho.webp'
-import ambienteDesenvolvimento from '../assets/ambiente-desenvolvimento.webp'
-import grampoDaPrancheta from '../assets/grampo-da-prancheta.svg'
+import folhaPautadaComGrampo from '../assets/paper/folha-pautada-com-grampo.svg'
+import folhaPautadaComGrampoDireita from '../assets/paper/folha-pautada-com-grampo-direita.svg'
+import folhaPautadaComGrampoEsquerda from '../assets/paper/folha-pautada-com-grampo-esquerda.svg'
+import molduraPolaroidAlfinete from '../assets/decorative/moldura-polaroid-alfinete.svg'
+import minhaFotoPerfil from '../assets/photos/minha-foto-perfil.webp'
+import fotoComoEuTrabalho from '../assets/photos/foto-como-eu-trabalho.webp'
+import ambienteDesenvolvimento from '../assets/photos/ambiente-desenvolvimento.webp'
+import grampoDaPrancheta from '../assets/decorative/grampo-da-prancheta.svg'
 
 /**
  * About
@@ -39,6 +39,7 @@ function About() {
         <SectionTitle
           eyebrow={t.about.eyebrow}
           title={t.about.title}
+          eyebrowClassName="px-2 mt-2"
         />
         {/*
           Aspect-ratio no lugar de altura/largura fixas mantém a proporção em

@@ -55,7 +55,14 @@ src/
     icons/      ícones organizados por uso (ui, portfolio, stack-mono)
     font/       fontes self-hosted (woff2)
     projects/   screenshots dos projetos do portfólio
-  components/   componentes React reutilizáveis (Button, Navbar, ProjectModal...)
+    photos/     fotos pessoais e de ambiente
+    paper/      texturas e recortes de papel/caderno
+    decorative/ logos, selos, molduras e outros elementos decorativos
+  components/   componentes React reutilizáveis
+    layout/     Navbar, Footer, Container, Section, SectionTitle
+    ui/         botões, links e outros elementos de interface
+    projects/   componentes do carrossel e modal de projetos
+    skills/     componentes da seção de habilidades
   sections/     uma seção por arquivo (Hero, About, Skills, Projects, Contact)
   data/         conteúdo estruturado (projetos, skills, canais de contato...)
   i18n/         contexto de idioma + dicionário de traduções PT/EN
